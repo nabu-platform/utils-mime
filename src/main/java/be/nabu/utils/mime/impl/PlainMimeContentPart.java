@@ -7,14 +7,15 @@ import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.ResettableContainer;
 import be.nabu.utils.mime.api.ContentPart;
+import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.MultiPart;
 
 public class PlainMimeContentPart extends PlainMimePart implements ContentPart, Closeable {
 
 	private ReadableContainer<ByteBuffer> content;
 	
-	public PlainMimeContentPart(MultiPart parent, ReadableContainer<ByteBuffer> content) {
-		super(parent);
+	public PlainMimeContentPart(MultiPart parent, ReadableContainer<ByteBuffer> content, Header...headers) {
+		super(parent, headers);
 		this.content = content;
 	}
 

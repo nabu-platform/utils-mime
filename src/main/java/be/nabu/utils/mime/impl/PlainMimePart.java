@@ -14,8 +14,9 @@ abstract public class PlainMimePart implements Part {
 	private MultiPart parent;
 	private List<Header> headers = new ArrayList<Header>();
 
-	public PlainMimePart(MultiPart parent) {
+	public PlainMimePart(MultiPart parent, Header...headers) {
 		this.parent = parent;
+		setHeader(headers);
 	}
 	
 	@Override
