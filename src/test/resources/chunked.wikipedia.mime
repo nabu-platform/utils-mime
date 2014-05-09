@@ -1,0 +1,928 @@
+Transfer-Encoding: chunked
+Content-Transfer-Encoding: quoted-printable
+
+200
+<!DOCTYPE html>=0A<html lang=3D"mul" dir=3D"ltr">=0A<head>=0A<!-- Sysops: P=
+lease do not edit the main template directly; update /temp and synchronise.=
+ -->=0A<meta charset=3D"utf-8">=0A<title>Wikipedia</title>=0A<!--[if lt IE =
+7]><meta http-equiv=3D"imagetoolbar" content=3D"no"><![endif]-->=0A<meta na=
+me=3D"viewport" content=3D"initial-scale=3D1.0, user-scalable=3Dyes">=0A<li=
+nk rel=3D"apple-touch-icon" href=3D"//bits.wikimedia.org/apple-touch/wikipe=
+dia.png">=0A<link rel=3D"shortcut icon" href
+200
+=3D"//bits.wikimedia.org/favico=
+n/wikipedia.ico">=0A<link rel=3D"license" href=3D"//creativecommons.org/lic=
+enses/by-sa/3.0/">=0A<link rel=3D"stylesheet" href=3D"//bits.wikimedia.org/=
+meta.wikimedia.org/load.php?debug=3Dfalse&amp;lang=3Den&amp;modules=3Dext.g=
+adget.wm-portal&amp;only=3Dstyles&amp;skin=3Dvector&amp;*">=0A<style type=
+=3D"text/css">=0A.central-featured-logo{background:url(//upload.wikimedia.o=
+rg/wikipedia/meta/0/08/Wikipedia-logo-v2_1x.png) center center no-repeat;ba=
+ckground-siz
+200
+e:200px auto;left:0;top:0;width:100%;height:100%}.bookshelf{dis=
+play:block}.bookshelf-container{font-size:13px;font-weight:700;line-height:=
+20px}.bookshelf-container .text{padding:0 .5em}.bookshelf-container .booken=
+d{display:-moz-inline-stack;display:inline-block;background-image:url(//upl=
+oad.wikimedia.org/wikipedia/commons/b/bd/Bookshelf-40x201_6.png);background=
+-size:40px auto;background-repeat:repeat-x;width:480px;height:20px;vertical=
+-align:top}.otherprojects{text-align:left;float:none;wid
+200
+th:90%;margin-left:=
+auto;margin-right:auto}.otherprojects-item{width:24.75%;line-height:60px}.o=
+therprojects-item a{display:block;width:10em;margin-left:auto;margin-right:=
+auto}.otherprojects-item .icon{display:-moz-inline-stack;display:inline-blo=
+ck;width:47px;text-align:center}.wm-site-info{padding-top:1.5em}@media (-we=
+bkit-min-device-pixel-ratio:1.5),(min--moz-device-pixel-ratio:1.5),(-o-min-=
+device-pixel-ratio:3/2),(min-resolution:1.5dppx),(min-resolution:144dpi){.c=
+entral-featured-logo{b
+200
+ackground-image:url(//upload.wikimedia.org/wikipedia/=
+meta/d/d1/Wikipedia-logo-v2_1.5x.png)}.bookshelf-container .bookend{backgro=
+und-image:url(//upload.wikimedia.org/wikipedia/meta/5/52/Bookshelf-40x20_1.=
+5x.png)}}@media (-webkit-min-device-pixel-ratio:2),(min--moz-device-pixel-r=
+atio:2),(-o-min-device-pixel-ratio:2),(min-resolution:2dppx),(min-resolutio=
+n:192dpi){.central-featured-logo{background-image:url(//upload.wikimedia.or=
+g/wikipedia/meta/b/be/Wikipedia-logo-v2_2x.png)}.bookshelf-contain
+200
+er .booke=
+nd{background-image:url(//upload.wikimedia.org/wikipedia/meta/4/46/Bookshel=
+f-40x20_2x.png)}}@media all and (max-width:480px){.central-featured-logo{ba=
+ckground-size:70px auto;left:.8em;top:-70px;width:70px;height:70px}.bookshe=
+lf-container .bookend{width:40px!important}.bookshelf-container .bookend:la=
+st-child{display:none}}@media all and (max-width:45em){.otherprojects{width=
+:100%}.otherprojects-item{width:33.33%}}@media all and (max-width:30em){.ot=
+herprojects-item{width:50%}}@med
+200
+ia all and (max-width:20em){.otherprojects-=
+item{width:100%}}=0A</style>=0A<!--[if lt IE 8]><style type=3D"text/css">=
+=0A.bookshelf-container .bookend,.otherprojects-icon{zoom:1;display:inline}=
+=0A</style><![endif]-->=0A</head>=0A<body id=3D"www-wikipedia-org">=0A=0A<h=
+1 class=3D"central-textlogo" style=3D"font-variant: small-caps;">=0A<img sr=
+c=3D"//upload.wikimedia.org/wikipedia/meta/6/6d/Wikipedia_wordmark_1x.png" =
+srcset=3D"//upload.wikimedia.org/wikipedia/meta/a/a9/Wikipedia_wordmark_1.5=
+
+200
+x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/8/8a/Wikipedia_wordmark_2=
+x.png 2x" width=3D"174" height=3D"30" alt=3D"WikipediA" title=3D"Wikipedia"=
+>=0A</h1>=0A=0A<!-- container div for the central logo and the links to the=
+ most viewed language editions -->=0A<div class=3D"central-featured">=0A=0A=
+<!-- logo -->=0A<div class=3D"central-featured-logo"></div>=0A=0A<!-- Ranki=
+ngs from http://stats.wikimedia.org/EN/Sitemap.htm (data from 2012-10-31) -=
+->=0A<!-- Article counts from http://meta.wi
+200
+kimedia.org/wiki/List_of_Wikipe=
+dias/Table (2013-11-19)-->=0A<!-- #1. en.wikipedia.org - 14,677,950 views/h=
+r -->=0A<div class=3D"central-featured-lang lang1" lang=3D"en">=0A<a class=
+=3D"link-box" href=3D"//en.wikipedia.org/" title=3D"English =E2=80=94 Wikip=
+edia =E2=80=94 The Free Encyclopedia"><strong>English</strong><br>=0A<em>Th=
+e Free Encyclopedia</em><br>=0A<small>4 423 000+ articles</small></a>=0A</d=
+iv>=0A=0A<!-- #2. es.wikipedia.org - 2,837,532 views/hr -->=0A<div class=3D=
+"central-fe
+200
+atured-lang lang2" lang=3D"es">=0A<a class=3D"link-box" href=3D"=
+//es.wikipedia.org/" title=3D"Espa=C3=B1ol =E2=80=94 Wikipedia =E2=80=94 La=
+ enciclopedia libre"><strong>Espa=C3=B1ol</strong><br>=0A<em>La enciclopedi=
+a libre</em><br>=0A<small>1 071 000+ art=C3=ADculos</small></a>=0A</div>=0A=
+=0A<!-- #3. ja.wikipedia.org - 1,765,535 views/hr -->=0A<div class=3D"centr=
+al-featured-lang lang3" lang=3D"ja">=0A<a class=3D"link-box" href=3D"//ja.w=
+ikipedia.org/" title=3D"Nihongo =E2=80=94 Wikipedia =E2
+200
+=80=94 =E3=83=95=E3=
+=83=AA=E3=83=BC=E7=99=BE=E7=A7=91=E4=BA=8B=E5=85=B8"><strong>=E6=97=A5=E6=
+=9C=AC=E8=AA=9E</strong><br>=0A<em class=3D"emNonItalicLang">=E3=83=95=E3=
+=83=AA=E3=83=BC=E7=99=BE=E7=A7=91=E4=BA=8B=E5=85=B8</em><br>=0A<small>890 0=
+00+ =E8=A8=98=E4=BA=8B</small></a>=0A</div>=0A=0A<!-- #4. ru.wikipedia.org =
+- 1,711,879 views/hr -->=0A<div class=3D"central-featured-lang lang4" lang=
+=3D"ru">=0A<a class=3D"link-box" href=3D"//ru.wikipedia.org/" title=3D"Russ=
+kiy =E2=80=94 Wikipedia =E2
+200
+=80=94 =D0=A1=D0=B2=D0=BE=D0=B1=D0=BE=D0=B4=D0=
+=BD=D0=B0=D1=8F =D1=8D=D0=BD=D1=86=D0=B8=D0=BA=D0=BB=D0=BE=D0=BF=D0=B5=D0=
+=B4=D0=B8=D1=8F"><strong>=D0=A0=D1=83=D1=81=D1=81=D0=BA=D0=B8=D0=B9</strong=
+><br>=0A<em>=D0=A1=D0=B2=D0=BE=D0=B1=D0=BE=D0=B4=D0=BD=D0=B0=D1=8F =D1=8D=
+=D0=BD=D1=86=D0=B8=D0=BA=D0=BB=D0=BE=D0=BF=D0=B5=D0=B4=D0=B8=D1=8F</em><br>=
+=0A<small>1 079 000+ =D1=81=D1=82=D0=B0=D1=82=D0=B5=D0=B9</small></a>=0A</d=
+iv>=0A=0A<!-- #5. de.wikipedia.org - 1,692,171 views/hr -->=0A<div class=3D=
+200
+
+"central-featured-lang lang5" lang=3D"de">=0A<a class=3D"link-box" href=3D"=
+//de.wikipedia.org/" title=3D"Deutsch =E2=80=94 Wikipedia =E2=80=94 Die fre=
+ie Enzyklop=C3=A4die"><strong>Deutsch</strong><br>=0A<em>Die freie Enzyklop=
+=C3=A4die</em><br>=0A<small>1 675 000+ Artikel</small></a>=0A</div>=0A=0A<!=
+-- #6. fr.wikipedia.org - 1,558,050 views/hr -->=0A<div class=3D"central-fe=
+atured-lang lang6" lang=3D"fr">=0A<a class=3D"link-box" href=3D"//fr.wikipe=
+dia.org/" title=3D"Fran=C3=A7ais =E2=80=94 
+200
+Wikipedia =E2=80=94 L=E2=80=99en=
+cyclop=C3=A9die libre"><strong>Fran=C3=A7ais</strong><br>=0A<em>L=E2=80=99e=
+ncyclop=C3=A9die libre</em><br>=0A<small>1 465 000+ articles</small></a>=0A=
+</div>=0A=0A<!-- #7. pt.wikipedia.org - 1,004,499 views/hr -->=0A<div class=
+=3D"central-featured-lang lang7" lang=3D"pt">=0A<a class=3D"link-box" href=
+=3D"//pt.wikipedia.org/" title=3D"Portugu=C3=AAs =E2=80=94 Wikipedia =E2=80=
+=94 A enciclop=C3=A9dia livre"><strong>Portugu=C3=AAs</strong><br>=0A<em>A =
+enciclop=C
+200
+3=A9dia livre</em><br>=0A<small>815 000+ artigos</small></a>=0A</=
+div>=0A=0A<!-- #8. it.wikipedia.org - 910,057 views/hr -->=0A<div class=3D"=
+central-featured-lang lang8" lang=3D"it">=0A<a class=3D"link-box" href=3D"/=
+/it.wikipedia.org/" title=3D"Italiano =E2=80=94 Wikipedia =E2=80=94 L=E2=80=
+=99enciclopedia libera"><strong>Italiano</strong><br>=0A<em>L=E2=80=99encic=
+lopedia libera</em><br>=0A<small>1 091 000+ voci</small></a>=0A</div>=0A=0A=
+<!-- #9. pl.wikipedia.org - 835,554 views/hr -->=0A<di
+200
+v class=3D"central-fe=
+atured-lang lang9" lang=3D"pl">=0A<a class=3D"link-box" href=3D"//pl.wikipe=
+dia.org/" title=3D"Polski =E2=80=94 Wikipedia =E2=80=94 Wolna encyklopedia"=
+><strong>Polski</strong><br>=0A<em>Wolna encyklopedia</em><br>=0A<small>1 0=
+22 000+ hase=C5=82</small></a>=0A</div>=0A=0A<!-- #10. zh.wikipedia.org - 6=
+73,799 views/hr -->=0A<div class=3D"central-featured-lang lang10" lang=3D"z=
+h">=0A<a class=3D"link-box" id=3D"zh_top10" href=3D"//zh.wikipedia.org/" ti=
+tle=3D"Zh=C5=8Dngw=C
+200
+3=A9n =E2=80=94 Wikipedia =E2=80=94 =E8=87=AA=E7=94=B1=
+=E7=9A=84=E7=99=BE=E7=A7=91=E5=85=A8=E6=9B=B8" data-convertTitle-Hans=3D"Zh=
+=C5=8Dngw=C3=A9n =E2=80=94 Wikipedia =E2=80=94 =E8=87=AA=E7=94=B1=E7=9A=84=
+=E7=99=BE=E7=A7=91=E5=85=A8=E4=B9=A6"><strong>=E4=B8=AD=E6=96=87</strong><b=
+r>=0A<em id=3D"zh_tag" class=3D"emNonItalicLang" data-convert-Hans=3D"=E8=
+=87=AA=E7=94=B1=E7=9A=84=E7=99=BE=E7=A7=91=E5=85=A8=E4=B9=A6">=E8=87=AA=E7=
+=94=B1=E7=9A=84=E7=99=BE=E7=A7=91=E5=85=A8=E6=9B=B8</em><br>=0A<small
+200
+>745 0=
+00+ <span id=3D"zh_art" data-convert-Hans=3D"=E6=9D=A1=E7=9B=AE">=E6=A2=9D=
+=E7=9B=AE</span></small></a>=0A</div>=0A=0A</div>=0A=0A<!-- Search form -->=
+=0A<div class=3D"search-container">=0A=0A<form class=3D"search-form" action=
+=3D"//www.wikipedia.org/search-redirect.php">=0A<fieldset>=0A=0A<!-- search=
+-redirect.php is project-independent, requires a family -->=0A<input type=
+=3D"hidden" name=3D"family" value=3D"wikipedia">=0A=0A<input id=3D"searchIn=
+put" name=3D"search" type=3D"search" s
+200
+ize=3D"20" autofocus=3D"autofocus" ac=
+cesskey=3D"F">=0A=0A<select id=3D"searchLanguage" name=3D"language">=0A<!--=
+ 100,000+ content pages, sorted by romanization (last updated 2013-11-19) -=
+->=0A<option value=3D"ar" lang=3D"ar">=D8=A7=D9=84=D8=B9=D8=B1=D8=A8=D9=8A=
+=D8=A9</option><!-- Al-=CA=BFArab=C4=AByah -->=0A<option value=3D"bg" lang=
+=3D"bg">=D0=91=D1=8A=D0=BB=D0=B3=D0=B0=D1=80=D1=81=D0=BA=D0=B8</option><!--=
+ Bulgarski -->=0A<option value=3D"ca" lang=3D"ca">Catal=C3=A0</option>=0A<o=
+ption 
+200
+value=3D"cs" lang=3D"cs">=C4=8Cesky</option>=0A<option value=3D"da" l=
+ang=3D"da">Dansk</option>=0A<option value=3D"de" lang=3D"de">Deutsch</optio=
+n>=0A<option value=3D"en" lang=3D"en" selected=3D"selected">English</option=
+>=0A<option value=3D"es" lang=3D"es">Espa=C3=B1ol</option>=0A<option value=
+=3D"eo" lang=3D"eo">Esperanto</option>=0A<option value=3D"et" lang=3D"et">E=
+esti</option>=0A<option value=3D"eu" lang=3D"eu">Euskara</option>=0A<option=
+ value=3D"fa" lang=3D"fa">=D9=81=D8=A7=D8=B1=D8=B3=
+200
+DB=8C</option><!-- F=C4=
+=81rsi -->=0A<option value=3D"fr" lang=3D"fr">Fran=C3=A7ais</option>=0A<opt=
+ion value=3D"gl" lang=3D"gl">Galego</option>=0A<option value=3D"ko" lang=3D=
+"ko">=ED=95=9C=EA=B5=AD=EC=96=B4</option><!-- Hangugeo -->=0A<option value=
+=3D"hy" lang=3D"hy">=D5=80=D5=A1=D5=B5=D5=A5=D6=80=D5=A5=D5=B6</option><!--=
+ Hayeren -->=0A<option value=3D"hi" lang=3D"hi">=E0=A4=B9=E0=A4=BF=E0=A4=A8=
+=E0=A5=8D=E0=A4=A6=E0=A5=80</option><!-- Hind=C4=AB -->=0A<option value=3D"=
+hr" lang=3D"hr">Hrv
+200
+atski</option>=0A<option value=3D"id" lang=3D"id">Bahasa=
+ Indonesia</option>=0A<option value=3D"it" lang=3D"it">Italiano</option>=0A=
+<option value=3D"he" lang=3D"he">=D7=A2=D7=91=D7=A8=D7=99=D7=AA</option><!-=
+- =E2=80=98Ivrit -->=0A<option value=3D"la" lang=3D"la">Latina</option>=0A<=
+option value=3D"lt" lang=3D"lt">Lietuvi=C5=B3</option>=0A<option value=3D"h=
+u" lang=3D"hu">Magyar</option>=0A<option value=3D"ms" lang=3D"ms">Bahasa Me=
+layu</option>=0A<option value=3D"min" lang=3D"min">Baso Minangk
+200
+abau</option=
+>=0A<option value=3D"nl" lang=3D"nl">Nederlands</option>=0A<option value=3D=
+"ja" lang=3D"ja">=E6=97=A5=E6=9C=AC=E8=AA=9E</option><!-- Nihongo -->=0A<op=
+tion value=3D"no" lang=3D"nb">Norsk (bokm=C3=A5l)</option>=0A<option value=
+=3D"nn" lang=3D"nn">Norsk (nynorsk)</option>=0A<option value=3D"uz" lang=3D=
+"uz">O=CA=BBzbekcha</option>=0A<option value=3D"pl" lang=3D"pl">Polski</opt=
+ion>=0A<option value=3D"pt" lang=3D"pt">Portugu=C3=AAs</option>=0A<option v=
+alue=3D"kk" lang=3D"kk">=D2=9A
+200
+=D0=B0=D0=B7=D0=B0=D2=9B=D1=88=D0=B0 / Qazaq=
+=C5=9Fa / =D9=82=D8=A7=D8=B2=D8=A7=D9=82=D8=B4=D8=A7</option>=0A<option val=
+ue=3D"ro" lang=3D"ro">Rom=C3=A2n=C4=83</option>=0A<option value=3D"ru" lang=
+=3D"ru">=D0=A0=D1=83=D1=81=D1=81=D0=BA=D0=B8=D0=B9</option><!-- Russkiy -->=
+=0A<option value=3D"sah" lang=3D"sah">=D0=A1=D0=B0=D1=85=D0=B0 =D0=A2=D1=8B=
+=D0=BB=D0=B0</option><!-- Saxa Tyla -->=0A<option value=3D"simple" lang=3D"=
+en">Simple English</option>=0A<option value=3D"ceb" lang=3D"ceb">Sinugboano
+200
+=
+ng</option><!-- Cebuano -->=0A<option value=3D"sk" lang=3D"sk">Sloven=C4=8D=
+ina</option>=0A<option value=3D"sl" lang=3D"sl">Sloven=C5=A1=C4=8Dina</opti=
+on>=0A<option value=3D"sr" lang=3D"sr">=D0=A1=D1=80=D0=BF=D1=81=D0=BA=D0=B8=
+ / Srpski</option>=0A<option value=3D"fi" lang=3D"fi">Suomi</option>=0A<opt=
+ion value=3D"sv" lang=3D"sv">Svenska</option>=0A<option value=3D"tr" lang=
+=3D"tr">T=C3=BCrk=C3=A7e</option>=0A<option value=3D"uk" lang=3D"uk">=D0=A3=
+=D0=BA=D1=80=D0=B0=D1=97=D0=BD=D1=81=D1=8C=
+200
+D0=BA=D0=B0</option><!-- Ukrayin=
+s=E2=80=99ka -->=0A<option value=3D"vi" lang=3D"vi">Ti=E1=BA=BFng Vi=E1=BB=
+=87t</option>=0A<option value=3D"vo" lang=3D"vo">Volap=C3=BCk</option>=0A<o=
+ption value=3D"war" lang=3D"war">Winaray</option>=0A<option value=3D"zh" la=
+ng=3D"zh">=E4=B8=AD=E6=96=87</option><!-- Zh=C5=8Dngw=C3=A9n -->=0A</select=
+>=0A=0A<input class=3D"formBtn" type=3D"submit" value=3D"  =E2=86=92  " nam=
+e=3D"go">=0A<input type=3D"hidden" value=3D"Go" name=3D"go">=0A=0A</fieldse=
+t>=0A</for
+200
+m>=0A</div>=0A=0A<div class=3D"divider" style=3D"padding: 0 1%;">=
+<hr></div>=0A=0A<div class=3D"search-container language-search">=0A<form ac=
+tion=3D"//incubator.wikimedia.org/w/index.php" method=3D"get" name=3D"searc=
+hwiki">=0A<input type=3D"hidden" name=3D"title" value=3D"Special:SearchWiki=
+">=0A<input type=3D"hidden" name=3D"uselang" value=3D"en">=0A<input type=3D=
+"hidden" name=3D"searchproject" value=3D"p">=0A<label for=3D"langsearch-inp=
+ut">Find Wikipedia in a language:</label>=0A<input typ
+200
+e=3D"search" name=3D"=
+searchlanguage" id=3D"langsearch-input" value=3D"">=0A<input class=3D"formB=
+tn" type=3D"submit" value=3D"  =E2=86=92  ">=0A</form>=0A=0A</div>=0A=0A<!-=
+- Bookshelves -->=0A<h2 class=3D"bookshelf-container">=0A<span class=3D"boo=
+kshelf"><span class=3D"bookend" style=3D"width: 360px /* 9 * 40 */;"></span=
+><span class=3D"text">1&nbsp;000&nbsp;000+</span><span class=3D"bookend" st=
+yle=3D"width: 360px;"></span></span>=0A</h2>=0A=0A<!-- 1,000,000+ content p=
+ages (last updated 2
+200
+013-11-19) -->=0A<div class=3D"langlist langlist-large"=
+><div>=0A<a href=3D"//de.wikipedia.org/" lang=3D"de">Deutsch</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//en.wikipedia.org/" lang=3D"en">English</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//es.wikipedia.org/" lang=3D"es">Espa=C3=B1ol</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//fr.wikipedia.org/" lang=3D"fr">Fran=C3=A7ais</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//it.wikipedia.org/" lang=3D"it">Italiano</a>&nb=
+sp;=E2=80=A2=0A<a href=3D"//nl.wikipedia.org/" lang=3D"nl">Nederland
+200
+s</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//pl.wikipedia.org/" lang=3D"pl">Polski</a>&nbsp=
+;=E2=80=A2=0A<a href=3D"//ru.wikipedia.org/" lang=3D"ru" title=3D"Russkiy">=
+=D0=A0=D1=83=D1=81=D1=81=D0=BA=D0=B8=D0=B9</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//sv.wikipedia.org/" lang=3D"sv">Svenska</a>=0A</div></div>=0A=0A<!-- Books=
+helves -->=0A<h2 class=3D"bookshelf-container">=0A<span class=3D"bookshelf"=
+><span class=3D"bookend" style=3D"width: 280px /* 7 * 40 */;"></span><span =
+class=3D"text">100&nbsp;000+</span
+200
+><span class=3D"bookend" style=3D"width: =
+280px;"></span></span>=0A</h2>=0A=0A<!-- 100,000+ content pages (last updat=
+ed 2013-11-19) -->=0A<div class=3D"langlist langlist-large"><div>=0A<a href=
+=3D"//ar.wikipedia.org/" lang=3D"ar" title=3D"Al-=CA=BFArab=C4=AByah"><bdi =
+dir=3D"rtl">=D8=A7=D9=84=D8=B9=D8=B1=D8=A8=D9=8A=D8=A9</bdi></a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//bg.wikipedia.org/" lang=3D"bg" title=3D"Bulgarski">=
+=D0=91=D1=8A=D0=BB=D0=B3=D0=B0=D1=80=D1=81=D0=BA=D0=B8</a>&nbsp;=E2=80=A2=
+=0A<a 
+200
+href=3D"//ca.wikipedia.org/" lang=3D"ca">Catal=C3=A0</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//cs.wikipedia.org/" lang=3D"cs">=C4=8Cesky</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//da.wikipedia.org/" lang=3D"da">Dansk</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//et.wikipedia.org/" lang=3D"et">Eesti</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//eo.wikipedia.org/" lang=3D"eo">Esperanto</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//eu.wikipedia.org/" lang=3D"eu">Euskara</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//fa.wikipedia.org/" lang=3D"fa" title=3D"F
+200
+=C4=81rsi"><bdi di=
+r=3D"rtl">=D9=81=D8=A7=D8=B1=D8=B3=DB=8C</bdi></a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//gl.wikipedia.org/" lang=3D"gl">Galego</a>&nbsp;=E2=80=A2=0A<a href=3D=
+"//ko.wikipedia.org/" lang=3D"ko" title=3D"Hangugeo">=ED=95=9C=EA=B5=AD=EC=
+=96=B4</a>&nbsp;=E2=80=A2=0A<a href=3D"//hy.wikipedia.org/" lang=3D"hy" tit=
+le=3D"Hayeren">=D5=80=D5=A1=D5=B5=D5=A5=D6=80=D5=A5=D5=B6</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//hi.wikipedia.org/" lang=3D"hi" title=3D"Hind=C4=AB">=E0=
+=A4=B9=E0=A4=BF=E0=A4=A8=E0
+200
+=A5=8D=E0=A4=A6=E0=A5=80</a>&nbsp;=E2=80=A2=0A<a=
+ href=3D"//hr.wikipedia.org/" lang=3D"hr">Hrvatski</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//id.wikipedia.org/" lang=3D"id">Bahasa Indonesia</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//he.wikipedia.org/" lang=3D"he" title=3D"=E2=80=98Ivrit">=
+<bdi dir=3D"rtl">=D7=A2=D7=91=D7=A8=D7=99=D7=AA</bdi></a>&nbsp;=E2=80=A2=0A=
+<a href=3D"//la.wikipedia.org/" lang=3D"la">Latina</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//lt.wikipedia.org/" lang=3D"lt">Lietuvi=C5=B3</a>&nbsp;=E2=80=A2
+200
+=
+=0A<a href=3D"//hu.wikipedia.org/" lang=3D"hu">Magyar</a>&nbsp;=E2=80=A2=0A=
+<a href=3D"//ms.wikipedia.org/" lang=3D"ms">Bahasa Melayu</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//min.wikipedia.org/" lang=3D"min">Baso Minangkabau</a>&nb=
+sp;=E2=80=A2=0A<a href=3D"//ja.wikipedia.org/" lang=3D"ja" title=3D"Nihongo=
+">=E6=97=A5=E6=9C=AC=E8=AA=9E</a>&nbsp;=E2=80=A2=0A<span lang=3D"no">Norsk =
+(<a href=3D"//no.wikipedia.org/" lang=3D"nb">bokm=C3=A5l</a>&nbsp;=E2=80=A2=
+ <a href=3D"//nn.wikipedia.org/" lang=3D"nn
+200
+">nynorsk</a>)</span>&nbsp;=E2=
+=80=A2=0A<a href=3D"//uz.wikipedia.org/" lang=3D"uz">O=CA=BBzbekcha</a>&nbs=
+p;=E2=80=A2=0A<a href=3D"//pt.wikipedia.org/" lang=3D"pt">Portugu=C3=AAs</a=
+>&nbsp;=E2=80=A2=0A<a href=3D"//kk.wikipedia.org/" lang=3D"kk">=D2=9A=D0=B0=
+=D0=B7=D0=B0=D2=9B=D1=88=D0=B0 / <span lang=3D"kk-Latn">Qazaq=C5=9Fa</span>=
+ / <bdi lang=3D"kk-Arab" dir=3D"rtl">=D9=82=D8=A7=D8=B2=D8=A7=D9=82=D8=B4=
+=D8=A7</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//ro.wikipedia.org/" lang=3D"r=
+o">Rom=C3=A2n
+200
+=C4=83</a>&nbsp;=E2=80=A2=0A<a href=3D"//simple.wikipedia.org/=
+" lang=3D"en">Simple English</a>&nbsp;=E2=80=A2=0A<a href=3D"//ceb.wikipedi=
+a.org/" lang=3D"ceb">Sinugboanon</a>&nbsp;=E2=80=A2=0A<a href=3D"//sk.wikip=
+edia.org/" lang=3D"sk">Sloven=C4=8Dina</a>&nbsp;=E2=80=A2=0A<a href=3D"//sl=
+.wikipedia.org/" lang=3D"sl">Sloven=C5=A1=C4=8Dina</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//sr.wikipedia.org/" lang=3D"sr"><span lang=3D"sr-Cyrl">=D0=A1=D1=
+=80=D0=BF=D1=81=D0=BA=D0=B8</span> / <span lang=3D"sr-Latn"
+200
+>Srpski</span></=
+a>&nbsp;=E2=80=A2=0A<a href=3D"//fi.wikipedia.org/" lang=3D"fi">Suomi</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//tr.wikipedia.org/" lang=3D"tr">T=C3=BCrk=C3=A7=
+e</a>&nbsp;=E2=80=A2=0A<a href=3D"//uk.wikipedia.org/" lang=3D"uk" title=3D=
+"Ukrayins=E2=80=99ka">=D0=A3=D0=BA=D1=80=D0=B0=D1=97=D0=BD=D1=81=D1=8C=D0=
+=BA=D0=B0</a>&nbsp;=E2=80=A2=0A<a href=3D"//vi.wikipedia.org/" lang=3D"vi">=
+Ti=E1=BA=BFng Vi=E1=BB=87t</a>&nbsp;=E2=80=A2=0A<a href=3D"//vo.wikipedia.o=
+rg/" lang=3D"vo">Volap=C3=B
+200
+Ck</a>&nbsp;=E2=80=A2=0A<a href=3D"//war.wikiped=
+ia.org/" lang=3D"war">Winaray</a>&nbsp;=E2=80=A2=0A<a id=3D"zh_wiki" href=
+=3D"//zh.wikipedia.org/" lang=3D"zh" title=3D"Zh=C5=8Dngw=C3=A9n">=E4=B8=AD=
+=E6=96=87</a>=0A</div></div>=0A=0A<!-- Bookshelves -->=0A<h2 class=3D"books=
+helf-container">=0A<span class=3D"bookshelf"><span class=3D"bookend" style=
+=3D"width: 200px /* 5 * 40 */;"></span><span class=3D"text">10&nbsp;000+</s=
+pan><span class=3D"bookend" style=3D"width: 200px;"></span></span>=0A</h2>
+200
+=
+=0A=0A<!-- 10,000+ content pages (last updated 2013-11-19) -->=0A<div class=
+=3D"langlist"><div>=0A<a href=3D"//af.wikipedia.org/" lang=3D"af">Afrikaans=
+</a>&nbsp;=E2=80=A2=0A<a href=3D"//als.wikipedia.org/" lang=3D"gsw">Alemann=
+isch</a>&nbsp;=E2=80=A2=0A<a href=3D"//am.wikipedia.org/" lang=3D"am" title=
+=3D"=C4=80mari=C3=B1=C3=B1=C4=81">=E1=8A=A0=E1=88=9B=E1=88=AD=E1=8A=9B</a>&=
+nbsp;=E2=80=A2=0A<a href=3D"//an.wikipedia.org/" lang=3D"an">Aragon=C3=A9s<=
+/a>&nbsp;=E2=80=A2=0A<a href=3D"//ast.wik
+200
+ipedia.org/" lang=3D"ast">Asturian=
+u</a>&nbsp;=E2=80=A2=0A<a href=3D"//ht.wikipedia.org/" lang=3D"ht">Krey=C3=
+=B2l Ayisyen</a>&nbsp;=E2=80=A2=0A<a href=3D"//az.wikipedia.org/" lang=3D"a=
+z">Az=C9=99rbaycanca</a>&nbsp;=E2=80=A2=0A<a href=3D"//bn.wikipedia.org/" l=
+ang=3D"bn" title=3D"Bangla">=E0=A6=AC=E0=A6=BE=E0=A6=82=E0=A6=B2=E0=A6=BE</=
+a>&nbsp;=E2=80=A2=0A<a href=3D"//zh-min-nan.wikipedia.org/" lang=3D"nan">B=
+=C3=A2n-l=C3=A2m-g=C3=BA</a>&nbsp;=E2=80=A2=0A<a href=3D"//map-bms.wikipedi=
+a.org/" l
+200
+ang=3D"map-x-bms">Basa Banyumasan</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//ba.wikipedia.org/" lang=3D"ba" title=3D"Ba=C5=9Fqortsa">=D0=91=D0=B0=D1=
+=88=D2=A1=D0=BE=D1=80=D1=82=D1=81=D0=B0</a>&nbsp;=E2=80=A2=0A<span lang=3D"=
+be" title=3D"Belaruskaya">=D0=91=D0=B5=D0=BB=D0=B0=D1=80=D1=83=D1=81=D0=BA=
+=D0=B0=D1=8F (<a href=3D"//be.wikipedia.org/" title=3D"Akademichnaya">=D0=
+=90=D0=BA=D0=B0=D0=B4=D1=8D=D0=BC=D1=96=D1=87=D0=BD=D0=B0=D1=8F</a>&nbsp;=
+=E2=80=A2&nbsp;<a href=3D"//be-x-old.wikipedia.org/" title=3
+200
+D"Tara=C5=A1kie=
+vica">=D0=A2=D0=B0=D1=80=D0=B0=D1=88=D0=BA=D0=B5=D0=B2i=D1=86=D0=B0</a>)</s=
+pan>&nbsp;=E2=80=A2=0A<a href=3D"//bpy.wikipedia.org/" lang=3D"bpy" title=
+=3D"Bishnupriya Manipuri">=E0=A6=AC=E0=A6=BF=E0=A6=B7=E0=A7=8D=E0=A6=A3=E0=
+=A7=81=E0=A6=AA=E0=A7=8D=E0=A6=B0=E0=A6=BF=E0=A6=AF=E0=A6=BC=E0=A6=BE =E0=
+=A6=AE=E0=A6=A3=E0=A6=BF=E0=A6=AA=E0=A7=81=E0=A6=B0=E0=A7=80</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//bs.wikipedia.org/" lang=3D"bs">Bosanski</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//br.wikipedia
+200
+.org/" lang=3D"br">Brezhoneg</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//cv.wikipedia.org/" lang=3D"cv" title=3D"=C4=8C=C4=83v=
+a=C5=A1la">=D0=A7=D3=91=D0=B2=D0=B0=D1=88=D0=BB=D0=B0</a>&nbsp;=E2=80=A2=0A=
+<a href=3D"//cy.wikipedia.org/" lang=3D"cy">Cymraeg</a>&nbsp;=E2=80=A2=0A<a=
+ href=3D"//el.wikipedia.org/" lang=3D"el" title=3D"Ell=C4=ABnik=C3=A1">=CE=
+=95=CE=BB=CE=BB=CE=B7=CE=BD=CE=B9=CE=BA=CE=AC</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//hif.wikipedia.org/" lang=3D"hif">Fiji Hindi</a>&nbsp;=E2=80=A2=0A<a h=
+re
+200
+f=3D"//fy.wikipedia.org/" lang=3D"fy">Frysk</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//ga.wikipedia.org/" lang=3D"ga">Gaeilge</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//gd.wikipedia.org/" lang=3D"gd">G=C3=A0idhlig</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//gu.wikipedia.org/" lang=3D"gu" title=3D"Gujarati">=E0=AA=97=E0=AB=
+=81=E0=AA=9C=E0=AA=B0=E0=AA=BE=E0=AA=A4=E0=AB=80</a>&nbsp;=E2=80=A2=0A<a hr=
+ef=3D"//io.wikipedia.org/" lang=3D"io">Ido</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//ia.wikipedia.org/" lang=3D"ia">Interlingua</a>&
+200
+nbsp;=E2=80=A2=0A<a href=
+=3D"//is.wikipedia.org/" lang=3D"is">=C3=8Dslenska</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//jv.wikipedia.org/" lang=3D"jv">Basa Jawa</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//kn.wikipedia.org/" lang=3D"kn" title=3D"Kannada">=E0=B2=95=E0=B2=
+=A8=E0=B3=8D=E0=B2=A8=E0=B2=A1</a>&nbsp;=E2=80=A2=0A<a href=3D"//ka.wikiped=
+ia.org/" lang=3D"ka" title=3D"Kartuli">=E1=83=A5=E1=83=90=E1=83=A0=E1=83=97=
+=E1=83=A3=E1=83=9A=E1=83=98</a>&nbsp;=E2=80=A2=0A<a href=3D"//ku.wikipedia.=
+org/" lang=3D"ku">
+200
+<span lang=3D"ku-Latn">Kurd=C3=AE</span> / <bdi lang=3D"k=
+u-Arab" dir=3D"rtl">=D9=83=D9=88=D8=B1=D8=AF=DB=8C</bdi></a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//ky.wikipedia.org/" lang=3D"ky" title=3D"Kyrgyz=C4=8Da">=D0=
+=9A=D1=8B=D1=80=D0=B3=D1=8B=D0=B7=D1=87=D0=B0</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//lv.wikipedia.org/" lang=3D"lv">Latvie=C5=A1u</a>&nbsp;=E2=80=A2=0A<a =
+href=3D"//lb.wikipedia.org/" lang=3D"lb">L=C3=ABtzebuergesch</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//lmo.wikipedia.org/" lang=3D"lmo">Lumbaart</a
+200
+>&nbsp;=
+=E2=80=A2=0A<a href=3D"//mk.wikipedia.org/" lang=3D"mk" title=3D"Makedonski=
+">=D0=9C=D0=B0=D0=BA=D0=B5=D0=B4=D0=BE=D0=BD=D1=81=D0=BA=D0=B8</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//mg.wikipedia.org/" lang=3D"mg">Malagasy</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//ml.wikipedia.org/" lang=3D"ml" title=3D"Malayalam">=
+=E0=B4=AE=E0=B4=B2=E0=B4=AF=E0=B4=BE=E0=B4=B3=E0=B4=82</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//mr.wikipedia.org/" lang=3D"mr" title=3D"Marathi">=E0=A4=AE=
+=E0=A4=B0=E0=A4=BE=E0=A4=A0=E0=A5=80</a>
+200
+&nbsp;=E2=80=A2=0A<a href=3D"//arz.=
+wikipedia.org/" lang=3D"arz" title=3D"Ma=E1=B9=A3r=C4=AB"><bdi dir=3D"rtl">=
+=D9=85=D8=B5=D8=B1=D9=89</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//mzn.wikipe=
+dia.org/" lang=3D"mzn" title=3D"M=C3=A4zeruni"><bdi dir=3D"rtl">=D9=85=D8=
+=A7=D8=B2=D9=90=D8=B1=D9=88=D9=86=DB=8C</bdi></a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//mn.wikipedia.org/" lang=3D"mn" title=3D"Mongol">=D0=9C=D0=BE=D0=BD=D0=
+=B3=D0=BE=D0=BB</a>&nbsp;=E2=80=A2=0A<a href=3D"//my.wikipedia.org/" lang=
+=3D"my" tit
+200
+le=3D"Myanmarsar">=E1=80=99=E1=80=BC=E1=80=94=E1=80=BA=E1=80=99=
+=E1=80=AC=E1=80=98=E1=80=AC=E1=80=9E=E1=80=AC</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//new.wikipedia.org/" lang=3D"new" title=3D"Nepal Bhasa">=E0=A4=A8=E0=
+=A5=87=E0=A4=AA=E0=A4=BE=E0=A4=B2 =E0=A4=AD=E0=A4=BE=E0=A4=B7=E0=A4=BE</a>&=
+nbsp;=E2=80=A2=0A<a href=3D"//ne.wikipedia.org/" lang=3D"ne" title=3D"Nep=
+=C4=81l=C4=AB">=E0=A4=A8=E0=A5=87=E0=A4=AA=E0=A4=BE=E0=A4=B2=E0=A5=80</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//nap.wikipedia.org/" lang=3D"nap"
+200
+>Nnapulitano</=
+a>&nbsp;=E2=80=A2=0A<a href=3D"//ce.wikipedia.org/" lang=3D"ce" title=3D"No=
+x=C3=A7iyn">=D0=9D=D0=BE=D1=85=D1=87=D0=B8=D0=B9=D0=BD</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//oc.wikipedia.org/" lang=3D"oc">Occitan</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//pms.wikipedia.org/" lang=3D"pms">Piemont=C3=A8is</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//nds.wikipedia.org/" lang=3D"nds">Plattd=C3=BC=C3=
+=BCtsch</a>&nbsp;=E2=80=A2=0A<a href=3D"//qu.wikipedia.org/" lang=3D"qu">Ru=
+na Simi</a>&nbsp;=E2=80=A2=0A<a hr
+200
+ef=3D"//sa.wikipedia.org/" lang=3D"sa" ti=
+tle=3D"Sa=E1=B9=83sk=E1=B9=9Btam">=E0=A4=B8=E0=A4=82=E0=A4=B8=E0=A5=8D=E0=
+=A4=95=E0=A5=83=E0=A4=A4=E0=A4=AE=E0=A5=8D</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//sah.wikipedia.org/" lang=3D"sah" title=3D"Saxa Tyla">=D0=A1=D0=B0=D1=85=
+=D0=B0 =D0=A2=D1=8B=D0=BB=D0=B0</a>&nbsp;=E2=80=A2=0A<a href=3D"//pnb.wikip=
+edia.org/" lang=3D"pnb" title=3D"Sh=C4=81hmukh=C4=AB Pa=C3=B1j=C4=81b=C4=AB=
+"><bdi dir=3D"rtl">=D8=B4=D8=A7=DB=81 =D9=85=DA=A9=DA=BE=DB=8C =D9=BE=D9=86=
+=D8=
+200
+AC=D8=A7=D8=A8=DB=8C</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//sco.wikipe=
+dia.org/" lang=3D"sco">Scots</a>&nbsp;=E2=80=A2=0A<a href=3D"//sq.wikipedia=
+.org/" lang=3D"sq">Shqip</a>&nbsp;=E2=80=A2=0A<a href=3D"//scn.wikipedia.or=
+g/" lang=3D"scn">Sicilianu</a>&nbsp;=E2=80=A2=0A<a href=3D"//sh.wikipedia.o=
+rg/" lang=3D"sh"><span lang=3D"sh-Latn">Srpskohrvatski</span> / <span lang=
+=3D"sh-Cyrl">=D0=A1=D1=80=D0=BF=D1=81=D0=BA=D0=BE=D1=85=D1=80=D0=B2=D0=B0=
+=D1=82=D1=81=D0=BA=D0=B8</span></a>&nbsp;=E2=80=A2=
+200
+0A<a href=3D"//ckb.wikip=
+edia.org/" lang=3D"ckb" title=3D"Soran=C3=AE"><bdi dir=3D"rtl">=DA=A9=D9=88=
+=D8=B1=D8=AF=DB=8C</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//su.wikipedia.org=
+/" lang=3D"su">Basa Sunda</a>&nbsp;=E2=80=A2=0A<a href=3D"//sw.wikipedia.or=
+g/" lang=3D"sw">Kiswahili</a>&nbsp;=E2=80=A2=0A<a href=3D"//tl.wikipedia.or=
+g/" lang=3D"tl">Tagalog</a>&nbsp;=E2=80=A2=0A<a href=3D"//ta.wikipedia.org/=
+" lang=3D"ta" title=3D"Tami=E1=B8=BB">=E0=AE=A4=E0=AE=AE=E0=AE=BF=E0=AE=B4=
+=E0=AF=8D</a>&nbsp
+200
+;=E2=80=A2=0A<a href=3D"//tt.wikipedia.org/" lang=3D"tt">=
+<span lang=3D"tt-Cyrl">=D0=A2=D0=B0=D1=82=D0=B0=D1=80=D1=87=D0=B0</span> / =
+<span lang=3D"tt-Latn">Tatar=C3=A7a</span></a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//te.wikipedia.org/" lang=3D"te" title=3D"Telugu">=E0=B0=A4=E0=B1=86=E0=B0=
+=B2=E0=B1=81=E0=B0=97=E0=B1=81</a>&nbsp;=E2=80=A2=0A<a href=3D"//tg.wikiped=
+ia.org/" lang=3D"tg" title=3D"Tojik=C4=AB">=D0=A2=D0=BE=D2=B7=D0=B8=D0=BA=
+=D3=A3</a>&nbsp;=E2=80=A2=0A<a href=3D"//th.wikipedia.org/" lang=
+200
+3D"th" tit=
+le=3D"Phasa Thai">=E0=B8=A0=E0=B8=B2=E0=B8=A9=E0=B8=B2=E0=B9=84=E0=B8=97=E0=
+=B8=A2</a>&nbsp;=E2=80=A2=0A<a href=3D"//bug.wikipedia.org/" lang=3D"bug"><=
+span lang=3D"bug-Bugi">=E1=A8=85=E1=A8=94 =E1=A8=95=E1=A8=99=E1=A8=81=E1=A8=
+=97</span> / <span lang=3D"bug-Latn">Basa Ugi</span></a>&nbsp;=E2=80=A2=0A<=
+a href=3D"//ur.wikipedia.org/" lang=3D"ur" title=3D"Urdu"><bdi dir=3D"rtl">=
+=D8=A7=D8=B1=D8=AF=D9=88</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//vec.wikipe=
+dia.org/" lang=3D"vec">V=C3=A8n
+200
+eto</a>&nbsp;=E2=80=A2=0A<a href=3D"//wa.wik=
+ipedia.org/" lang=3D"wa">Walon</a>&nbsp;=E2=80=A2=0A<a href=3D"//yi.wikiped=
+ia.org/" lang=3D"yi" title=3D"Yidi=C5=A1"><bdi dir=3D"rtl">=D7=99=D7=99=D6=
+=B4=D7=93=D7=99=D7=A9</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//yo.wikipedia.=
+org/" lang=3D"yo">Yor=C3=B9b=C3=A1</a>&nbsp;=E2=80=A2=0A<a id=3D"zh-yue_wik=
+i" href=3D"//zh-yue.wikipedia.org/" lang=3D"yue" title=3D"Yuht Y=C3=BAh / J=
+yut6 jyu5" data-convert-Hans=3D"=E7=B2=A4=E8=AF=AD">=E7=B2=B5=E8=AA=9E</a>&=
+200
+
+nbsp;=E2=80=A2=0A<a href=3D"//bat-smg.wikipedia.org/" lang=3D"sgs">=C5=BDem=
+ait=C4=97=C5=A1ka</a>=0A</div></div>=0A=0A<!-- Bookshelves -->=0A<h2 class=
+=3D"bookshelf-container">=0A<span class=3D"bookshelf"><span class=3D"booken=
+d" style=3D"width: 120px /* 3 * 40 */;"></span><span class=3D"text">1&nbsp;=
+000+</span><span class=3D"bookend" style=3D"width: 120px;"></span></span>=
+=0A</h2>=0A=0A<!-- 1,000+ content pages (last updated 2013-11-19) -->=0A<di=
+v class=3D"langlist">=0A<a href=3D"//ace.wiki
+200
+pedia.org/" lang=3D"ace">Bahsa=
+ Ac=C3=A8h</a>&nbsp;=E2=80=A2=0A<a href=3D"//kbd.wikipedia.org/" lang=3D"kb=
+d" title=3D"Adighabze">=D0=90=D0=B4=D1=8B=D0=B3=D1=8D=D0=B1=D0=B7=D1=8D</a>=
+&nbsp;=E2=80=A2=0A<a href=3D"//frp.wikipedia.org/" lang=3D"frp">Arpitan</a>=
+&nbsp;=E2=80=A2=0A<a href=3D"//arc.wikipedia.org/" lang=3D"arc" title=3D"=
+=C4=80t=C3=BBr=C4=81y=C3=A2"><bdi dir=3D"rtl">=DC=90=DC=AC=DC=98=DC=AA=DC=
+=9D=DC=90</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//gn.wikipedia.org/" lang=
+=3D"gn">Ava=C3=B1
+200
+e=E2=80=99=E1=BA=BD</a>&nbsp;=E2=80=A2=0A<a href=3D"//av.w=
+ikipedia.org/" lang=3D"av" title=3D"Avar">=D0=90=D0=B2=D0=B0=D1=80</a>&nbsp=
+;=E2=80=A2=0A<a href=3D"//ay.wikipedia.org/" lang=3D"ay">Aymar</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//ang.wikipedia.org/" lang=3D"ang">=C3=86nglisc</a>&nbs=
+p;=E2=80=A2=0A<a href=3D"//bjn.wikipedia.org/" lang=3D"bjn">Bahasa Banjar</=
+a>&nbsp;=E2=80=A2=0A<a href=3D"//bh.wikipedia.org/" lang=3D"bh" title=3D"Bh=
+=C5=8Djapur=C4=AB">=E0=A4=AD=E0=A5=8B=E0=A4=9C=E0=A4=AA=E0=A5
+200
+=81=E0=A4=B0=
+=E0=A5=80</a>&nbsp;=E2=80=A2=0A<a href=3D"//bcl.wikipedia.org/" lang=3D"bcl=
+">Bikol Central</a>&nbsp;=E2=80=A2=0A<a href=3D"//bar.wikipedia.org/" lang=
+=3D"bar">Boarisch</a>&nbsp;=E2=80=A2=0A<a href=3D"//bo.wikipedia.org/" lang=
+=3D"bo" title=3D"Bod Skad">=E0=BD=96=E0=BD=BC=E0=BD=91=E0=BC=8B=E0=BD=A1=E0=
+=BD=B2=E0=BD=82</a>&nbsp;=E2=80=A2=0A<a href=3D"//cbk-zam.wikipedia.org/" l=
+ang=3D"cbk-x-zam">Chavacano de Zamboanga</a>&nbsp;=E2=80=A2=0A<a href=3D"//=
+co.wikipedia.org/" lang=3D"co"
+200
+>Corsu</a>&nbsp;=E2=80=A2=0A<a href=3D"//pdc.=
+wikipedia.org/" lang=3D"pdc">Deitsch</a>&nbsp;=E2=80=A2=0A<a href=3D"//dv.w=
+ikipedia.org/" lang=3D"dv" title=3D"Dhivehi"><bdi dir=3D"rtl">=DE=8B=DE=A8=
+=DE=88=DE=AC=DE=80=DE=A8</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//nv.wikiped=
+ia.org/" lang=3D"nv">Din=C3=A9 Bizaad</a>&nbsp;=E2=80=A2=0A<a href=3D"//dsb=
+.wikipedia.org/" lang=3D"dsb">Dolnoserbski</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//eml.wikipedia.org/" lang=3D"roa-x-eml">Emigli=C3=A0n=E2=80=93Rumagn=C3=B2
+200
+=
+l</a>&nbsp;=E2=80=A2=0A<a href=3D"//myv.wikipedia.org/" lang=3D"myv" title=
+=3D"Erzjanj">=D0=AD=D1=80=D0=B7=D1=8F=D0=BD=D1=8C</a>&nbsp;=E2=80=A2=0A<a h=
+ref=3D"//ext.wikipedia.org/" lang=3D"ext">Estreme=C3=B1u</a>&nbsp;=E2=80=A2=
+=0A<a href=3D"//fo.wikipedia.org/" lang=3D"fo">F=C3=B8royskt</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//fur.wikipedia.org/" lang=3D"fur">Furlan</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//gv.wikipedia.org/" lang=3D"gv">Gaelg</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//gag.wikipedia.org/" lang=3D
+200
+"gag">Gagauz</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//glk.wikipedia.org/" lang=3D"glk" title=3D"Gil=C9=99ki"><=
+bdi dir=3D"rtl">=DA=AF=DB=8C=D9=84=DA=A9=DB=8C</bdi></a>&nbsp;=E2=80=A2=0A<=
+a id=3D"gan_wiki" href=3D"//gan.wikipedia.org/" lang=3D"gan" title=3D"Gon u=
+a" data-convert-Hans=3D"=E8=B5=A3=E8=AF=AD">=E8=B4=9B=E8=AA=9E</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//hak.wikipedia.org/" lang=3D"hak"><span lang=3D"hak-La=
+tn">Hak-k=C3=A2-fa</span> / <span id=3D"hak_wiki" lang=3D"hak-Hani" data-co=
+nvert-Hans=3D
+200
+"=E5=AE=A2=E5=AE=B6=E8=AF=9D">=E5=AE=A2=E5=AE=B6=E8=A9=B1</spa=
+n></a>&nbsp;=E2=80=A2=0A<a href=3D"//xal.wikipedia.org/" lang=3D"xal" title=
+=3D"Hal=CA=B9mg">=D0=A5=D0=B0=D0=BB=D1=8C=D0=BC=D0=B3</a>&nbsp;=E2=80=A2=0A=
+<a href=3D"//haw.wikipedia.org/" lang=3D"haw">=CA=BB=C5=8Clelo Hawai=CA=BBi=
+</a>&nbsp;=E2=80=A2=0A<a href=3D"//hsb.wikipedia.org/" lang=3D"hsb">Hornjos=
+erbsce</a>&nbsp;=E2=80=A2=0A<a href=3D"//ilo.wikipedia.org/" lang=3D"ilo">I=
+lokano</a>&nbsp;=E2=80=A2=0A<a href=3D"//ie.wikipedia.org
+200
+/" lang=3D"ie">Int=
+erlingue</a>&nbsp;=E2=80=A2=0A<a href=3D"//os.wikipedia.org/" lang=3D"os" t=
+itle=3D"Iron =C3=86vzag">=D0=98=D1=80=D0=BE=D0=BD=D0=B0=D1=83</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//kl.wikipedia.org/" lang=3D"kl">Kalaallisut</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//pam.wikipedia.org/" lang=3D"pam">Kapampangan</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//csb.wikipedia.org/" lang=3D"csb">Kasz=C3=ABbsc=
+zi</a>&nbsp;=E2=80=A2=0A<a href=3D"//kw.wikipedia.org/" lang=3D"kw">Kernewe=
+k / Karnuack</a>&nbsp;=E2
+200
+=80=A2=0A<a href=3D"//km.wikipedia.org/" lang=3D"k=
+m" title=3D"Ph=C3=A9asa Khm=C3=A9r">=E1=9E=97=E1=9E=B6=E1=9E=9F=E1=9E=B6=E1=
+=9E=81=E1=9F=92=E1=9E=98=E1=9F=82=E1=9E=9A</a>&nbsp;=E2=80=A2=0A<a href=3D"=
+//rw.wikipedia.org/" lang=3D"rw">Kinyarwanda</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//kv.wikipedia.org/" lang=3D"kv" title=3D"Komi">=D0=9A=D0=BE=D0=BC=D0=
+=B8</a>&nbsp;=E2=80=A2=0A<a href=3D"//mrj.wikipedia.org/" lang=3D"mjr" titl=
+e=3D"Kyryk Mary">=D0=9A=D1=8B=D1=80=D1=8B=D0=BA =D0=9C=D0=B0=D1=80=D1=8B<
+200
+/a=
+>&nbsp;=E2=80=A2=0A<a href=3D"//lad.wikipedia.org/" lang=3D"lad" title=3D"L=
+adino"><span lang=3D"lad-Latn">Dzhudezmo</span> / <bdi lang=3D"lad-Hebr" di=
+r=3D"rtl">=D7=9C=D7=90=D7=93=D7=99=D7=A0=D7=95</bdi></a>&nbsp;=E2=80=A2=0A<=
+a href=3D"//lbe.wikipedia.org/" lang=3D"lbe" title=3D"Lak=CB=90u">=D0=9B=D0=
+=B0=D0=BA=D0=BA=D1=83</a>&nbsp;=E2=80=A2=0A<a href=3D"//lo.wikipedia.org/" =
+lang=3D"lo" title=3D"Phaasaa Laao">=E0=BA=9E=E0=BA=B2=E0=BA=AA=E0=BA=B2=E0=
+=BA=A5=E0=BA=B2=E0=BA=A7</a>&nbsp;=E2=80
+200
+=A2=0A<a href=3D"//lez.wikipedia.or=
+g/" lang=3D"lez" title=3D"Lezgi">=D0=9B=D0=B5=D0=B7=D0=B3=D0=B8</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//lij.wikipedia.org/" lang=3D"lij">L=C3=ADguru</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//li.wikipedia.org/" lang=3D"li">Limburgs</a>&nb=
+sp;=E2=80=A2=0A<a href=3D"//ln.wikipedia.org/" lang=3D"ln">Ling=C3=A1la</a>=
+&nbsp;=E2=80=A2=0A<a href=3D"//jbo.wikipedia.org/" lang=3D"jbo">lojban</a>&=
+nbsp;=E2=80=A2<!-- Don=E2=80=99t capitalize this: this language has no titl=
+e case. 
+200
+-->=0A<a href=3D"//mt.wikipedia.org/" lang=3D"mt">Malti</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//zh-classical.wikipedia.org/" lang=3D"lzh" title=3D=
+"Man4jin4 / W=C3=A9ny=C3=A1n">=E6=96=87=E8=A8=80</a>&nbsp;=E2=80=A2=0A<a hr=
+ef=3D"//mi.wikipedia.org/" lang=3D"mi">M=C4=81ori</a>&nbsp;=E2=80=A2=0A<a h=
+ref=3D"//xmf.wikipedia.org/" lang=3D"xmf" title=3D"Margaluri">=E1=83=9B=E1=
+=83=90=E1=83=A0=E1=83=92=E1=83=90=E1=83=9A=E1=83=A3=E1=83=A0=E1=83=98</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//mwl.wikipedia.org/" lang=3
+200
+D"mwl">Mirand=C3=A9s=
+</a>&nbsp;=E2=80=A2=0A<a href=3D"//mdf.wikipedia.org/" lang=3D"mdf" title=
+=3D"Mok=C5=A1enj">=D0=9C=D0=BE=D0=BA=D1=88=D0=B5=D0=BD=D1=8C</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//nah.wikipedia.org/" lang=3D"nah">N=C4=81huatl</a>&nbs=
+p;=E2=80=A2=0A<a href=3D"//nds-nl.wikipedia.org/" lang=3D"nds-nl">Nedersaks=
+isch</a>&nbsp;=E2=80=A2=0A<a href=3D"//frr.wikipedia.org/" lang=3D"frr">Nor=
+dfriisk</a>&nbsp;=E2=80=A2=0A<a href=3D"//nrm.wikipedia.org/" lang=3D"roa-x=
+-nrm">Nouormand / Normaun
+200
+d</a>&nbsp;=E2=80=A2=0A<a href=3D"//nov.wikipedia.=
+org/" lang=3D"nov">Novial</a>&nbsp;=E2=80=A2=0A<a href=3D"//mhr.wikipedia.o=
+rg/" lang=3D"mhr" title=3D"Olyk Marij">=D0=9E=D0=BB=D1=8B=D0=BA =D0=9C=D0=
+=B0=D1=80=D0=B8=D0=B9</a>&nbsp;=E2=80=A2=0A<a href=3D"//or.wikipedia.org/" =
+lang=3D"or" title=3D"O=E1=B9=9Bi=C4=81">=E0=AC=93=E0=AC=A1=E0=AC=BF=E0=AC=
+=BC=E0=AC=86</a>&nbsp;=E2=80=A2=0A<a href=3D"//as.wikipedia.org/" lang=3D"a=
+s" title=3D"=C3=94x=C3=B4miya">=E0=A6=85=E0=A6=B8=E0=A6=AE=E0=A7=80=E0=A6
+200
+=
+=AF=E0=A6=BE=E0=A6=BC</a>&nbsp;=E2=80=A2=0A<a href=3D"//pi.wikipedia.org/" =
+lang=3D"pi" title=3D"P=C4=81=E1=B8=B7i">=E0=A4=AA=E0=A4=BE=E0=A4=B4=E0=A4=
+=BF</a>&nbsp;=E2=80=A2=0A<a href=3D"//pag.wikipedia.org/" lang=3D"pag">Pang=
+asin=C3=A1n</a>&nbsp;=E2=80=A2=0A<a href=3D"//pa.wikipedia.org/" lang=3D"pa=
+" title=3D"Pa=C3=B1j=C4=81b=C4=AB">=E0=A8=AA=E0=A9=B0=E0=A8=9C=E0=A8=BE=E0=
+=A8=AC=E0=A9=80</a>&nbsp;=E2=80=A2=0A<a href=3D"//pap.wikipedia.org/" lang=
+=3D"pap">Papiamentu</a>&nbsp;=E2=80=A2=0A<a h
+200
+ref=3D"//ps.wikipedia.org/" la=
+ng=3D"ps" title=3D"Pa=CA=82to"><bdi dir=3D"rtl">=D9=BE=DA=9A=D8=AA=D9=88</b=
+di></a>&nbsp;=E2=80=A2=0A<a href=3D"//koi.wikipedia.org/" lang=3D"koi" titl=
+e=3D"Perem Komi">=D0=9F=D0=B5=D1=80=D0=B5=D0=BC =D0=9A=D0=BE=D0=BC=D0=B8</a=
+>&nbsp;=E2=80=A2=0A<a href=3D"//pfl.wikipedia.org/" lang=3D"pfl">Pf=C3=A4lz=
+isch</a>&nbsp;=E2=80=A2=0A<a href=3D"//pcd.wikipedia.org/" lang=3D"pcd">Pic=
+ard</a>&nbsp;=E2=80=A2=0A<a href=3D"//krc.wikipedia.org/" lang=3D"krc" titl=
+e=3D"Qara=C
+200
+3=A7ay=E2=80=93Malqar">=D0=9A=D1=8A=D0=B0=D1=80=D0=B0=D1=87=D0=
+=B0=D0=B9=E2=80=93=D0=9C=D0=B0=D0=BB=D0=BA=D1=8A=D0=B0=D1=80</a>&nbsp;=E2=
+=80=A2=0A<a href=3D"//crh.wikipedia.org/" lang=3D"crh">Q=C4=B1r=C4=B1mtatar=
+ca</a>&nbsp;=E2=80=A2=0A<a href=3D"//ksh.wikipedia.org/" lang=3D"ksh">Ripoa=
+risch</a>&nbsp;=E2=80=A2=0A<a href=3D"//rm.wikipedia.org/" lang=3D"rm">Ruma=
+ntsch</a>&nbsp;=E2=80=A2=0A<a href=3D"//rue.wikipedia.org/" lang=3D"rue" ti=
+tle=3D"Rusin=E2=80=99skyj Yazyk">=D0=A0=D1=83=D1=81=D0=B8=D
+200
+0=BD=D1=8C=D1=81=
+=D0=BA=D1=8B=D0=B9 =D0=AF=D0=B7=D1=8B=D0=BA</a>&nbsp;=E2=80=A2=0A<a href=3D=
+"//se.wikipedia.org/" lang=3D"se">S=C3=A1megiella</a>&nbsp;=E2=80=A2=0A<a h=
+ref=3D"//sc.wikipedia.org/" lang=3D"sc">Sardu</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//stq.wikipedia.org/" lang=3D"stq">Seeltersk</a>&nbsp;=E2=80=A2=0A<a hr=
+ef=3D"//sn.wikipedia.org/" lang=3D"sn">ChiShona</a>&nbsp;=E2=80=A2=0A<a hre=
+f=3D"//si.wikipedia.org/" lang=3D"si" title=3D"Si=E1=B9=83hala">=E0=B7=83=
+=E0=B7=92=E0=B6=82=E0=B7=84=
+200
+E0=B6=BD</a>&nbsp;=E2=80=A2=0A<a href=3D"//szl.=
+wikipedia.org/" lang=3D"szl">=C5=9Al=C5=AFnski</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//so.wikipedia.org/" lang=3D"so">Soomaaliga</a>&nbsp;=E2=80=A2=0A<a hre=
+f=3D"//srn.wikipedia.org/" lang=3D"srn">Sranantongo</a>&nbsp;=E2=80=A2=0A<a=
+ href=3D"//kab.wikipedia.org/" lang=3D"kab">Taqbaylit</a>&nbsp;=E2=80=A2=0A=
+<a href=3D"//roa-tara.wikipedia.org/" lang=3D"roa">Tarand=C3=ADne</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//tpi.wikipedia.org/" lang=3D"tpi">Tok Pisin</a>&
+200
+nbs=
+p;=E2=80=A2=0A<a href=3D"//to.wikipedia.org/" lang=3D"to">faka Tonga</a>&nb=
+sp;=E2=80=A2=0A<a href=3D"//tk.wikipedia.org/" lang=3D"tk" title=3D"T=C3=BC=
+rkmen"><bdi dir=3D"rtl" lang=3D"tk-Arab">=D8=AA=D8=B1=D9=83=D9=85=D9=86 </b=
+di> / <span lang=3D"tk-Cyrl">=D0=A2=D1=83=D1=80=D0=BA=D0=BC=D0=B5=D0=BD</sp=
+an></a>&nbsp;=E2=80=A2=0A<a href=3D"//udm.wikipedia.org/" lang=3D"udm" titl=
+e=3D"Udmurt">=D0=A3=D0=B4=D0=BC=D1=83=D1=80=D1=82</a>&nbsp;=E2=80=A2=0A<a h=
+ref=3D"//ug.wikipedia.org/" lang=3D"ug
+200
+"><span lang=3D"ug-Latn">Uyghur</span=
+> / <bdi lang=3D"ug-Arab" dir=3D"rtl">=D8=A6=DB=87=D9=8A=D8=BA=DB=87=D8=B1=
+=DA=86=D9=87</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//fiu-vro.wikipedia.org/=
+" lang=3D"vro">V=C3=B5ro</a>&nbsp;=E2=80=A2=0A<a href=3D"//vep.wikipedia.or=
+g/" lang=3D"vep">Veps=C3=A4n</a>&nbsp;=E2=80=A2=0A<a href=3D"//vls.wikipedi=
+a.org/" lang=3D"vls">West-Vlams</a>&nbsp;=E2=80=A2=0A<a href=3D"//wo.wikipe=
+dia.org/" lang=3D"wo">Wolof</a>&nbsp;=E2=80=A2=0A<a id=3D"wuu_wiki" href=3D=
+"//wu
+200
+u.wikipedia.org/" lang=3D"wuu" title=3D"W=C3=BA Y=C7=94" data-convert-=
+Hans=3D"=E5=90=B4=E8=AF=AD">=E5=90=B3=E8=AA=9E</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//diq.wikipedia.org/" lang=3D"diq">Zazaki</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//zea.wikipedia.org/" lang=3D"zea">Ze=C3=AAuws</a>=0A</div>=0A=0A<!-- B=
+ookshelves -->=0A<h2 class=3D"bookshelf-container">=0A<span class=3D"booksh=
+elf"><span class=3D"bookend" style=3D"width: 40px /* 1 * 40 */;"></span><sp=
+an class=3D"text">100+</span><span class=3D"booken
+200
+d" style=3D"width: 40px;"=
+></span></span>=0A</h2>=0A=0A<!-- 100+ content pages (data from 2013-11-19)=
+ -->=0A<div class=3D"langlist langlist-tiny">=0A<a href=3D"//ak.wikipedia.o=
+rg/" lang=3D"ak">Akan</a>&nbsp;=E2=80=A2=0A<a href=3D"//ab.wikipedia.org/" =
+lang=3D"ab" title=3D"A=E1=B9=97sua">=D0=90=D2=A7=D1=81=D1=83=D0=B0</a>&nbsp=
+;=E2=80=A2=0A<a href=3D"//roa-rup.wikipedia.org/" lang=3D"rup">Arm=C3=A3nea=
+shce</a>&nbsp;=E2=80=A2=0A<a href=3D"//bm.wikipedia.org/" lang=3D"bm">Baman=
+ankan</a>&nbsp;=
+200
+E2=80=A2=0A<a href=3D"//bi.wikipedia.org/" lang=3D"bi">Bisl=
+ama</a>&nbsp;=E2=80=A2=0A<a href=3D"//bxr.wikipedia.org/" lang=3D"bxr" titl=
+e=3D"Buryad">=D0=91=D1=83=D1=80=D1=8F=D0=B0=D0=B4</a>&nbsp;=E2=80=A2=0A<a h=
+ref=3D"//ch.wikipedia.org/" lang=3D"ch">Chamoru</a>&nbsp;=E2=80=A2=0A<a hre=
+f=3D"//ny.wikipedia.org/" lang=3D"ny">Chi-Chewa</a>&nbsp;=E2=80=A2=0A<a hre=
+f=3D"//za.wikipedia.org/" lang=3D"za">Cuengh</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//ee.wikipedia.org/" lang=3D"ee">E=CA=8Begbe</a>&nbsp;=E2=
+200
+80=A2=0A<a hr=
+ef=3D"//ff.wikipedia.org/" lang=3D"ff">Fulfulde</a>&nbsp;=E2=80=A2=0A<a hre=
+f=3D"//ki.wikipedia.org/" lang=3D"ki">G=C4=A9k=C5=A9y=C5=A9</a>&nbsp;=E2=80=
+=A2=0A<a href=3D"//got.wikipedia.org/" lang=3D"got" title=3D"Gutisk">=F0=90=
+=8C=B2=F0=90=8C=BF=F0=90=8D=84=F0=90=8C=B9=F0=90=8D=83=F0=90=8C=BA</a>&nbsp=
+;=E2=80=A2=0A<a href=3D"//ha.wikipedia.org/" lang=3D"ha"><span lang=3D"ha-L=
+atn">Hausa</span> / <bdi lang=3D"ha-Arab" dir=3D"rtl">=D9=87=D9=8E=D9=88=D9=
+=8F=D8=B3=D9=8E=D8=A7</bdi><
+200
+/a>&nbsp;=E2=80=A2=0A<a href=3D"//ig.wikipedia.=
+org/" lang=3D"ig">Igbo</a>&nbsp;=E2=80=A2=0A<a href=3D"//iu.wikipedia.org/"=
+ lang=3D"iu" title=3D"Inuktitut"><span lang=3D"iu-Cans">=E1=90=83=E1=93=84=
+=E1=92=83=E1=91=8E=E1=91=90=E1=91=A6</span> / <span lang=3D"iu-Latn">Inukti=
+tut</span></a>&nbsp;=E2=80=A2=0A<a href=3D"//ik.wikipedia.org/" lang=3D"ik"=
+>I=C3=B1upiak</a>&nbsp;=E2=80=A2=0A<a href=3D"//ks.wikipedia.org/" lang=3D"=
+ks" title=3D"Kashmiri"><bdi dir=3D"rtl">=D9=83=D8=B4=D9=85=D9=8A=D8=B1=D9
+200
+=
+=8A</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//kg.wikipedia.org/" lang=3D"kg">=
+Kongo</a>&nbsp;=E2=80=A2=0A<a href=3D"//ltg.wikipedia.org/" lang=3D"ltg">La=
+tga=C4=BCu</a>&nbsp;=E2=80=A2=0A<a href=3D"//lg.wikipedia.org/" lang=3D"lg"=
+>Luganda</a>&nbsp;=E2=80=A2=0A<a href=3D"//ty.wikipedia.org/" lang=3D"ty" t=
+itle=3D"Reo Tahiti">Reo M=C4=81`ohi</a>&nbsp;=E2=80=A2=0A<a href=3D"//cdo.w=
+ikipedia.org/" lang=3D"cdo">M=C3=ACng-d=C4=95=CC=A4ng-ng=E1=B9=B3=CC=84</a>=
+&nbsp;=E2=80=A2=0A<a href=3D"//mo.wikiped
+200
+ia.org/" lang=3D"ro-Cyrl" title=3D=
+"Moldoveneasc=C4=83">=D0=9C=D0=BE=D0=BB=D0=B4=D0=BE=D0=B2=D0=B5=D0=BD=D1=8F=
+=D1=81=D0=BA=D1=8D</a>&nbsp;=E2=80=A2=0A<a href=3D"//fj.wikipedia.org/" lan=
+g=3D"fj">Na Vosa Vakaviti</a>&nbsp;=E2=80=A2=0A<a href=3D"//na.wikipedia.or=
+g/" lang=3D"na">dorerin Naoero</a>&nbsp;=E2=80=A2=0A<a href=3D"//cr.wikiped=
+ia.org/" lang=3D"cr"><span lang=3D"cr-Latn">N=C4=93hiyaw=C4=93win</span> / =
+<span lang=3D"cr-Cans">=E1=93=80=E1=90=A6=E1=90=83=E1=94=AD=E1=90=8D=E1=90=
+=8F=E1=9
+200
+0=A3</span></a>&nbsp;=E2=80=A2=0A<a href=3D"//pih.wikipedia.org/" l=
+ang=3D"pih">Norfuk / Pitkern</a>&nbsp;=E2=80=A2=0A<a href=3D"//om.wikipedia=
+.org/" lang=3D"om">Afaan Oromoo</a>&nbsp;=E2=80=A2=0A<a href=3D"//pnt.wikip=
+edia.org/" lang=3D"pnt" title=3D"Pontiak=C3=A1">=CE=A0=CE=BF=CE=BD=CF=84=CE=
+=B9=CE=B1=CE=BA=CE=AC</a>&nbsp;=E2=80=A2=0A<a href=3D"//kaa.wikipedia.org/"=
+ lang=3D"kaa">Qaraqalpaqsha</a>&nbsp;=E2=80=A2=0A<a href=3D"//dz.wikipedia.=
+org/" lang=3D"dz" title=3D"Rdzong-Kha">=E0=BD=A2=E0=
+200
+BE=AB=E0=BD=BC=E0=BD=84=
+=E0=BC=8B=E0=BD=81</a>&nbsp;=E2=80=A2=0A<a href=3D"//rmy.wikipedia.org/" la=
+ng=3D"rmy">Romani</a>&nbsp;=E2=80=A2=0A<a href=3D"//rn.wikipedia.org/" lang=
+=3D"rn">Kirundi</a>&nbsp;=E2=80=A2=0A<a href=3D"//sm.wikipedia.org/" lang=
+=3D"sm">Gagana S=C4=81moa</a>&nbsp;=E2=80=A2=0A<a href=3D"//sg.wikipedia.or=
+g/" lang=3D"sg">S=C3=A4ng=C3=B6</a>&nbsp;=E2=80=A2=0A<a href=3D"//st.wikipe=
+dia.org/" lang=3D"st">Sesotho</a>&nbsp;=E2=80=A2=0A<a href=3D"//nso.wikiped=
+ia.org/" lang=3D"nso
+200
+">Sesotho sa Leboa</a>&nbsp;=E2=80=A2=0A<a href=3D"//tn=
+.wikipedia.org/" lang=3D"tn">Setswana</a>&nbsp;=E2=80=A2=0A<a href=3D"//sd.=
+wikipedia.org/" lang=3D"sd" title=3D"Sindh=C4=AB"><bdi dir=3D"rtl">=D8=B3=
+=D9=86=DA=8C=D9=8A</bdi></a>&nbsp;=E2=80=A2=0A<a href=3D"//cu.wikipedia.org=
+/" lang=3D"cu" title=3D"Slov=C4=9Bn=C4=ADsk=C5=AD"><span lang=3D"cu-Cyrl">=
+=D0=A1=D0=BB=D0=BE=D0=B2=D1=A3=CC=81=D0=BD=D1=8C=D1=81=D0=BA=D1=8A</span> /=
+ <span lang=3D"cu-Glag">=E2=B0=94=E2=B0=8E=E2=B0=91=E2=B0=82=E2=B0=
+200
+A1=E2=B0=
+=90=E2=B0=A0=E2=B0=94=E2=B0=8D=E2=B0=9F</span></a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//ss.wikipedia.org/" lang=3D"ss">SiSwati</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//tet.wikipedia.org/" lang=3D"tet">Tetun</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//ti.wikipedia.org/" lang=3D"ti" title=3D"Tigri=C3=B1=C3=B1=C4=81">=E1=
+=89=B5=E1=8C=8D=E1=88=AD=E1=8A=9B</a>&nbsp;=E2=80=A2=0A<a href=3D"//chr.wik=
+ipedia.org/" lang=3D"chr" title=3D"Tsalagi">=E1=8F=A3=E1=8E=B3=E1=8E=A9</a>=
+&nbsp;=E2=80=A2=0A<a href=3D"//tum.wik
+200
+ipedia.org/" lang=3D"tum">chiTumbuka<=
+/a>&nbsp;=E2=80=A2=0A<a href=3D"//ts.wikipedia.org/" lang=3D"ts">Xitsonga</=
+a>&nbsp;=E2=80=A2=0A<a href=3D"//chy.wikipedia.org/" lang=3D"chy">Ts=C4=97h=
+esen=C4=97stsestotse</a>&nbsp;=E2=80=A2=0A<a href=3D"//ve.wikipedia.org/" l=
+ang=3D"ve">Tshiven=E1=B8=93a</a>&nbsp;=E2=80=A2=0A<a href=3D"//tw.wikipedia=
+.org/" lang=3D"tw">Twi</a>&nbsp;=E2=80=A2=0A<a href=3D"//tyv.wikipedia.org/=
+" lang=3D"tyv" title=3D"Tyva dyl">=D0=A2=D1=8B=D0=B2=D0=B0 =D0=B4=D1=8B=D0=
+=BB</
+200
+a>&nbsp;=E2=80=A2=0A<a href=3D"//xh.wikipedia.org/" lang=3D"xh">isiXho=
+sa</a>&nbsp;=E2=80=A2=0A<a href=3D"//zu.wikipedia.org/" lang=3D"zu">isiZulu=
+</a>=0A</div>=0A=0A<!-- Other languages -->=0A<div class=3D"langlist langli=
+st-other">=0A<!-- (keeping strong-element for non-css agents) -->=0A<strong=
+>=0A<a href=3D"//meta.wikimedia.org/wiki/List_of_Wikipedias" lang=3D"en">Ot=
+her languages</a>&nbsp;=E2=80=A2=0A<a href=3D"//de.wikipedia.org/wiki/Wikip=
+edia:Sprachen" lang=3D"de">Weitere Sprachen</a>&n
+200
+bsp;=E2=80=A2=0A<a href=3D=
+"//meta.wikimedia.org/wiki/Liste_des_Wikip%C3%A9dias" lang=3D"fr">Autres la=
+ngues</a>&nbsp;=E2=80=A2=0A<a href=3D"//pl.wikipedia.org/wiki/Wikipedia:Lis=
+ta_wersji_j%C4%99zykowych" lang=3D"pl">Kompletna lista j=C4=99zyk=C3=B3w</a=
+>&nbsp;=E2=80=A2=0A<a href=3D"//ja.wikipedia.org/wiki/Wikipedia:%E5%A4%9A%E=
+8%A8%80%E8%AA%9E%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%8=
+1%A8%E3%81%97%E3%81%A6%E3%81%AE%E3%82%A6%E3%82%A3%E3%82%AD%E3%83%9A%E3%83%8=
+7%E3%82%A3%E3%8
+200
+2%A2" lang=3D"ja">=E4=BB=96=E3=81=AE=E8=A8=80=E8=AA=9E</a>&n=
+bsp;=E2=80=A2=0A<a href=3D"//meta.wikimedia.org/wiki/Lista_de_Wikipedias" l=
+ang=3D"es">Otros idiomas</a>&nbsp;=E2=80=A2=0A<a href=3D"//zh.wikipedia.org=
+/wiki/Wikipedia:%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91%E8%AF%AD%E8%A8%80%E5%8=
+8%97%E8%A1%A8" lang=3D"zh" id=3D"zh_others" data-convert-Hans=3D"=E5=85=B6=
+=E4=BB=96=E8=AF=AD=E8=A8=80">=E5=85=B6=E4=BB=96=E8=AA=9E=E8=A8=80</a>&nbsp;=
+=E2=80=A2=0A<a href=3D"//ru.wikipedia.org/wiki/%D0%92%D0%B8%
+200
+D0%BA%D0%B8%D0%=
+BF%D0%B5%D0%B4%D0%B8%D1%8F:%D0%A1%D0%92" lang=3D"ru">=D0=94=D1=80=D1=83=D0=
+=B3=D0=B8=D0=B5 =D1=8F=D0=B7=D1=8B=D0=BA=D0=B8</a>&nbsp;=E2=80=A2=0A<a href=
+=3D"//eo.wikipedia.org/wiki/Vikipedio:Internacia_Vikipedio" lang=3D"eo">Ali=
+aj lingvoj</a>&nbsp;=E2=80=A2=0A<a href=3D"//meta.wikimedia.org/wiki/%EC%9C=
+%84%ED%82%A4%EB%B0%B1%EA%B3%BC%EC%9D%98_%EB%AA%A9%EB%A1%9D" lang=3D"ko">=EB=
+=8B=A4=EB=A5=B8 =EC=96=B8=EC=96=B4</a>&nbsp;=E2=80=A2=0A<a href=3D"//vi.wik=
+ipedia.org/wiki/Wikipedia:P
+200
+hi%C3%AAn_b%E1%BA%A3n_ng%C3%B4n_ng%E1%BB%AF" lan=
+g=3D"vi">Ng=C3=B4n ng=E1=BB=AF kh=C3=A1c</a>=0A</strong>=0A</div>=0A=0A<div=
+ class=3D"divider" style=3D"padding: 0 1%;"><hr></div>=0A=0A<!-- Other proj=
+ects -->=0A<div class=3D"otherprojects">=0A=0A<div class=3D"otherprojects-i=
+tem">=0A<a href=3D"//www.wiktionary.org/"><span class=3D"icon"><img src=3D"=
+//upload.wikimedia.org/wikipedia/meta/3/3b/Wiktionary-logo_sister_1x.png" s=
+rcset=3D"//upload.wikimedia.org/wikipedia/meta/c/c2/Wiktionary-logo_sis
+200
+ter_=
+1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/0/05/Wiktionary-logo_s=
+ister_2x.png 2x" width=3D"35" height=3D"35" alt=3D""></span> Wiktionary</a>=
+=0A</div>=0A=0A<div class=3D"otherprojects-item">=0A<a href=3D"//www.wikine=
+ws.org/"><span class=3D"icon"><img src=3D"//upload.wikimedia.org/wikipedia/=
+meta/a/aa/Wikinews-logo_sister_1x.png" srcset=3D"//upload.wikimedia.org/wik=
+ipedia/meta/e/e7/Wikinews-logo_sister_1.5x.png 1.5x, //upload.wikimedia.org=
+/wikipedia/meta/4/4b/Wikinews-logo_si
+200
+ster_2x.png 2x" width=3D"47" height=3D=
+"24" alt=3D""></span> Wikinews</a>=0A</div>=0A=0A<div class=3D"otherproject=
+s-item">=0A<a href=3D"//www.wikiquote.org/"><span class=3D"icon"><img src=
+=3D"//upload.wikimedia.org/wikipedia/meta/c/c8/Wikiquote-logo_sister_1x.png=
+" srcset=3D"//upload.wikimedia.org/wikipedia/meta/a/aa/Wikiquote-logo_siste=
+r_1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/9/97/Wikiquote-logo_=
+sister_2x.png 2x" width=3D"35" height=3D"41" alt=3D""></span> Wikiquote</a>=
+=0A</
+200
+div>=0A=0A<div class=3D"otherprojects-item">=0A<a href=3D"//www.wikibo=
+oks.org/"><span class=3D"icon"><img src=3D"//upload.wikimedia.org/wikipedia=
+/meta/7/74/Wikibooks-logo_sister_1x.png" srcset=3D"//upload.wikimedia.org/w=
+ikipedia/meta/4/47/Wikibooks-logo_sister_1.5x.png 1.5x, //upload.wikimedia.=
+org/wikipedia/meta/0/0f/Wikibooks-logo_sister_2x.png 2x" width=3D"35" heigh=
+t=3D"35" alt=3D""></span> Wikibooks</a>=0A</div>=0A=0A<div class=3D"otherpr=
+ojects-item">=0A<a href=3D"//www.wikidata.org/"><
+200
+span class=3D"icon"><img s=
+rc=3D"//upload.wikimedia.org/wikipedia/meta/0/00/Wikidata-logo_sister_1x.pn=
+g" srcset=3D"//upload.wikimedia.org/wikipedia/meta/5/58/Wikidata-logo_siste=
+r_1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/e/ec/Wikidata-logo_s=
+ister_2x.png 2x" width=3D"47" height=3D"26" alt=3D""></span> Wikidata</a>=
+=0A</div>=0A=0A<div class=3D"otherprojects-item">=0A<a href=3D"//species.wi=
+kimedia.org/"><span class=3D"icon"><img src=3D"//upload.wikimedia.org/wikip=
+edia/meta/8/8c/Wi
+200
+kispecies-logo_sister_1x.png" srcset=3D"//upload.wikimedia=
+.org/wikipedia/meta/4/43/Wikispecies-logo_sister_1.5x.png 1.5x, //upload.wi=
+kimedia.org/wikipedia/meta/7/7d/Wikispecies-logo_sister_2x.png 2x" width=3D=
+"35" height=3D"41" alt=3D""></span> Wikispecies</a>=0A</div>=0A=0A<div clas=
+s=3D"otherprojects-item">=0A<a href=3D"//www.wikisource.org/"><span class=
+=3D"icon"><img src=3D"//upload.wikimedia.org/wikipedia/meta/2/27/Wikisource=
+-logo_sister_1x.png" srcset=3D"//upload.wikimedia.org/wikipedia
+200
+/meta/0/06/W=
+ikisource-logo_sister_1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/=
+a/a4/Wikisource-logo_sister_2x.png 2x" width=3D"35" height=3D"37" alt=3D"">=
+</span> Wikisource</a>=0A</div>=0A=0A<div class=3D"otherprojects-item">=0A<=
+a href=3D"//www.wikiversity.org/"><span class=3D"icon"><img src=3D"//upload=
+.wikimedia.org/wikipedia/meta/a/af/Wikiversity-logo_sister_1x.png" srcset=
+=3D"//upload.wikimedia.org/wikipedia/meta/d/df/Wikiversity-logo_sister_1.5x=
+.png 1.5x, //upload.wikimedia.o
+200
+rg/wikipedia/meta/6/69/Wikiversity-logo_sist=
+er_2x.png 2x" width=3D"35" height=3D"28" alt=3D""></span> Wikiversity</a>=
+=0A</div>=0A=0A<div class=3D"otherprojects-item">=0A<a href=3D"//www.wikivo=
+yage.org/"><span class=3D"icon"><img src=3D"//upload.wikimedia.org/wikipedi=
+a/meta/7/74/Wikivoyage-logo_sister_1x.png" srcset=3D"//upload.wikimedia.org=
+/wikipedia/meta/4/4c/Wikivoyage-logo_sister_1.5x.png 1.5x, //upload.wikimed=
+ia.org/wikipedia/meta/4/4e/Wikivoyage-logo_sister_2x.png 2x" width=3D"35" h=
+200
+
+eight=3D"35" alt=3D""></span> Wikivoyage</a>=0A</div>=0A=0A<div class=3D"ot=
+herprojects-item">=0A<a href=3D"//commons.wikimedia.org/"><span class=3D"ic=
+on"><img src=3D"//upload.wikimedia.org/wikipedia/meta/9/90/Commons-logo_sis=
+ter_1x.png" srcset=3D"//upload.wikimedia.org/wikipedia/meta/4/4e/Commons-lo=
+go_sister_1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/b/b6/Commons=
+-logo_sister_2x.png 2x" width=3D"35" height=3D"47" alt=3D"" style=3D"vertic=
+al-align: top;"></span> Commons</a>=0A</div
+200
+>=0A=0A<div class=3D"otherprojec=
+ts-item">=0A<a href=3D"//www.mediawiki.org/"><span class=3D"icon"><img src=
+=3D"//upload.wikimedia.org/wikipedia/meta/1/16/MediaWiki-logo_sister_1x.png=
+" srcset=3D"//upload.wikimedia.org/wikipedia/meta/f/f7/MediaWiki-logo_siste=
+r_1.5x.png 1.5x, //upload.wikimedia.org/wikipedia/meta/2/2e/MediaWiki-logo_=
+sister_2x.png 2x" width=3D"47" height=3D"36" alt=3D""></span> MediaWiki</a>=
+=0A</div>=0A=0A<div class=3D"otherprojects-item">=0A<a href=3D"//meta.wikim=
+edia.org/"
+200
+><span class=3D"icon"><img src=3D"//upload.wikimedia.org/wikipedi=
+a/meta/f/f2/Meta-logo_sister_1x.png" srcset=3D"//upload.wikimedia.org/wikip=
+edia/meta/6/61/Meta-logo_sister_1.5x.png 1.5x, //upload.wikimedia.org/wikip=
+edia/meta/a/ac/Meta-logo_sister_2x.png 2x" width=3D"35" height=3D"35" alt=
+=3D""></span> Meta-Wiki</a>=0A</div>=0A=0A</div>=0A=0A<!-- Site info -->=0A=
+<div class=3D"wm-site-info">=0A<a href=3D"//wikimediafoundation.org/"><img =
+src=3D"//bits.wikimedia.org/images/wikimedia-button.png"
+200
+ srcset=3D"https://=
+upload.wikimedia.org/wikipedia/meta/3/3a/A_Wikimedia_project_1.5x.png 47h 1=
+.5x, https://upload.wikimedia.org/wikipedia/meta/b/b7/A_Wikimedia_project_2=
+x.png 2x" width=3D"88" height=3D"31" alt=3D"A Wikimedia Project"></a>=0A</d=
+iv>=0A=0A<div style=3D"text-align:center"><a href=3D"//wikimediafoundation.=
+org/wiki/Terms_of_Use">Terms of Use</a> | <a href=3D"//wikimediafoundation.=
+org/wiki/Privacy_policy">Privacy Policy</a></div>=0A<script src=3D"//bits.w=
+ikimedia.org/meta.wiki
+a1
+media.org/load.php?debug=3Dfalse&amp;lang=3Den&amp;mo=
+dules=3Dext.gadget.wm-portal&amp;only=3Dscripts&amp;skin=3Dvector&amp;*"></=
+script>=0A</body>=0A</html>
+0
+
