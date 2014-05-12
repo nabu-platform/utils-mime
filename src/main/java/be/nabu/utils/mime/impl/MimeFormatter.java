@@ -63,7 +63,7 @@ public class MimeFormatter implements PartFormatter {
 	
 	private boolean isMultiPart(Part part) {
 		String contentType = MimeUtils.getContentType(part.getHeaders()).toLowerCase();
-		return contentType.startsWith("multipart/") || contentType.equals(Resource.CONTENT_TYPE_DIRECTORY);
+		return part instanceof MultiPart && (contentType.startsWith("multipart/") || contentType.equals(Resource.CONTENT_TYPE_DIRECTORY) || Resource.CONTENT_TYPE_DIRECTORY.equals(part.getContentType()));
 	}
 	
 	private String getContentTransferEncoding(Part part) {
@@ -133,8 +133,6 @@ public class MimeFormatter implements PartFormatter {
 				long from = new Long(contentRange.substring(0, indexHyphen));
 				long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
 				content.read(newByteSink(from));
-				// @REMOVE
-//				IOUtils.skip(content, from);
 				// the to is inclusive!
 				content = IOUtils.limitReadable(content, to + 1);
 			}
