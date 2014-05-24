@@ -54,7 +54,7 @@ public class TestChunks extends TestCase {
 			
 			String expected = TestMimeFormatter.toString(new URI("classpath:/chunked.wikipedia.mime"));
 			String actual = new String(IOUtils.toBytes(container));
-			assertEquals(expected, actual);
+			assertEquals(expected.replace("\r", ""), actual.replace("\r", ""));
 		}
 		finally {
 			container.close();

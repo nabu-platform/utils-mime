@@ -77,7 +77,7 @@ public class TestMimeFormatter extends TestCase {
 		formatter.format(compressed, output);
 		output.close();
 		
-		assertEquals(toString(new URI("classpath:/compressed.example.mime")), toString(target));
+		assertEquals(toString(new URI("classpath:/compressed.example.mime")).replace("\r", ""), toString(target).replace("\r", ""));
 		
 		MimeParser parser = new MimeParser();
 		MultiPart parsed = (MultiPart) parser.parse(getResource(target));
@@ -86,7 +86,7 @@ public class TestMimeFormatter extends TestCase {
 		ByteBuffer decompressed = IOUtils.newByteBuffer();
 		formatter.format(first, decompressed);
 		IOUtils.close(decompressed);
-		assertEquals(toString(new URI("classpath:/formatted.example.mime")), new String(IOUtils.toBytes(decompressed)));
+		assertEquals(toString(new URI("classpath:/formatted.example.mime")).replace("\r", ""), new String(IOUtils.toBytes(decompressed)).replace("\r", ""));
 	}
 	
 	public void testEncrypted() throws NoSuchAlgorithmException, CertificateException, IOException, URISyntaxException, ParseException, KeyStoreException, FormatException {
@@ -116,7 +116,7 @@ public class TestMimeFormatter extends TestCase {
 		formatter = new MimeFormatter();
 		formatter.format(childPart, decrypted);
 		decrypted.close();
-		assertEquals(toString(new URI("classpath:/formatted.example.mime")), new String(IOUtils.toBytes(decrypted)));
+		assertEquals(toString(new URI("classpath:/formatted.example.mime")).replace("\r", ""), new String(IOUtils.toBytes(decrypted)).replace("\r", ""));
 	}
 	
 	public void assertEquals(URI original, URI formatted) throws ParseException, IOException, FormatException {
@@ -126,7 +126,7 @@ public class TestMimeFormatter extends TestCase {
 		ByteBuffer output = IOUtils.newByteBuffer();
 		formatter.format(parser.parse(getResource(original)), output);
 		IOUtils.close(output);
-		assertEquals(toString(formatted), new String(IOUtils.toBytes(output)));
+		assertEquals(toString(formatted).replace("\r", ""), new String(IOUtils.toBytes(output)).replace("\r", ""));
 	}
 	
 	public static String toString(URI uri) throws IOException {
