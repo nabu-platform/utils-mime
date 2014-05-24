@@ -36,6 +36,16 @@ public class MimeParser implements PartParser {
 	
 	private char [] allowedCharactersBetweenBoundaries = new char [] { '\n', '\r', ' ', '\t' };
 	
+	/**
+	 * if we have binary content, we need to check if we require a fixed size
+	 * the fixed size requirement is only necessary for root content parts, child parts are delimited by boundaries from the multipart
+	 * it is also only important if multiple requests can/will come from the same source (e.g. persistent http connections)
+	 * fixed size can be indicated in one of two ways: chunked transfer encoding & Content-Length header
+	 * It is set to false by default because even when reusing connections, it assumes that the next part will not be there immediately
+	 * if it were, it would be parsed as part of the first request, otherwise the parser would stop anyway
+	 */
+	private boolean requireKnownContentLength = false;
+	
 	private Map<String, Class<? extends ParsedMimePart>> typeHandlers = new HashMap<String, Class<? extends ParsedMimePart>>(); {
 		typeHandlers.put("application/x-www-form-urlencoded", ParsedMimeFormPart.class);
 		typeHandlers.put("application/www-form-urlencoded", ParsedMimeFormPart.class);
@@ -201,7 +211,12 @@ public class MimeParser implements PartParser {
 		else {
 			Long contentLength = MimeUtils.getContentLength(part.getHeaders());
 			if (contentLength != null)
-				data = IOUtils.limitReadable(data, contentLength);
+				data = IOUtils.blockUntilRead(IOUtils.limitReadable(data, contentLength), contentLength);
+			else if (requireKnownContentLength) {
+				String transferEncoding = MimeUtils.getTransferEncoding(headers);
+				if (transferEncoding == null || !transferEncoding.equalsIgnoreCase("chunked"))
+					throw new ParseException("Can not parse a root content part of unknown length. You can toggle requireKnownContentLength to bypass this", 0);
+			}
 		}
 
 		// if we have chunked content, wrap it
@@ -276,5 +291,13 @@ public class MimeParser implements PartParser {
 		catch (InstantiationException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public boolean isRequireKnownContentLength() {
+		return requireKnownContentLength;
+	}
+
+	public void setRequireKnownContentLength(boolean requireKnownContentLength) {
+		this.requireKnownContentLength = requireKnownContentLength;
 	}
 }

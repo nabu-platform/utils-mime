@@ -97,7 +97,8 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 			// the parent is done as well
 			parentFinished = true;
 		}
-		return totalRead;
+		// make sure the chunked readable container indicates a finished stream if the chunking is done
+		return totalRead == 0 && chunksFinished && parentFinished ? -1 : totalRead;
 	}
 	
 	@Override
