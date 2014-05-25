@@ -25,7 +25,7 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	
 	private boolean chunksFinished = false, parentFinished = false;
 	
-	private Header [] trailingHeaders;
+	private Header [] trailingHeaders = new Header[0];
 	
 	public ChunkedReadableByteContainer(ReadableContainer<ByteBuffer> parent) {
 		this.parent = parent;
@@ -72,7 +72,7 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 			}
 			long copied = chunk.read(target);
 			// chunk is done
-			if (copied == -1) {
+			if (copied <= 0) {
 				chunk = null;
 				continue;
 			}

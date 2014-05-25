@@ -205,6 +205,9 @@ public class MimeParser implements PartParser {
 	 * @throws IOException 
 	 */
 	private int parseContentPart(ParsedMimePart part, ReadableContainer<CharBuffer> data, String boundary, Header...headers) throws ParseException, IOException {
+		// if we have chunked content, wrap it
+		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
+		
 		// the content part should be either terminated by a boundary, by a preset content length, by transfer encoding (chunked) or by the end of the data stream
 		if (boundary != null)
 			data = IOUtils.delimit(data, "--" + boundary);
@@ -213,14 +216,11 @@ public class MimeParser implements PartParser {
 			if (contentLength != null)
 				data = IOUtils.blockUntilRead(IOUtils.limitReadable(data, contentLength), contentLength);
 			else if (requireKnownContentLength) {
-				String transferEncoding = MimeUtils.getTransferEncoding(headers);
 				if (transferEncoding == null || !transferEncoding.equalsIgnoreCase("chunked"))
 					throw new ParseException("Can not parse a root content part of unknown length. You can toggle requireKnownContentLength to bypass this", 0);
 			}
 		}
 
-		// if we have chunked content, wrap it
-		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		// we also have to capture the headers at the end
 		HeaderProvider headerProvider = null;
 		if (transferEncoding != null && transferEncoding.equalsIgnoreCase("chunked")) {
@@ -228,7 +228,6 @@ public class MimeParser implements PartParser {
 								new ReadableStraightCharToByteContainer(data));
 			data = new ReadableStraightByteToCharContainer(headerProvider);
 		}
-		
 		// we need to keep track of the tail of the data, there _should_ be two linefeeds (\r\n) be before the boundary that can be safely ignored
 		// additionally we have a configurable trimsize
 		TrailingContainer<CharBuffer> trailer = new TrailingContainer<CharBuffer>(data, 4 + trimSize);
