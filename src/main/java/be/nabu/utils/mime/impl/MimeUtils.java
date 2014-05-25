@@ -42,7 +42,9 @@ public class MimeUtils {
 	}
 	
 	public static ModifiablePart wrapModifiable(Part part) {
-		if (part instanceof ContentPart)
+		if (part instanceof ModifiablePart)
+			return (ModifiablePart) part;
+		else if (part instanceof ContentPart)
 			return new ModifiableWrappedContentPart((ContentPart) part);
 		else if (part instanceof MultiPart)
 			return new ModifiableWrappedMultiPart((MultiPart) part);
