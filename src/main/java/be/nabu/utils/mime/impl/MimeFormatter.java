@@ -122,45 +122,47 @@ public class MimeFormatter implements PartFormatter {
 		finishHeaders(output);
 		
 		ReadableContainer<ByteBuffer> content = part.getReadable();
-		try {
-			String contentRange = MimeUtils.getContentRange(part.getHeaders());
-			if (contentRange != null) {
-				// format: from-to/total; from & to are inclusive!
-				int indexHyphen = contentRange.indexOf("-");
-				int indexSlash = contentRange.indexOf("/");
-				if (indexHyphen == -1 || indexSlash == -1)
-					throw new IllegalArgumentException("The content-range header is misformed, it should be off the format 'from-to/total'");
-				long from = new Long(contentRange.substring(0, indexHyphen));
-				long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
-				content.read(newByteSink(from));
-				// the to is inclusive!
-				content = IOUtils.limitReadable(content, to + 1);
+		if (content != null) {
+			try {
+				String contentRange = MimeUtils.getContentRange(part.getHeaders());
+				if (contentRange != null) {
+					// format: from-to/total; from & to are inclusive!
+					int indexHyphen = contentRange.indexOf("-");
+					int indexSlash = contentRange.indexOf("/");
+					if (indexHyphen == -1 || indexSlash == -1)
+						throw new IllegalArgumentException("The content-range header is misformed, it should be off the format 'from-to/total'");
+					long from = new Long(contentRange.substring(0, indexHyphen));
+					long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
+					content.read(newByteSink(from));
+					// the to is inclusive!
+					content = IOUtils.limitReadable(content, to + 1);
+				}
+				
+				// you can do two things here:
+				// encode the input as you are reading, however this presumes the input returns a clean -1 which would trigger the "flush" in the transcoder
+				// or you can encode the output as you are writing so you can manually flush
+				// the second option is of course preferable
+				// first apply actual transfer encoding (if necessary). This is mostly for chunking but can also be gzip etc
+				// to make matters slightly muddier, the values for content encoding are +- the same as for transfer encoding (they are both http constructs)
+				// the values for contentTransferEncoding are different as they are aimed at mime
+				WritableContainer<ByteBuffer> encodedOutput = getTranscoder().encodeContent(transferEncoding, output);
+				if (encodedOutput instanceof ChunkedWritableByteContainer)
+					encodedOutput = bufferWritable(encodedOutput, newByteBuffer(chunkSize, true));
+				// then apply content transfer encoding, it allows for base64 etc, it is usually not combined with transfer-encoding in the above
+				encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
+				// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
+				// in other words, a transfer-encoding gzip can be unzipped by an intermediate server while a content-encoding gzip should be unzipped by the client
+				encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
+				copyBytes(content, encodedOutput);
+				encodedOutput.flush();
+				output.write(wrap("\r\n\r\n".getBytes("ASCII"), true));
 			}
-			
-			// you can do two things here:
-			// encode the input as you are reading, however this presumes the input returns a clean -1 which would trigger the "flush" in the transcoder
-			// or you can encode the output as you are writing so you can manually flush
-			// the second option is of course preferable
-			// first apply actual transfer encoding (if necessary). This is mostly for chunking but can also be gzip etc
-			// to make matters slightly muddier, the values for content encoding are +- the same as for transfer encoding (they are both http constructs)
-			// the values for contentTransferEncoding are different as they are aimed at mime
-			WritableContainer<ByteBuffer> encodedOutput = getTranscoder().encodeContent(transferEncoding, output);
-			if (encodedOutput instanceof ChunkedWritableByteContainer)
-				encodedOutput = bufferWritable(encodedOutput, newByteBuffer(chunkSize, true));
-			// then apply content transfer encoding, it allows for base64 etc, it is usually not combined with transfer-encoding in the above
-			encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
-			// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
-			// in other words, a transfer-encoding gzip can be unzipped by an intermediate server while a content-encoding gzip should be unzipped by the client
-			encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
-			copyBytes(content, encodedOutput);
-			encodedOutput.flush();
-			output.write(wrap("\r\n\r\n".getBytes("ASCII"), true));
-		}
-		catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
-		}
-		finally {
-			content.close();
+			catch (UnsupportedEncodingException e) {
+				throw new RuntimeException(e);
+			}
+			finally {
+				content.close();
+			}
 		}
 	}
 	
