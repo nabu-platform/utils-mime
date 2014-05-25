@@ -23,7 +23,9 @@ import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.CharBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
+import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.Header;
+import be.nabu.utils.mime.api.ModifiablePart;
 import be.nabu.utils.mime.api.MultiPart;
 import be.nabu.utils.mime.api.Part;
 import be.nabu.utils.security.SignatureType;
@@ -37,6 +39,15 @@ public class MimeUtils {
 
 	public static Part encrypt(MultiPart part, X509Certificate...recipients) {
 		return new FormattedEncryptedMimePart(part, recipients);
+	}
+	
+	public static ModifiablePart wrapModifiable(Part part) {
+		if (part instanceof ContentPart)
+			return new ModifiableWrappedContentPart((ContentPart) part);
+		else if (part instanceof MultiPart)
+			return new ModifiableWrappedMultiPart((MultiPart) part);
+		else
+			throw new IllegalArgumentException("Can't wrap this type of part: " + part.getClass().getName());
 	}
 	
 	public static Part compress(Part part) {
