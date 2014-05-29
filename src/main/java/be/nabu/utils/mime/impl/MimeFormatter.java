@@ -14,11 +14,15 @@ import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.ContentTransferTranscoder;
 import be.nabu.utils.mime.api.Header;
+import be.nabu.utils.mime.api.ModifiablePart;
 import be.nabu.utils.mime.api.MultiPart;
 import be.nabu.utils.mime.api.Part;
 import be.nabu.utils.mime.api.PartFormatter;
 import be.nabu.utils.mime.util.ChunkedWritableByteContainer;
 
+/**
+ * This formatter works with either fully correct messages or with modifiable parts so it can add headers where needed
+ */
 public class MimeFormatter implements PartFormatter {
 
 	private String mimeVersion = "1.0";
@@ -47,16 +51,42 @@ public class MimeFormatter implements PartFormatter {
 		unencodedContentTypes.add("application/x-www-form-urlencoded");
 	}
 	
+	public void formatHeaders(Part part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		if (part instanceof FormattablePart)
+			throw new FormatException("The parser currently does not support partial formatting of custom formatted parts like " + part.getClass().getName());
+		else if (isMultiPart(part))
+			formatMultiPartHeaders((MultiPart) part, output);
+		else if (part instanceof ContentPart)
+			formatContentPartHeaders((ContentPart) part, output);
+		else
+			throw new FormatException("Could not format part of type " + part.getClass().getName() + ", it is not a content part and not a multipart");
+	}
+	
+	public void formatContent(Part part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		if (part instanceof FormattablePart)
+			throw new FormatException("The parser currently does not support partial formatting of custom formatted parts like " + part.getClass().getName());
+		else if (isMultiPart(part))
+			formatMultiPartContent((MultiPart) part, output);
+		else if (part instanceof ContentPart)
+			formatContentPartContent((ContentPart) part, output);
+		else
+			throw new FormatException("Could not format part of type " + part.getClass().getName() + ", it is not a content part and not a multipart");
+	}
+	
 	@Override
 	public void format(Part part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
 		if (part instanceof FormattablePart) {
 			((FormattablePart) part).setFormatter(this);
 			((FormattablePart) part).format(output);
 		}
-		else if (isMultiPart(part))
-			formatMultiPart((MultiPart) part, output);
-		else if (part instanceof ContentPart)
-			formatContentPart((ContentPart) part, output);
+		else if (isMultiPart(part)) {
+			formatMultiPartHeaders((MultiPart) part, output);
+			formatMultiPartContent((MultiPart) part, output);
+		}
+		else if (part instanceof ContentPart) {
+			formatContentPartHeaders((ContentPart) part, output);
+			formatContentPartContent((ContentPart) part, output);
+		}
 		else
 			throw new FormatException("Could not format part of type " + part.getClass().getName() + ", it is not a content part and not a multipart");
 	}
@@ -107,19 +137,27 @@ public class MimeFormatter implements PartFormatter {
 		}
 	}
 	
-	private void formatContentPart(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException {
+	private void formatContentPartHeaders(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
-		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
-		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
-		
-		writeHeaders(output, part.getHeaders());
 		// make an educated guess
 		if (!allowBinary && contentTransferEncoding == null) {
 			contentTransferEncoding = getContentTransferEncoding(part);
-			if (contentTransferEncoding != null)
-				writeHeaders(output, new MimeHeader("Content-Transfer-Encoding", contentTransferEncoding));
+			if (contentTransferEncoding != null) {
+				if (part instanceof ModifiablePart)
+					((ModifiablePart) part).setHeader(new MimeHeader("Content-Transfer-Encoding", contentTransferEncoding));
+				else
+					throw new FormatException("The part requires a Content-Transfer-Encoding header, the formatter has determined " + contentTransferEncoding + " to be the best but can not modify the part");
+			}
 		}
+		writeHeaders(output, part.getHeaders());
 		finishHeaders(output);
+	}
+	
+	private void formatContentPartContent(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException {
+		// this assumes the formateContentPartHeaders has been called which will have checked or set the encoding (or thrown an exception)
+		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
+		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
+		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
 		
 		ReadableContainer<ByteBuffer> content = part.getReadable();
 		if (content != null) {
@@ -166,30 +204,54 @@ public class MimeFormatter implements PartFormatter {
 		}
 	}
 	
-	private void formatMultiPart(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
-		Header originalContentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
-		MimeHeader contentType = null;
-		if (originalContentType == null)
-			contentType = new MimeHeader("Content-Type", "multipart/mixed");
-		else
-			contentType = new MimeHeader(originalContentType.getName(), originalContentType.getValue(), originalContentType.getComments());
-		String boundary = MimeUtils.getBoundary(contentType);
-		if (boundary == null) {
-			boundary = "-=part." + MimeUtils.generateBoundary();
-			contentType.addComment("boundary=" + boundary);
+	private void formatMultiPartHeaders(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
+		// we need a contentType with a boundary, otherwise it will have to be set/updated
+		if (contentType == null || MimeUtils.getBoundary(contentType) == null) {
+			// need a MimeHeader instance because we need specific methods like addComment
+			MimeHeader newContentType = null;
+			if (contentType == null)
+				newContentType = new MimeHeader("Content-Type", "multipart/mixed");
+			else if (contentType instanceof MimeHeader)
+				newContentType = (MimeHeader) contentType;
+			else
+				newContentType = new MimeHeader(contentType.getName(), contentType.getValue(), contentType.getComments());
+
+			newContentType.addComment("boundary=-=part." + MimeUtils.generateBoundary());
+
+			// we only need to update the multipart if we have to set a new header, otherwise the header itself is simply adjusted
+			if (!newContentType.equals(contentType)) {
+				if (part instanceof ModifiablePart) {
+					if (contentType != null)
+						((ModifiablePart) part).removeHeader("Content-Type");
+					((ModifiablePart) part).setHeader(newContentType);
+				}
+				else
+					throw new FormatException("The multipart has no content-type or it is not complete (no boundary) and the part is not modifiable so the formatter could not set it");
+				contentType = newContentType;
+			}
 		}
+		
 		writeHeaders(output, new MimeHeader("MIME-Version", mimeVersion));
 		for (Header header : part.getHeaders()) {
-			if (!header.getName().equalsIgnoreCase("Content-Type") && !header.getName().equalsIgnoreCase("MIME-Version"))
+			if (!header.getName().equalsIgnoreCase("MIME-Version"))
 				writeHeaders(output, header);
 		}
-		writeHeaders(output, contentType);
 		finishHeaders(output);
+	}
+	
+	private void formatMultiPartContent(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
+		if (contentType == null)
+			throw new FormatException("No content-type found for multipart");
+		String boundary = MimeUtils.getBoundary(contentType);
+		if (boundary == null)
+			throw new FormatException("No boundary found for multipart");
 		for (Part child : part) {
 			writeBoundary(output, boundary, false);
 			format((Part) child, output);
 		}
-		writeBoundary(output, boundary, true);
+		writeBoundary(output, boundary, true);		
 	}
 	
 	private void writeBoundary(WritableContainer<ByteBuffer> output, String boundary, boolean isLast) throws IOException {
