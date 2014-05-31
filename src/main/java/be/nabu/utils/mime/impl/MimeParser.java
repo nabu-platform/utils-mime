@@ -15,6 +15,7 @@ import be.nabu.utils.io.containers.TrailingContainer;
 import be.nabu.utils.io.containers.bytes.ReadableStraightCharToByteContainer;
 import be.nabu.utils.io.containers.chars.ReadableStraightByteToCharContainer;
 import be.nabu.utils.mime.api.ContentTransferTranscoder;
+import be.nabu.utils.mime.api.ExpectContinueHandler;
 import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.HeaderProvider;
 import be.nabu.utils.mime.api.PartParser;
@@ -45,6 +46,12 @@ public class MimeParser implements PartParser {
 	 * if it were, it would be parsed as part of the first request, otherwise the parser would stop anyway
 	 */
 	private boolean requireKnownContentLength = false;
+	
+	/**
+	 * The headers might include "Expect: 100-Continue" for HTTP
+	 * If this is encountered, the expectContinueHandler is called to determine whether or not the parsing should continue
+	 */
+	private ExpectContinueHandler expectContinueHandler = null;
 	
 	private Map<String, Class<? extends ParsedMimePart>> typeHandlers = new HashMap<String, Class<? extends ParsedMimePart>>(); {
 		typeHandlers.put("application/x-www-form-urlencoded", ParsedMimeFormPart.class);
@@ -88,7 +95,7 @@ public class MimeParser implements PartParser {
 		// however when supporting http, binary support had to be added which means adding support for the eight bit, this is done by using either Cp437 or this straight conversion
 		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(IOUtils.bufferReadable(resource.getReadable(), IOUtils.newByteBuffer(1024*10, true)));
 		try {
-			return parse(IOUtils.countReadable(data), null, 0, resource);
+			return parse(IOUtils.countReadable(data), null, 0, resource, true);
 		}
 		finally {
 			data.close();
@@ -96,16 +103,10 @@ public class MimeParser implements PartParser {
 	}
 	
 	ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber) throws ParseException, IOException {
-		return parse(data, parent, partNumber, null);
+		return parse(data, parent, partNumber, null, false);
 	}
 	
-	/**
-	 * The URI has to be passed in so it can be set on the part (atm only the root part)
-	 * This is necessary because we allow for a nested parse right at the end of this method
-	 * This nested parse requires the URI to rebuild the content
-	 * @throws IOException 
-	 */
-	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource) throws ParseException, IOException {
+	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource, boolean isRoot) throws ParseException, IOException {
 		long initialOffset = data.getReadTotal();
 		Header [] headers = MimeUtils.readHeaders(data);
 		String contentType = MimeUtils.getContentType(headers).toLowerCase();
@@ -117,6 +118,15 @@ public class MimeParser implements PartParser {
 		part.setOffset(initialOffset);
 		part.setBodyOffset(data.getReadTotal() - initialOffset);
 		part.setParent(parent, partNumber);
+		
+		Header expectHeader = MimeUtils.getHeader("Expect", headers);
+		if (expectHeader != null && expectHeader.getValue().trim().equalsIgnoreCase("100-Continue")) {
+			if (!isRoot)
+				throw new ParseException("An 'Expect' header was found in a non-root part", 0);
+			else if (!getExpectContinueHandler().shouldContinue(headers))
+				return part;
+		}
+		
 		// the boundary should not be null for classic multipart/ content types
 		// however currently encrypted parts etc are also modeled as multiparts and they don't always have a boundary (e.g. when on root)
 		// if there is no boundary, it will read till the end of the file
@@ -298,5 +308,15 @@ public class MimeParser implements PartParser {
 
 	public void setRequireKnownContentLength(boolean requireKnownContentLength) {
 		this.requireKnownContentLength = requireKnownContentLength;
+	}
+
+	public ExpectContinueHandler getExpectContinueHandler() {
+		if (expectContinueHandler == null)
+			expectContinueHandler = new AlwaysContinue();
+		return expectContinueHandler;
+	}
+
+	public void setExpectContinueHandler(ExpectContinueHandler expectContinueHandler) {
+		this.expectContinueHandler = expectContinueHandler;
 	}
 }
