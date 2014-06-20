@@ -226,8 +226,10 @@ public class MimeParser implements PartParser {
 			if (contentLength != null)
 				data = IOUtils.blockUntilRead(IOUtils.limitReadable(data, contentLength), contentLength);
 			else if (requireKnownContentLength) {
+				// instead of throwing an error, handle it like it has no size
 				if (transferEncoding == null || !transferEncoding.equalsIgnoreCase("chunked"))
-					throw new ParseException("Can not parse a root content part of unknown length. You can toggle requireKnownContentLength to bypass this", 0);
+					return 0;
+//					throw new ParseException("Can not parse a root content part of unknown length. You can toggle requireKnownContentLength to bypass this", 0);
 			}
 		}
 
