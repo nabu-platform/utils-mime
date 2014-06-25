@@ -30,7 +30,7 @@ public class FormattedSignedMimePart extends MimePartBase<FormattedSignedMimeMul
 	}
 	
 	public ReadableContainer<ByteBuffer> getSignatures() {
-		return signatures.clone();
+		return signatures.duplicate(true);
 	}
 
 	@SuppressWarnings("unchecked")
