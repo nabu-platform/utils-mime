@@ -34,6 +34,8 @@ public class MimeFormatter implements PartFormatter {
 	 */
 	private boolean allowBinary = false;
 	
+	private boolean includeMainContentTrailingLineFeeds = true;
+	
 	/**
 	 * The default chunk size is 200kb
 	 * If it is too small, the download may actually be too slow
@@ -193,7 +195,9 @@ public class MimeFormatter implements PartFormatter {
 				encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
 				copyBytes(content, encodedOutput);
 				encodedOutput.flush();
-				output.write(wrap("\r\n\r\n".getBytes("ASCII"), true));
+				if (part.getParent() != null || includeMainContentTrailingLineFeeds) {
+					output.write(wrap("\r\n\r\n".getBytes("ASCII"), true));
+				}
 			}
 			catch (UnsupportedEncodingException e) {
 				throw new RuntimeException(e);
@@ -296,4 +300,13 @@ public class MimeFormatter implements PartFormatter {
 	public void setChunkSize(int chunkSize) {
 		this.chunkSize = chunkSize;
 	}
+
+	public boolean isIncludeMainContentTrailingLineFeeds() {
+		return includeMainContentTrailingLineFeeds;
+	}
+
+	public void setIncludeMainContentTrailingLineFeeds(boolean includeMainContentTrailingLineFeeds) {
+		this.includeMainContentTrailingLineFeeds = includeMainContentTrailingLineFeeds;
+	}
+
 }
