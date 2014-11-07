@@ -3,7 +3,9 @@ package be.nabu.utils.mime.impl;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import be.nabu.libs.resources.api.Resource;
 import be.nabu.utils.io.IOUtils;
@@ -27,6 +29,7 @@ public class MimeFormatter implements PartFormatter {
 
 	private String mimeVersion = "1.0";
 	private ContentTransferTranscoder transcoder;
+	private Set<String> headersToIgnore = new HashSet<String>();
 	
 	/**
 	 * For mails, binary data is not allowed so we need to encode it
@@ -51,6 +54,12 @@ public class MimeFormatter implements PartFormatter {
 	
 	private List<String> unencodedContentTypes = new ArrayList<String>(); {
 		unencodedContentTypes.add("application/x-www-form-urlencoded");
+	}
+	
+	public void ignoreHeaders(String...names) {
+		for (String name : names) {
+			headersToIgnore.add(name.toLowerCase());
+		}
 	}
 	
 	public void formatHeaders(Part part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
@@ -151,7 +160,13 @@ public class MimeFormatter implements PartFormatter {
 					throw new FormatException("The part requires a Content-Transfer-Encoding header, the formatter has determined " + contentTransferEncoding + " to be the best but can not modify the part");
 			}
 		}
-		writeHeaders(output, part.getHeaders());
+		List<Header> headers = new ArrayList<Header>();
+		for (Header header : part.getHeaders()) {
+			if (!headersToIgnore.contains(header.getName().toLowerCase())) {
+				headers.add(header);
+			}
+		}
+		writeHeaders(output, headers.toArray(new Header[0]));
 		finishHeaders(output);
 	}
 	
@@ -238,8 +253,9 @@ public class MimeFormatter implements PartFormatter {
 		
 		writeHeaders(output, new MimeHeader("MIME-Version", mimeVersion));
 		for (Header header : part.getHeaders()) {
-			if (!header.getName().equalsIgnoreCase("MIME-Version"))
+			if (!header.getName().equalsIgnoreCase("MIME-Version") && !headersToIgnore.contains(header.getName().toLowerCase())) {
 				writeHeaders(output, header);
+			}
 		}
 		finishHeaders(output);
 	}
