@@ -25,6 +25,15 @@ import be.nabu.utils.security.api.ManagedKeyStore;
 /**
  * Any mime part starts with one or more headers (which can be length-encoded)
  * After the headers (and two linefeeds) you can optionally have content
+ * 
+ * TODO: have to rewrite this to use the same methods as the flat file parser to boost performance
+ * 		> use the limited markable (on the byte stream!)
+ * 		> use a bigger buffer to convert byte to char (or simply stick to bytes?)
+ * 		> use the backed delimited (reads chunks instead of one by one)
+ * 		> for http: how to make sure the remainder of this buffer is "pushed back" to the socket? > chain it with next request?
+ * 			> need to update handling of linefeeds etc
+ * 			> because we are using dynamic resource, the remainder will also be in that resource, is this a problem?
+ * Is the buffering of the bytes already reading too much? or is default http request/response behavior making this work accidently?
  */
 public class MimeParser implements PartParser {
 
@@ -93,7 +102,8 @@ public class MimeParser implements PartParser {
 		// but instead we opt for a simple byte-to-char converter
 		// this is also partly because it was originally designed to only parse actual mime which remains in the ASCII range (7bit only, no extended range)
 		// however when supporting http, binary support had to be added which means adding support for the eight bit, this is done by using either Cp437 or this straight conversion
-		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(IOUtils.bufferReadable(resource.getReadable(), IOUtils.newByteBuffer(1024*10, true)));
+//		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(IOUtils.bufferReadable(resource.getReadable(), IOUtils.newByteBuffer(1024*10, true)));
+		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(resource.getReadable());
 		try {
 			return parse(IOUtils.countReadable(data), null, 0, resource, true);
 		}
