@@ -109,7 +109,7 @@ public class MimeParser implements PartParser {
 //		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(IOUtils.bufferReadable(resource.getReadable(), IOUtils.newByteBuffer(1024*10, true)));
 		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(resource.getReadable());
 		try {
-			return parse(IOUtils.countReadable(data), null, 0, resource, true);
+			return parse(IOUtils.countReadable(data), null, 0, resource, true, headers);
 		}
 		finally {
 			data.close();
