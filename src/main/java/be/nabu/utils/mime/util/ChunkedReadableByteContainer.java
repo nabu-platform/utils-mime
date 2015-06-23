@@ -23,6 +23,8 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	
 	private LimitedReadableContainer<ByteBuffer> chunk;
 	
+	private int maxChunkSize = 8192;
+	
 	private boolean chunksFinished = false, parentFinished = false;
 	
 	private Header [] trailingHeaders = new Header[0];
@@ -68,6 +70,9 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 					chunksFinished = true;
 					break;
 				}
+				else if (chunkSize > maxChunkSize) {
+					throw new IOException("The chunk " + chunkSize + " is too big, max " + maxChunkSize + " allowed");
+				}
 				chunk = IOUtils.limitReadable(parent, chunkSize);
 			}
 			long copied = chunk.read(target);
@@ -104,5 +109,13 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	@Override
 	public Header [] getAdditionalHeaders() {
 		return trailingHeaders;
+	}
+
+	public int getMaxChunkSize() {
+		return maxChunkSize;
+	}
+
+	public void setMaxChunkSize(int maxChunkSize) {
+		this.maxChunkSize = maxChunkSize;
 	}
 }

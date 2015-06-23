@@ -95,6 +95,10 @@ public class MimeParser implements PartParser {
 
 	@Override
 	public ParsedMimePart parse(ReadableResource resource) throws ParseException, IOException {
+		return parse(resource, new Header[0]);
+	}
+	
+	public ParsedMimePart parse(ReadableResource resource, Header...headers) throws ParseException, IOException {
 		// you could process it as bytes but then we need to constantly convert it to chars when needed (boundary checking, header parsing,...)
 		// note that the converter used maps bytes 1-1 to chars so the range is 0-256, the same range as the original code page 437
 		// the following line initializes the data using the code page
@@ -112,13 +116,13 @@ public class MimeParser implements PartParser {
 		}
 	}
 	
-	ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber) throws ParseException, IOException {
-		return parse(data, parent, partNumber, null, false);
+	ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, Header...headers) throws ParseException, IOException {
+		return parse(data, parent, partNumber, null, false, headers);
 	}
 	
-	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource, boolean isRoot) throws ParseException, IOException {
+	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource, boolean isRoot, Header...originalHeaders) throws ParseException, IOException {
 		long initialOffset = data.getReadTotal();
-		Header [] headers = MimeUtils.readHeaders(data);
+		Header [] headers = originalHeaders == null || originalHeaders.length == 0 ? MimeUtils.readHeaders(data) : originalHeaders;
 		String contentType = MimeUtils.getContentType(headers).toLowerCase();
 		
 		ParsedMimePart part = newHandler(contentType);
