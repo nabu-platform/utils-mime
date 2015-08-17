@@ -26,26 +26,21 @@
 				</configuration>
 			</plugin>
 
-                        <plugin>
-                                <groupId>org.apache.maven.plugins</groupId>
-                                <artifactId>maven-compiler-plugin</artifactId>
-                                <configuration>
-                                        <source>1.6</source>
-                                        <target>1.6</target>
-                                </configuration>
-                        </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
 		<dependency>
 			<groupId>be.nabu.utils</groupId>
-			<artifactId>utils-io</artifactId>
-			<version>1.2-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>be.nabu.utils</groupId>
 			<artifactId>utils-codec</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>be.nabu.utils</groupId>
@@ -55,7 +50,7 @@
 		<dependency>
 			<groupId>be.nabu.libs.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- for testing purposes -->
@@ -74,7 +69,7 @@
 		<dependency>
 			<groupId>be.nabu.libs.resources</groupId>
 			<artifactId>resources-memory</artifactId>
-			<version>1.0-SNAPSHOT</version>
+			<version>1.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

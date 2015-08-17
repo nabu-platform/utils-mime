@@ -106,6 +106,10 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 		return totalRead == 0 && chunksFinished && parentFinished ? -1 : totalRead;
 	}
 	
+	public boolean isFinished() {
+		return chunksFinished && parentFinished;
+	}
+	
 	@Override
 	public Header [] getAdditionalHeaders() {
 		return trailingHeaders;
