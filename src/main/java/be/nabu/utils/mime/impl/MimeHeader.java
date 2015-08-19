@@ -19,12 +19,12 @@ import be.nabu.utils.codec.impl.QuotedPrintableEncoder;
 import be.nabu.utils.codec.impl.QuotedPrintableEncoding;
 import be.nabu.utils.io.IOUtils;
 import be.nabu.utils.io.api.ByteBuffer;
-import be.nabu.utils.mime.api.Header;
+import be.nabu.utils.mime.api.ModifiableHeader;
 
 /**
  * TODO: Still need to add folding 
  */
-public class MimeHeader implements Header {
+public class MimeHeader implements ModifiableHeader {
 
 	private String name, value;
 	private List<String> comments;
@@ -124,6 +124,7 @@ public class MimeHeader implements Header {
 		return comments.toArray(new String[comments.size()]);
 	}
 	
+	@Override
 	public void addComment(String...comments) {
 		this.comments.addAll(Arrays.asList(comments));
 	}
@@ -180,5 +181,14 @@ public class MimeHeader implements Header {
 	public void setFoldChar(char foldChar) {
 		this.foldChar = foldChar;
 	}
-	
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void setValue(String value) {
+		this.value = value;
+	}
 }
