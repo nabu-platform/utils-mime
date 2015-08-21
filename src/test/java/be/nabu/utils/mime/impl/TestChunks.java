@@ -48,6 +48,7 @@ public class TestChunks extends TestCase {
 		Container<ByteBuffer> container = ResourceUtils.toContainer(new URI("memory:/test/mime/chunked.mime"), null);
 		try {
 			MimeFormatter formatter = new MimeFormatter();
+			formatter.setIncludeMainContentTrailingLineFeeds(false);
 			formatter.setChunkSize(512);
 			formatter.format(newPart, container);
 			container.flush();
