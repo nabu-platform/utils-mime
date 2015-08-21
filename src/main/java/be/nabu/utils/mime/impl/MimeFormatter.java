@@ -201,8 +201,10 @@ public class MimeFormatter implements PartFormatter {
 				// to make matters slightly muddier, the values for content encoding are +- the same as for transfer encoding (they are both http constructs)
 				// the values for contentTransferEncoding are different as they are aimed at mime
 				WritableContainer<ByteBuffer> encodedOutput = getTranscoder().encodeContent(transferEncoding, output);
-				if (encodedOutput instanceof ChunkedWritableByteContainer)
+				if (encodedOutput instanceof ChunkedWritableByteContainer) {
+					((ChunkedWritableByteContainer) encodedOutput).setWriteEnding(!includeMainContentTrailingLineFeeds);
 					encodedOutput = bufferWritable(encodedOutput, newByteBuffer(chunkSize, true));
+				}
 				// then apply content transfer encoding, it allows for base64 etc, it is usually not combined with transfer-encoding in the above
 				encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
 				// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
