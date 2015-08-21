@@ -83,15 +83,26 @@ public class MimeUtils {
 	}
 	
 	public static List<String> getAcceptedEncodings(Header...headers) {
-		Header header = getHeader("Accept-Encoding", headers);
-		List<String> encodings = new ArrayList<String>();
+		return getAccepted("Accept-Encoding", headers);
+	}
+	
+	public static List<String> getAcceptedLanguages(Header...headers) {
+		return getAccepted("Accept-Language", headers);
+	}
+	
+	public static List<String> getAcceptedCharsets(Header...headers) {
+		return getAccepted("Accept-Charset", headers);
+	}
+	
+	public static List<String> getAccepted(String name, Header...headers) {
+		Header header = getHeader(name, headers);
+		List<String> accepted = new ArrayList<String>();
 		if (header != null) {
-			for (String encoding : header.getValue().split("[\\s]*,[\\s]*")) {
-				// sorry we don't care about the quality at this point
-				encodings.add(encoding.replaceAll(";.*", "").toLowerCase().trim());
+			for (String value : header.getValue().split("[\\s]*,[\\s]*")) {
+				accepted.add(value.replaceAll(";.*", "").toLowerCase().trim());
 			}
 		}
-		return encodings;
+		return accepted;
 	}
 	
 	public static Header getHeader(String name, Header...headers) {
