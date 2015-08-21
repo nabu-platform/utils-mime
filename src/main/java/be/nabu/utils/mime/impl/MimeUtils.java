@@ -82,6 +82,18 @@ public class MimeUtils {
 		return values;
 	}
 	
+	public static List<String> getAcceptedEncodings(Header...headers) {
+		Header header = getHeader("Accept-Encoding", headers);
+		List<String> encodings = new ArrayList<String>();
+		if (header != null) {
+			for (String encoding : header.getValue().split("[\\s]*,[\\s]*")) {
+				// sorry we don't care about the quality at this point
+				encodings.add(encoding.replaceAll(";.*", "").toLowerCase().trim());
+			}
+		}
+		return encodings;
+	}
+	
 	public static Header getHeader(String name, Header...headers) {
 		Header [] result = getHeaders(name, headers);
 		return result.length > 0 ? result[0] : null;

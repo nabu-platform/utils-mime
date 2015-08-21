@@ -48,7 +48,7 @@ public class ChunkedWritableByteContainer implements WritableContainer<ByteBuffe
 				throw new IOException(e);
 			}
 		}
-		return IOUtils.copyBytes(buffer, parent);
+		return parent.write(buffer);
 	}
 
 	public void finish(Header...headers) throws IOException {
@@ -73,7 +73,7 @@ public class ChunkedWritableByteContainer implements WritableContainer<ByteBuffe
 	public void flush() throws IOException {
 		if (!finished)
 			finish();
-		if (buffer.remainingData() != IOUtils.copyBytes(buffer, parent))
+		if (buffer.remainingData() != parent.write(buffer))
 			throw new IOException("There is not enough room in the parent to flush the remaining data");
 		parent.flush();
 	}

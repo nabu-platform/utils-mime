@@ -65,7 +65,7 @@ public class MimeContentTransferTranscoder implements ContentTransferTranscoder 
 	@Override
 	public WritableContainer<ByteBuffer> encodeContent(String contentEncoding, WritableContainer<ByteBuffer> decodedContent) {
 		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("chunked"))
-			return new ChunkedWritableByteContainer(decodedContent, false);
+			return new ChunkedWritableByteContainer(decodedContent, true);
 		Transcoder<ByteBuffer> transcoder = null;
 		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("gzip"))
 			transcoder = new GZIPEncoder();
