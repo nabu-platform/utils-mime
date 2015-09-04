@@ -94,6 +94,10 @@ public class MimeUtils {
 		return getAccepted("Accept-Charset", headers);
 	}
 	
+	public static List<String> getAcceptedContentTypes(Header...headers) {
+		return getAccepted("Accept", headers);
+	}
+	
 	public static List<String> getAccepted(String name, Header...headers) {
 		Header header = getHeader(name, headers);
 		List<String> accepted = new ArrayList<String>();
