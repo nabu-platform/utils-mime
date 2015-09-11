@@ -30,7 +30,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 	private Stack<String> boundaries = new Stack<String>();
 	
 	private DynamicByteBuffer buffer = new DynamicByteBuffer();
-	private boolean isClosed = false;
+	private boolean isClosed = true;
 	private boolean footerWritten = false;
 	
 	public void format(Part part) throws IOException, FormatException {
