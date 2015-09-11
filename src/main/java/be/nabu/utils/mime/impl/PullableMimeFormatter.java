@@ -16,6 +16,7 @@ import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.MultiPart;
 import be.nabu.utils.mime.api.Part;
+import be.nabu.utils.mime.util.ChunkedEncodingReadableByteContainer;
 
 public class PullableMimeFormatter extends MimeFormatter implements ReadableContainer<ByteBuffer> {
 
@@ -188,6 +189,10 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		input = getTranscoder().encodeTransfer(contentTransferEncoding, input);
 		// the values for contentTransferEncoding are different as they are aimed at mime
 		input = getTranscoder().encodeContent(transferEncoding, input);
+		// if this formatter does not provide the ending, have the chunked itself provide the ending
+		if (input instanceof ChunkedEncodingReadableByteContainer) {
+			((ChunkedEncodingReadableByteContainer) input).setWriteEnding(!isIncludeMainContentTrailingLineFeeds());
+		}
 		return input;
 	}
 
