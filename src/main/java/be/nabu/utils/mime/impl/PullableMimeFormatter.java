@@ -191,7 +191,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		return input;
 	}
 
-	public boolean isClosed() {
+	public boolean isDone() {
 		return isClosed;
 	}
 }
