@@ -102,7 +102,7 @@ public class MimeFormatter implements PartFormatter {
 			throw new FormatException("Could not format part of type " + part.getClass().getName() + ", it is not a content part and not a multipart");
 	}
 	
-	private boolean isMultiPart(Part part) {
+	protected boolean isMultiPart(Part part) {
 		String contentType = MimeUtils.getContentType(part.getHeaders()).toLowerCase();
 		return part instanceof MultiPart && (contentType.startsWith("multipart/") || contentType.equals(Resource.CONTENT_TYPE_DIRECTORY) || Resource.CONTENT_TYPE_DIRECTORY.equals(part.getContentType()));
 	}
@@ -148,7 +148,7 @@ public class MimeFormatter implements PartFormatter {
 		}
 	}
 	
-	private void formatContentPartHeaders(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+	protected void formatContentPartHeaders(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
 		// make an educated guess
 		if (!allowBinary && contentTransferEncoding == null) {
@@ -171,45 +171,13 @@ public class MimeFormatter implements PartFormatter {
 	}
 	
 	private void formatContentPartContent(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException {
-		// this assumes the formateContentPartHeaders has been called which will have checked or set the encoding (or thrown an exception)
-		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
-		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
-		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
 		
 		ReadableContainer<ByteBuffer> content = part.getReadable();
 		if (content != null) {
 			try {
-				String contentRange = MimeUtils.getContentRange(part.getHeaders());
-				if (contentRange != null) {
-					// format: from-to/total; from & to are inclusive!
-					int indexHyphen = contentRange.indexOf("-");
-					int indexSlash = contentRange.indexOf("/");
-					if (indexHyphen == -1 || indexSlash == -1)
-						throw new IllegalArgumentException("The content-range header is misformed, it should be off the format 'from-to/total'");
-					long from = new Long(contentRange.substring(0, indexHyphen));
-					long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
-					content.read(newByteSink(from));
-					// the to is inclusive!
-					content = IOUtils.limitReadable(content, to + 1);
-				}
+				content = limitByContentRange(part, content);
 				
-				// you can do two things here:
-				// encode the input as you are reading, however this presumes the input returns a clean -1 which would trigger the "flush" in the transcoder
-				// or you can encode the output as you are writing so you can manually flush
-				// the second option is of course preferable
-				// first apply actual transfer encoding (if necessary). This is mostly for chunking but can also be gzip etc
-				// to make matters slightly muddier, the values for content encoding are +- the same as for transfer encoding (they are both http constructs)
-				// the values for contentTransferEncoding are different as they are aimed at mime
-				WritableContainer<ByteBuffer> encodedOutput = getTranscoder().encodeContent(transferEncoding, output);
-				if (encodedOutput instanceof ChunkedWritableByteContainer) {
-					((ChunkedWritableByteContainer) encodedOutput).setWriteEnding(!includeMainContentTrailingLineFeeds);
-					encodedOutput = bufferWritable(encodedOutput, newByteBuffer(chunkSize, true));
-				}
-				// then apply content transfer encoding, it allows for base64 etc, it is usually not combined with transfer-encoding in the above
-				encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
-				// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
-				// in other words, a transfer-encoding gzip can be unzipped by an intermediate server while a content-encoding gzip should be unzipped by the client
-				encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
+				WritableContainer<ByteBuffer> encodedOutput = encodeOutput(part, output);
 				copyBytes(content, encodedOutput);
 				encodedOutput.flush();
 				if (part.getParent() != null || includeMainContentTrailingLineFeeds) {
@@ -224,8 +192,50 @@ public class MimeFormatter implements PartFormatter {
 			}
 		}
 	}
+
+	protected WritableContainer<ByteBuffer> encodeOutput(ContentPart part, WritableContainer<ByteBuffer> output) {
+		// this assumes the formateContentPartHeaders has been called which will have checked or set the encoding (or thrown an exception)
+		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
+		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
+		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
+		// you can do two things here:
+		// encode the input as you are reading, however this presumes the input returns a clean -1 which would trigger the "flush" in the transcoder
+		// or you can encode the output as you are writing so you can manually flush
+		// the second option is of course preferable
+		// first apply actual transfer encoding (if necessary). This is mostly for chunking but can also be gzip etc
+		// to make matters slightly muddier, the values for content encoding are +- the same as for transfer encoding (they are both http constructs)
+		// the values for contentTransferEncoding are different as they are aimed at mime
+		WritableContainer<ByteBuffer> encodedOutput = getTranscoder().encodeContent(transferEncoding, output);
+		if (encodedOutput instanceof ChunkedWritableByteContainer) {
+			((ChunkedWritableByteContainer) encodedOutput).setWriteEnding(!includeMainContentTrailingLineFeeds);
+			encodedOutput = bufferWritable(encodedOutput, newByteBuffer(chunkSize, true));
+		}
+		// then apply content transfer encoding, it allows for base64 etc, it is usually not combined with transfer-encoding in the above
+		encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
+		// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
+		// in other words, a transfer-encoding gzip can be unzipped by an intermediate server while a content-encoding gzip should be unzipped by the client
+		encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
+		return encodedOutput;
+	}
+
+	protected ReadableContainer<ByteBuffer> limitByContentRange(ContentPart part, ReadableContainer<ByteBuffer> content) throws IOException {
+		String contentRange = MimeUtils.getContentRange(part.getHeaders());
+		if (contentRange != null) {
+			// format: from-to/total; from & to are inclusive!
+			int indexHyphen = contentRange.indexOf("-");
+			int indexSlash = contentRange.indexOf("/");
+			if (indexHyphen == -1 || indexSlash == -1)
+				throw new IllegalArgumentException("The content-range header is misformed, it should be off the format 'from-to/total'");
+			long from = new Long(contentRange.substring(0, indexHyphen));
+			long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
+			content.read(newByteSink(from));
+			// the to is inclusive!
+			content = IOUtils.limitReadable(content, to + 1);
+		}
+		return content;
+	}
 	
-	private void formatMultiPartHeaders(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+	protected void formatMultiPartHeaders(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
 		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
 		// we need a contentType with a boundary, otherwise it will have to be set/updated
 		if (contentType == null || MimeUtils.getBoundary(contentType) == null) {
@@ -276,7 +286,7 @@ public class MimeFormatter implements PartFormatter {
 		writeBoundary(output, boundary, true);		
 	}
 	
-	private void writeBoundary(WritableContainer<ByteBuffer> output, String boundary, boolean isLast) throws IOException {
+	protected void writeBoundary(WritableContainer<ByteBuffer> output, String boundary, boolean isLast) throws IOException {
 		try {
 			output.write(wrap(("--" + boundary + (isLast ? "--" : "") + "\r\n").getBytes("ASCII"), true));
 		}

@@ -67,8 +67,12 @@ public class TestMimeFormatter extends TestCase {
 	}
 	
 	public void testCompress() throws ParseException, URISyntaxException, IOException, FormatException {
+		testCompress(new MimeFormatter());
+		testCompress(new PullableMimeFormatter());
+	}
+
+	private void testCompress(MimeFormatter formatter) throws ParseException, IOException, URISyntaxException, FormatException {
 		Part example = new MimeParser().parse(getResource(new URI("classpath:/example.mime")));
-		MimeFormatter formatter = new MimeFormatter();
 		
 		Part compressed = MimeUtils.compress(example);
 		URI target = new URI("memory:/test/mime/compressed.mime");
@@ -90,12 +94,16 @@ public class TestMimeFormatter extends TestCase {
 	}
 	
 	public void testEncrypted() throws NoSuchAlgorithmException, CertificateException, IOException, URISyntaxException, ParseException, KeyStoreException, FormatException {
+		testEncrypted(new MimeFormatter());
+		testEncrypted(new PullableMimeFormatter());
+	}
+
+	private void testEncrypted(MimeFormatter formatter) throws NoSuchAlgorithmException, CertificateException, IOException, ParseException, URISyntaxException, FormatException, KeyStoreException {
 		X500Principal principal = SecurityUtils.createX500Principal("test", "nabu", null, null, null, "Belgium");
 		KeyPair pair = SecurityUtils.generateKeyPair(KeyPairType.RSA, 2048);
 		X509Certificate certificate = BCSecurityUtils.generateSelfSignedCertificate(pair, new Date(new Date().getTime() + 1000*60*60*24*365), principal, principal);
 		
 		Part example = new MimeParser().parse(getResource(new URI("classpath:/example.mime")));
-		MimeFormatter formatter = new MimeFormatter();
 		
 		Part encrypted = MimeUtils.encrypt((MultiPart) example, certificate);
 		
@@ -113,15 +121,18 @@ public class TestMimeFormatter extends TestCase {
 		Part childPart = (Part) (((MultiPart) parsed).getChild("part0"));
 		
 		ByteBuffer decrypted = IOUtils.newByteBuffer();
-		formatter = new MimeFormatter();
 		formatter.format(childPart, decrypted);
 		decrypted.close();
 		assertEquals(toString(new URI("classpath:/formatted.example.mime")).replace("\r", ""), new String(IOUtils.toBytes(decrypted)).replace("\r", ""));
 	}
 	
 	public void assertEquals(URI original, URI formatted) throws ParseException, IOException, FormatException {
+		assertEquals(original, formatted, new MimeFormatter());
+		assertEquals(original, formatted, new PullableMimeFormatter());
+	}
+
+	private void assertEquals(URI original, URI formatted, MimeFormatter formatter) throws IOException, FormatException, ParseException {
 		MimeParser parser = new MimeParser();
-		MimeFormatter formatter = new MimeFormatter();
 		
 		ByteBuffer output = IOUtils.newByteBuffer();
 		formatter.format(parser.parse(getResource(original)), output);
@@ -147,11 +158,14 @@ public class TestMimeFormatter extends TestCase {
 		ManagedKeyStore keyStore = new SimpleManagedKeyStore();
 		keyStore.set("priv", pair.getPrivate(), new X509Certificate [] { certificate }, null);
 		keyStore.set("trusted", certificate);
+		testSign(new MimeFormatter(), keyStore);
+		testSign(new PullableMimeFormatter(), keyStore);
+	}
 
+	private void testSign(MimeFormatter formatter, ManagedKeyStore keyStore) throws URISyntaxException, ParseException, KeyStoreException, CertificateException, IOException, NoSuchAlgorithmException, FormatException {
 		URI contentUri = new URI("classpath:/example.mime");
 		Part part = new MimeParser().parse(getResource(contentUri));
 		
-		MimeFormatter formatter = new MimeFormatter();
 		MultiPart signedPart = MimeUtils.sign(part, SignatureType.SHA256WITHRSA, keyStore, "priv");
 		
 		URI target = new URI("memory:/test/mime/signed.mime");
@@ -163,7 +177,6 @@ public class TestMimeFormatter extends TestCase {
 		MimeParser parser = new MimeParser();
 		parser.setKeyStore(keyStore);
 		MultiPart parsedPart = (MultiPart) parser.parse(getResource(target));
-		
 		ParsedSignedMimePart signature = (ParsedSignedMimePart) parsedPart.getChild("smime.p7s");
 		assertTrue(signature.isValid());
 	}

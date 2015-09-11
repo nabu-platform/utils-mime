@@ -11,7 +11,9 @@ import static be.nabu.utils.io.IOUtils.*;
 import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
+import be.nabu.utils.io.buffers.FragmentedReadableContainer;
 import be.nabu.utils.io.buffers.bytes.DynamicByteBuffer;
+import be.nabu.utils.io.buffers.bytes.StaticByteBuffer;
 import be.nabu.utils.mime.api.Part;
 import be.nabu.utils.mime.api.PartFormatter;
 import be.nabu.utils.security.BCSecurityUtils;
@@ -30,7 +32,9 @@ public class FormattedSignedMimePart extends MimePartBase<FormattedSignedMimeMul
 	}
 	
 	public ReadableContainer<ByteBuffer> getSignatures() {
-		return signatures.duplicate(true);
+		FragmentedReadableContainer<ByteBuffer, StaticByteBuffer> duplicate = signatures.duplicate(true);
+		duplicate.close();
+		return duplicate;
 	}
 
 	@SuppressWarnings("unchecked")

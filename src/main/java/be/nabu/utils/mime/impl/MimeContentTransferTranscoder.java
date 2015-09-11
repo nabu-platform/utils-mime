@@ -10,6 +10,7 @@ import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.mime.api.ContentTransferTranscoder;
+import be.nabu.utils.mime.util.ChunkedEncodingReadableByteContainer;
 import be.nabu.utils.mime.util.ChunkedReadableByteContainer;
 import be.nabu.utils.mime.util.ChunkedWritableByteContainer;
 
@@ -42,6 +43,9 @@ public class MimeContentTransferTranscoder implements ContentTransferTranscoder 
 	
 	@Override
 	public ReadableContainer<ByteBuffer> encodeContent(String contentEncoding, ReadableContainer<ByteBuffer> decodedContent) {
+		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("chunked")) {
+			return new ChunkedEncodingReadableByteContainer(decodedContent, 1024 * 50);
+		}
 		Transcoder<ByteBuffer> transcoder = null;
 		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("gzip"))
 			transcoder = new GZIPEncoder();

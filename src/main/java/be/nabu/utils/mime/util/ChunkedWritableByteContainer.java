@@ -3,7 +3,6 @@ package be.nabu.utils.mime.util;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-import be.nabu.utils.io.IOUtils;
 import static be.nabu.utils.io.IOUtils.*;
 import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.WritableContainer;
