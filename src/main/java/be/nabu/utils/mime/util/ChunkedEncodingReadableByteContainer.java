@@ -3,6 +3,7 @@ package be.nabu.utils.mime.util;
 import java.io.IOException;
 import java.nio.charset.Charset;
 
+import be.nabu.utils.io.IOUtils;
 import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.buffers.bytes.CyclicByteBuffer;
@@ -26,12 +27,17 @@ public class ChunkedEncodingReadableByteContainer implements ReadableContainer<B
 	private byte [] hexSize;
 	private byte [] lineFeed = "\r\n".getBytes(Charset.forName("ASCII"));
 	private boolean parentDone = false;
+	private boolean finalizedChunksize = false;
+	private ReadableContainer<ByteBuffer> readyChunk;
+	private int remainingChunkSize;
+	private boolean writeEnding = true;
 	
 	public ChunkedEncodingReadableByteContainer(ReadableContainer<ByteBuffer> parent, int chunkSize) {
 		this.parent = parent;
 		this.chunkSize = chunkSize;
-		this.buffer = new CyclicByteBuffer(chunkSize);
 		this.hexSize = Integer.toHexString(chunkSize).getBytes(Charset.forName("ASCII"));
+		// account for the hex header, the linefeed after the header, the linefeed after the chunk and optionally the linefeed after all the chunking is done
+		this.buffer = new CyclicByteBuffer(chunkSize);
 	}
 	
 	@Override
@@ -39,31 +45,56 @@ public class ChunkedEncodingReadableByteContainer implements ReadableContainer<B
 		isClosed = true;
 		parent.close();
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
 	public long read(ByteBuffer target) throws IOException {
 		if (isClosed) {
 			return -1;
 		}
 		long totalRead = 0;
-		// if the chunk is not complete, read from parent
-		if (buffer.remainingSpace() > 0) {
-			long read = parent.read(buffer);
-			if (read == -1) {
-				parentDone = true;
+		// try to prepare a chunk if necessary
+		if (readyChunk == null) {
+			// if the chunk is not complete, read from parent
+			while (buffer.remainingSpace() > 0 && !parentDone) {
+				long read = parent.read(buffer);
+				if (read == -1) {
+					parentDone = true;
+				}
+				else if (read == 0) {
+					break;
+				}
+			}
+			// if the parent is done, update the chunk size to match whatever data is left
+			if (parentDone && !finalizedChunksize) {
+				finalizedChunksize = true;
+				hexSize = Integer.toHexString((int) buffer.remainingData()).getBytes(Charset.forName("ASCII"));
+			}
+			// if we have to write out a chunk, start writing, for the end of the parent, add an additional linefeed
+			if (parentDone || buffer.remainingSpace() == 0) {
+				// finish the chunk
+				readyChunk = IOUtils.chain(false, IOUtils.wrap(hexSize, true), IOUtils.wrap(lineFeed, true), buffer, IOUtils.wrap(lineFeed, true));
+				remainingChunkSize = (int) (buffer.remainingData() + hexSize.length + (lineFeed.length * 2));
+				// if the parent is done, write the trailing "0" sized element
+				if (parentDone) {
+					readyChunk = IOUtils.chain(false, readyChunk, IOUtils.wrap("0".getBytes("ASCII"), true));
+					remainingChunkSize += 1;
+					if (writeEnding) {
+						readyChunk = IOUtils.chain(false, readyChunk, IOUtils.wrap(lineFeed, true), IOUtils.wrap(lineFeed, true));
+						remainingChunkSize += lineFeed.length * 2;
+					}
+				}
 			}
 		}
-		// if the parent is done, update the chunk size to match whatever data is left
-		if (parentDone) {
-			hexSize = Integer.toHexString((int) buffer.remainingData()).getBytes(Charset.forName("ASCII"));
+		if (readyChunk != null) {
+			long read = readyChunk.read(target);
+			totalRead += read;
+			remainingChunkSize -= read;
+			if (remainingChunkSize == 0) {
+				readyChunk = null;
+			}
 		}
-		// the target buffer must at least accommodate the parts that are not saved
-		if ((parentDone || buffer.remainingSpace() == 0) && (target.remainingSpace() > hexSize.length + lineFeed.length)) {
-			totalRead += target.write(hexSize);
-			totalRead += target.write(lineFeed);
-			totalRead += target.write(buffer);
-		}
-		if (parentDone && buffer.remainingData() == 0) {
+		if (parentDone && readyChunk == null) {
 			isClosed = true;
 		}
 		return totalRead == 0 && isClosed ? -1 : totalRead;
@@ -71,5 +102,13 @@ public class ChunkedEncodingReadableByteContainer implements ReadableContainer<B
 
 	public int getChunkSize() {
 		return chunkSize;
+	}
+
+	public boolean isWriteEnding() {
+		return writeEnding;
+	}
+
+	public void setWriteEnding(boolean writeEnding) {
+		this.writeEnding = writeEnding;
 	}
 }
