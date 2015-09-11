@@ -190,4 +190,8 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		input = getTranscoder().encodeContent(transferEncoding, input);
 		return input;
 	}
+
+	public boolean isClosed() {
+		return isClosed;
+	}
 }
