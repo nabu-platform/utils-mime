@@ -34,13 +34,13 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 	private boolean footerWritten = false;
 	
 	public void format(Part part) throws IOException, FormatException {
+		// doing a new format, reset
+		reset();
 		push(part);
 	}
 	
 	@Override
 	public void format(Part part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
-		// doing a new format, reset
-		reset();
 		format(part);
 		try {
 			IOUtils.copy(this, output, ByteBufferFactory.getInstance().newInstance(500, true));
