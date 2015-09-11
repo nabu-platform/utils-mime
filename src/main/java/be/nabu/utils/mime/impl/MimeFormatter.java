@@ -40,10 +40,10 @@ public class MimeFormatter implements PartFormatter {
 	private boolean includeMainContentTrailingLineFeeds = true;
 	
 	/**
-	 * The default chunk size is 200kb
+	 * The default chunk size is 50kb
 	 * If it is too small, the download may actually be too slow
 	 */
-	private int chunkSize = 1024 * 200;
+	private int chunkSize = 1024 * 50;
 	
 	private List<String> quotableContentTypes = new ArrayList<String>(); {
 		quotableContentTypes.add("text/plain");
