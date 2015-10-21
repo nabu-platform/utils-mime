@@ -80,8 +80,13 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 	private void pushContentPart(ContentPart part) throws IOException, FormatException {
 		formatContentPartHeaders((ContentPart) part, buffer);
 		ReadableContainer<ByteBuffer> readable = part.getReadable();
-		readable = limitByContentRange(part, readable);
-		currentReadable = encodeInput(part, readable);
+		if (readable != null) {
+			readable = limitByContentRange(part, readable);
+			currentReadable = encodeInput(part, readable);
+		}
+		else {
+			currentReadable = null;
+		}
 	}
 	
 	private void pushMultiPart(MultiPart part) throws FormatException, IOException {
