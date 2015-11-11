@@ -83,22 +83,34 @@ public class MimeUtils {
 	}
 	
 	public static List<String> getAcceptedEncodings(Header...headers) {
-		return getAccepted("Accept-Encoding", headers);
+		return getValues("Accept-Encoding", headers);
 	}
 	
 	public static List<String> getAcceptedLanguages(Header...headers) {
-		return getAccepted("Accept-Language", headers);
+		return getValues("Accept-Language", headers);
 	}
 	
 	public static List<String> getAcceptedCharsets(Header...headers) {
-		return getAccepted("Accept-Charset", headers);
+		return getValues("Accept-Charset", headers);
 	}
 	
 	public static List<String> getAcceptedContentTypes(Header...headers) {
-		return getAccepted("Accept", headers);
+		return getValues("Accept", headers);
 	}
 	
-	public static List<String> getAccepted(String name, Header...headers) {
+	public static boolean contains(String name, String value, Header...headers) {
+		List<String> values = getValues(name, headers);
+		if (values != null) {
+			for (String single : values) {
+				if (value.trim().equalsIgnoreCase(single.trim())) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public static List<String> getValues(String name, Header...headers) {
 		Header header = getHeader(name, headers);
 		List<String> accepted = new ArrayList<String>();
 		if (header != null) {
