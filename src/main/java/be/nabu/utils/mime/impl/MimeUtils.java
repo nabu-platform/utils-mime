@@ -37,7 +37,7 @@ import be.nabu.utils.security.api.ManagedKeyStore;
  */
 public class MimeUtils {
 
-	public static Part encrypt(MultiPart part, X509Certificate...recipients) {
+	public static Part encrypt(Part part, X509Certificate...recipients) {
 		return new FormattedEncryptedMimePart(part, recipients);
 	}
 	

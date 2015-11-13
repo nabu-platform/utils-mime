@@ -10,6 +10,7 @@ import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.MultiPart;
+import be.nabu.utils.mime.api.Part;
 import be.nabu.utils.mime.api.PartFormatter;
 import be.nabu.utils.security.BCSecurityUtils;
 import be.nabu.utils.security.SynchronousEncryptionAlgorithm;
@@ -20,12 +21,12 @@ import be.nabu.utils.security.SynchronousEncryptionAlgorithm;
  */
 public class FormattedEncryptedMimePart extends MimePartBase<MultiPart> implements FormattablePart {
 
-	private MultiPart child;
+	private Part child;
 	private PartFormatter formatter;
 	private SynchronousEncryptionAlgorithm algorithm;
 	private X509Certificate [] recipients;
 	
-	public FormattedEncryptedMimePart(MultiPart multipart, X509Certificate...recipients) {
+	public FormattedEncryptedMimePart(Part multipart, X509Certificate...recipients) {
 		this.child = multipart;
 		this.recipients = recipients;
 	}
