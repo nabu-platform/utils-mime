@@ -109,7 +109,7 @@ public class MimeHeader implements ModifiableHeader {
 	public MimeHeader(String name, String value, String...comments) {
 		this.name = name;
 		this.value = value;
-		this.comments = new ArrayList<String>(Arrays.asList(comments));
+		this.comments = comments == null || comments.length == 0 ? new ArrayList<String>() : new ArrayList<String>(Arrays.asList(comments));
 	}
 	
 	public String getName() {
