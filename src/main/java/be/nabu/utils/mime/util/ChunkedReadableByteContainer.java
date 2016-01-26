@@ -24,7 +24,7 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	
 	private LimitedReadableContainer<ByteBuffer> chunk;
 	
-	private int maxChunkSize = 1024 * 50;
+	private int maxChunkSize = 1024 * 1024;
 	
 	private boolean chunksFinished = false, parentFinished = false;
 	

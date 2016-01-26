@@ -179,7 +179,7 @@ public class MimeUtils {
 	public static String getContentType(Header...headers) {
 		Header header = getHeader("Content-Type", headers);
 		// the proper default is as per RFC822 text/plain
-		return header == null ? "text/plain" : header.getValue().trim();
+		return header == null ? "text/plain" : header.getValue().trim().replaceAll(";.*$", "");
 	}
 	
 	public static String getName(Header...headers) {
