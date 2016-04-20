@@ -106,6 +106,10 @@ public class MimeHeader implements ModifiableHeader {
 			return EncodingMatchRate.MOSTLY_UNALLOWED;
 	}
 	
+	public MimeHeader() {
+		// auto construct
+	}
+	
 	public MimeHeader(String name, String value, String...comments) {
 		this.name = name;
 		this.value = value;
