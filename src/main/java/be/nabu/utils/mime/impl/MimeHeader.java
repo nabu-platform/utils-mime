@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import be.nabu.utils.codec.TranscoderUtils;
 import be.nabu.utils.codec.api.Transcoder;
 import be.nabu.utils.codec.impl.Base64Decoder;
@@ -125,11 +127,22 @@ public class MimeHeader implements ModifiableHeader {
 	}
 	
 	public String [] getComments() {
+		if (comments == null) {
+			comments = new ArrayList<String>();
+		}
 		return comments.toArray(new String[comments.size()]);
+	}
+	
+	public void setComments(String...comments) {
+		this.comments = new ArrayList<String>();
+		this.comments.addAll(Arrays.asList(comments));
 	}
 	
 	@Override
 	public void addComment(String...comments) {
+		if (this.comments == null) {
+			this.comments = new ArrayList<String>();
+		}
 		this.comments.addAll(Arrays.asList(comments));
 	}
 
@@ -178,12 +191,12 @@ public class MimeHeader implements ModifiableHeader {
 		this.charset = charset;
 	}
 
-	public char getFoldChar() {
+	public Character getFoldChar() {
 		return foldChar;
 	}
 
-	public void setFoldChar(char foldChar) {
-		this.foldChar = foldChar;
+	public void setFoldChar(Character foldChar) {
+		this.foldChar = foldChar == null ? '	' : foldChar;
 	}
 
 	@Override
