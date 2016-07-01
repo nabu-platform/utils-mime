@@ -37,6 +37,22 @@ import be.nabu.utils.security.api.ManagedKeyStore;
  */
 public class MimeUtils {
 
+	public static boolean isDeflatable(String contentType) {
+		if (contentType == null) {
+			return true;
+		}
+		else if (contentType.startsWith("image/")) {
+			return contentType.equals("image/bmp");
+		}
+		else if (contentType.startsWith("video/")) {
+			return false;
+		}
+		else if (contentType.startsWith("audio/")) {
+			return contentType.equals("audio/wav") || contentType.equals("flac");
+		}
+		return true;
+	}
+	
 	public static Part encrypt(Part part, X509Certificate...recipients) {
 		return new FormattedEncryptedMimePart(part, recipients);
 	}
