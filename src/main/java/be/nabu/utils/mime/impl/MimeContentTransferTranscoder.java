@@ -6,6 +6,7 @@ import be.nabu.utils.codec.impl.DeflateTranscoder;
 import be.nabu.utils.codec.impl.GZIPDecoder;
 import be.nabu.utils.codec.impl.GZIPEncoder;
 import be.nabu.utils.codec.impl.InflateTranscoder;
+import be.nabu.utils.codec.impl.DeflateTranscoder.DeflaterLevel;
 import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
@@ -16,6 +17,16 @@ import be.nabu.utils.mime.util.ChunkedWritableByteContainer;
 
 public class MimeContentTransferTranscoder implements ContentTransferTranscoder {
 
+	public boolean optimizeCompression;
+	
+	public MimeContentTransferTranscoder() {
+		// auto construct
+	}
+	
+	public MimeContentTransferTranscoder(boolean optimizeCompression) {
+		this.optimizeCompression = optimizeCompression;
+	}
+	
 	@Override
 	public ReadableContainer<ByteBuffer> encodeTransfer(String contentTransferEncoding, ReadableContainer<ByteBuffer> decodedContent) {
 		Transcoder<ByteBuffer> transcoder = MimeUtils.getEncoder(contentTransferEncoding);
@@ -48,7 +59,7 @@ public class MimeContentTransferTranscoder implements ContentTransferTranscoder 
 		}
 		Transcoder<ByteBuffer> transcoder = null;
 		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("gzip"))
-			transcoder = new GZIPEncoder();
+			transcoder = new GZIPEncoder(optimizeCompression ? DeflaterLevel.BEST_COMPRESSION : DeflaterLevel.BEST_SPEED);
 		else if (contentEncoding != null && contentEncoding.equalsIgnoreCase("deflate"))
 			transcoder = new DeflateTranscoder();
 		return transcoder != null ? TranscoderUtils.wrapReadable(decodedContent, transcoder) : decodedContent;
@@ -72,7 +83,7 @@ public class MimeContentTransferTranscoder implements ContentTransferTranscoder 
 			return new ChunkedWritableByteContainer(decodedContent, true);
 		Transcoder<ByteBuffer> transcoder = null;
 		if (contentEncoding != null && contentEncoding.equalsIgnoreCase("gzip"))
-			transcoder = new GZIPEncoder();
+			transcoder = new GZIPEncoder(optimizeCompression ? DeflaterLevel.BEST_COMPRESSION : DeflaterLevel.BEST_SPEED);
 		else if (contentEncoding != null && contentEncoding.equalsIgnoreCase("deflate"))
 			transcoder = new DeflateTranscoder();
 		return transcoder != null ? TranscoderUtils.wrapWritable(decodedContent, transcoder) : decodedContent;

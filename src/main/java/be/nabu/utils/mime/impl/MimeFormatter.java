@@ -40,6 +40,11 @@ public class MimeFormatter implements PartFormatter {
 	private boolean includeMainContentTrailingLineFeeds = true;
 	
 	/**
+	 * Whether or not to optimize the compression at the cost of performance
+	 */
+	private boolean optimizeCompression;
+	
+	/**
 	 * The default chunk size is 50kb
 	 * If it is too small, the download may actually be too slow
 	 */
@@ -296,8 +301,9 @@ public class MimeFormatter implements PartFormatter {
 	}
 	
 	public ContentTransferTranscoder getTranscoder() {
-		if (transcoder == null)
-			transcoder = new MimeContentTransferTranscoder();
+		if (transcoder == null) {
+			transcoder = new MimeContentTransferTranscoder(optimizeCompression);
+		}
 		return transcoder;
 	}
 
@@ -335,6 +341,14 @@ public class MimeFormatter implements PartFormatter {
 
 	public void setIncludeMainContentTrailingLineFeeds(boolean includeMainContentTrailingLineFeeds) {
 		this.includeMainContentTrailingLineFeeds = includeMainContentTrailingLineFeeds;
+	}
+
+	public boolean isOptimizeCompression() {
+		return optimizeCompression;
+	}
+
+	public void setOptimizeCompression(boolean optimizeCompression) {
+		this.optimizeCompression = optimizeCompression;
 	}
 
 }
