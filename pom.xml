@@ -4,28 +4,18 @@
 	<groupId>be.nabu.utils</groupId>
 	<artifactId>utils-mime</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1-SNAPSHOT</version>
+	<version>${be.nabu.utils-utils-mime-version}</version>
 	<name>utils-mime</name>
 	<url>http://maven.apache.org</url>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-	</properties>
+
+	<parent>
+		<groupId>be.nabu</groupId>
+		<artifactId>core</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.17</version>
-				<configuration>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<encoding>UTF-8</encoding>
-					<inputEncoding>UTF-8</inputEncoding>
-					<outputEncoding>UTF-8</outputEncoding>
-					<argLine>-Dfile.encoding=UTF-8</argLine>
-				</configuration>
-			</plugin>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -40,36 +30,25 @@
 		<dependency>
 			<groupId>be.nabu.utils</groupId>
 			<artifactId>utils-codec</artifactId>
-			<version>1.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>be.nabu.utils</groupId>
 			<artifactId>utils-security</artifactId>
-			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>be.nabu.libs.resources</groupId>
 			<artifactId>resources-api</artifactId>
-			<version>1.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- for testing purposes -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.1</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>be.nabu.libs.resources</groupId>
 			<artifactId>resources-classpath</artifactId>
-			<version>1.0-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>be.nabu.libs.resources</groupId>
 			<artifactId>resources-memory</artifactId>
-			<version>1.1-SNAPSHOT</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
