@@ -325,4 +325,17 @@ public class MimeUtils {
 		Header header = getHeader("Content-Range", headers);
 		return header == null ? null : header.getValue();
 	}
+	
+	public static String getFullHeaderValue(Header header) {
+		StringBuilder builder = new StringBuilder();
+		if (header.getValue() != null) {
+			builder.append(header.getValue());
+		}
+		if (header.getComments() != null) {
+			for (String comment : header.getComments()) {
+				builder.append(";").append(comment);
+			}
+		}
+		return builder.toString();
+	}
 }
