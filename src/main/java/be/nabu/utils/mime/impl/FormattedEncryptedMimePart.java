@@ -38,15 +38,15 @@ public class FormattedEncryptedMimePart extends MimePartBase<MultiPart> implemen
 				MimeHeader.parseHeader("MIME-Version: 1.0"),
 				MimeHeader.parseHeader("Content-Type: application/pkcs7-mime; name=\"smime.p7m\"; smime-type=enveloped-data"),
 			};
-			MimeFormatter.writeHeaders(output, headers);
+			MimeUtils.writeHeaders(output, headers);
 			if (MimeUtils.getHeader("Content-Disposition", getHeaders()) == null)
-				MimeFormatter.writeHeaders(output, MimeHeader.parseHeader("Content-Disposition: attachment; filename=\"smime.p7m\""));
+				MimeUtils.writeHeaders(output, MimeHeader.parseHeader("Content-Disposition: attachment; filename=\"smime.p7m\""));
 			if (MimeUtils.getHeader("Content-Transfer-Encoding", getHeaders()) == null)
-				MimeFormatter.writeHeaders(output, MimeHeader.parseHeader("Content-Transfer-Encoding: base64"));
+				MimeUtils.writeHeaders(output, MimeHeader.parseHeader("Content-Transfer-Encoding: base64"));
 
 			for (Header header : getHeaders()) {
 				if (!header.getName().equalsIgnoreCase("MIME-Version") && !header.getName().equalsIgnoreCase("Content-Type"))
-					MimeFormatter.writeHeaders(output, header);
+					MimeUtils.writeHeaders(output, header);
 			}
 			MimeFormatter.finishHeaders(output);
 			

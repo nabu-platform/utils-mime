@@ -1,7 +1,10 @@
 package be.nabu.utils.mime.impl;
 
+import static be.nabu.utils.io.IOUtils.wrap;
+
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
@@ -337,5 +340,41 @@ public class MimeUtils {
 			}
 		}
 		return builder.toString();
+	}
+	
+	public static String format(Header header, boolean allowFolding, boolean encode) {
+		try {
+			StringBuilder builder = new StringBuilder();
+			builder.append(header.getName())
+				.append(": ")
+				.append(encode ? MimeHeader.encode(header.getValue(), Charset.defaultCharset()) : header.getValue());
+			if (header.getComments() != null) {
+				for (String comment : header.getComments()) {
+					builder.append(";"); 
+					if (allowFolding) {
+						builder.append("\r\n\t");
+					}
+					builder.append(encode ? MimeHeader.encode(comment, Charset.defaultCharset()) : comment);
+				}
+			}
+			return builder.toString();
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public static void writeHeaders(WritableContainer<ByteBuffer> output, Header...headers) throws IOException {
+		try {
+			for (Header header : headers) {
+				// the mime header does proper formatting
+				if (!(header instanceof MimeHeader))
+					header = new MimeHeader(header.getName(), header.getValue(), header.getComments());
+				output.write(wrap((header.toString() + "\r\n").getBytes("ASCII"), true));
+			}
+		}
+		catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }

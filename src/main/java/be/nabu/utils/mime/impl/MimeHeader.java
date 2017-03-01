@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.bind.annotation.XmlTransient;
-
 import be.nabu.utils.codec.TranscoderUtils;
 import be.nabu.utils.codec.api.Transcoder;
 import be.nabu.utils.codec.impl.Base64Decoder;
@@ -171,7 +169,7 @@ public class MimeHeader implements ModifiableHeader {
 		}
 	}
 	
-	private static String encode(String value, Charset charset) throws IOException {
+	public static String encode(String value, Charset charset) throws IOException {
 		Transcoder<ByteBuffer> transcoder = getEncoder(value);
 		if (transcoder == null)
 			return value;

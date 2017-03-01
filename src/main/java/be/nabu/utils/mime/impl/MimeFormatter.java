@@ -30,6 +30,8 @@ public class MimeFormatter implements PartFormatter {
 	private String mimeVersion = "1.0";
 	private ContentTransferTranscoder transcoder;
 	private Set<String> headersToIgnore = new HashSet<String>();
+	private boolean foldHeader = true;
+	private boolean encodeHeader = true;
 	
 	/**
 	 * For mails, binary data is not allowed so we need to encode it
@@ -130,17 +132,10 @@ public class MimeFormatter implements PartFormatter {
 		return unencodedContentTypes;
 	}
 	
-	public static void writeHeaders(WritableContainer<ByteBuffer> output, Header...headers) throws IOException {
-		try {
-			for (Header header : headers) {
-				// the mime header does proper formatting
-				if (!(header instanceof MimeHeader))
-					header = new MimeHeader(header.getName(), header.getValue(), header.getComments());
-				output.write(wrap((header.toString() + "\r\n").getBytes("ASCII"), true));
-			}
-		}
-		catch (UnsupportedEncodingException e) {
-			throw new RuntimeException(e);
+	private void writeHeaders(WritableContainer<ByteBuffer> output, Header...headers) throws IOException {
+		for (Header header : headers) {
+			String formatted = MimeUtils.format(header, foldHeader, encodeHeader);
+			output.write(wrap((formatted + "\r\n").getBytes("ASCII"), true));
 		}
 	}
 	
@@ -349,6 +344,22 @@ public class MimeFormatter implements PartFormatter {
 
 	public void setOptimizeCompression(boolean optimizeCompression) {
 		this.optimizeCompression = optimizeCompression;
+	}
+
+	public boolean isFoldHeader() {
+		return foldHeader;
+	}
+
+	public void setFoldHeader(boolean foldHeader) {
+		this.foldHeader = foldHeader;
+	}
+
+	public boolean isEncodeHeader() {
+		return encodeHeader;
+	}
+
+	public void setEncodeHeader(boolean encodeHeader) {
+		this.encodeHeader = encodeHeader;
 	}
 
 }

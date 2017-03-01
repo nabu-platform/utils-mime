@@ -28,15 +28,15 @@ public class FormattedCompressedMimePart extends MimePartBase<MultiPart> impleme
 				MimeHeader.parseHeader("MIME-Version: 1.0"),
 				MimeHeader.parseHeader("Content-Type: application/pkcs7-mime; name=\"smime.p7z\"; smime-type=compressed-data"),
 			};
-			MimeFormatter.writeHeaders(output, headers);
+			MimeUtils.writeHeaders(output, headers);
 			if (MimeUtils.getHeader("Content-Disposition", getHeaders()) == null)
-				MimeFormatter.writeHeaders(output, MimeHeader.parseHeader("Content-Disposition: attachment; filename=\"smime.p7z\""));
+				MimeUtils.writeHeaders(output, MimeHeader.parseHeader("Content-Disposition: attachment; filename=\"smime.p7z\""));
 			if (MimeUtils.getHeader("Content-Transfer-Encoding", getHeaders()) == null)
-				MimeFormatter.writeHeaders(output, MimeHeader.parseHeader("Content-Transfer-Encoding: base64"));
+				MimeUtils.writeHeaders(output, MimeHeader.parseHeader("Content-Transfer-Encoding: base64"));
 
 			for (Header header : getHeaders()) {
 				if (!header.getName().equalsIgnoreCase("MIME-Version") && !header.getName().equalsIgnoreCase("Content-Type"))
-					MimeFormatter.writeHeaders(output, header);
+					MimeUtils.writeHeaders(output, header);
 			}
 			MimeFormatter.finishHeaders(output);
 			
