@@ -256,4 +256,7 @@ public class MimeHeader implements ModifiableHeader {
 		return true;
 	}
 
+	public String getContent() {
+		return MimeUtils.getFullHeaderValue(this);
+	}
 }
