@@ -147,7 +147,6 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 					}
 					// nothing to read?
 					else if (read == 0) {
-						System.out.println("NOTHING FROM: " + currentReadable);
 						break;
 					}
 					else {

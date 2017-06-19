@@ -38,6 +38,7 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	
 	@Override
 	public void close() throws IOException {
+		parentFinished = true;
 		parent.close();
 	}
 

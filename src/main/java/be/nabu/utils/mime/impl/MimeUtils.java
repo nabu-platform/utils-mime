@@ -84,18 +84,20 @@ public class MimeUtils {
 		Header header = getHeader(name, headers);
 		if (header != null) {
 			values.put("value", header.getValue().toLowerCase().trim());
-			for (String comment : header.getComments()) {
-				int index = comment.indexOf("=");
-				// invalid parameter
-				if (index < 0)
-					continue;
-				String [] parts = comment.split("[\\s]*=[\\s]*");
-				
-				if (parts.length <= 1)
-					continue;
-				
-				// the value can be quoted, the quotes must be ignored
-				values.put(comment.substring(0, index).toLowerCase().trim(), comment.substring(index + 1).trim().replaceAll("^\"", "").replaceAll("\"$", ""));
+			if (header.getComments() != null) {
+				for (String comment : header.getComments()) {
+					int index = comment.indexOf("=");
+					// invalid parameter
+					if (index < 0)
+						continue;
+					String [] parts = comment.split("[\\s]*=[\\s]*");
+					
+					if (parts.length <= 1)
+						continue;
+					
+					// the value can be quoted, the quotes must be ignored
+					values.put(comment.substring(0, index).toLowerCase().trim(), comment.substring(index + 1).trim().replaceAll("^\"", "").replaceAll("\"$", ""));
+				}
 			}
 		}
 		return values;
