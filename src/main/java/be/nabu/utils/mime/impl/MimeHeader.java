@@ -35,7 +35,7 @@ public class MimeHeader implements ModifiableHeader {
 	public static MimeHeader parseHeader(String headerData) throws ParseException, IOException {
 		int separatorIndex = headerData.indexOf(":");
 		if (separatorIndex < 0)
-			throw new ParseException("The header does not contain a valid separator: " + headerData, 0);
+			throw new ParseException("The header does not contain a valid separator: " + headerData, 1);
 		String name = headerData.substring(0, separatorIndex).trim();
 		String [] parts = headerData.substring(separatorIndex + 1).split(";");
 		String value = decode(parts[0].trim());
