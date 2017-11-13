@@ -34,6 +34,13 @@ public class MimeFormatter implements PartFormatter {
 	private boolean encodeHeader = true;
 	
 	/**
+	 * We use boundaries with "reserved" characters, this is actually intentional and advised because that way it can't conflict with correct content
+	 * However because of that we have to quote the boundary
+	 * https://www.ietf.org/rfc/rfc1341.txt 
+	 */
+	private boolean quoteBoundary = true;
+	
+	/**
 	 * For mails, binary data is not allowed so we need to encode it
 	 * However for http binary is not a problem, set this boolean to true to allow binary streams
 	 */
@@ -248,7 +255,12 @@ public class MimeFormatter implements PartFormatter {
 			else
 				newContentType = new MimeHeader(contentType.getName(), contentType.getValue(), contentType.getComments());
 
-			newContentType.addComment("boundary=-=part." + MimeUtils.generateBoundary());
+			if (quoteBoundary) {
+				newContentType.addComment("boundary=\"-=part." + MimeUtils.generateBoundary() + "\"");
+			}
+			else {
+				newContentType.addComment("boundary=-=part." + MimeUtils.generateBoundary());
+			}
 
 			// we only need to update the multipart if we have to set a new header, otherwise the header itself is simply adjusted
 			if (!newContentType.equals(contentType)) {
@@ -360,6 +372,14 @@ public class MimeFormatter implements PartFormatter {
 
 	public void setEncodeHeader(boolean encodeHeader) {
 		this.encodeHeader = encodeHeader;
+	}
+
+	public boolean isQuoteBoundary() {
+		return quoteBoundary;
+	}
+
+	public void setQuoteBoundary(boolean quoteBoundary) {
+		this.quoteBoundary = quoteBoundary;
 	}
 
 }
