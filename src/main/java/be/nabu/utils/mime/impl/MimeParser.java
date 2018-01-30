@@ -178,7 +178,20 @@ public class MimeParser implements PartParser {
 		// it's binary content
 		else {
 			int amountToIgnore = parseContentPart(part, data, null, headers);
-			part.setSize(data.getReadTotal() - amountToIgnore);
+			// in the beginning we always used readTotal - amountToIgnore
+			// the problem however is that the amountToIgnore mostly strips whitespace at the end
+			// in a very few cases however the whitespace is not due to mime formatting but an actual part of the content
+			// if that is the case and we _strip_ the whitespace, the reported content length will no longer be accurate for the actual content
+			// because the content length assumes the whitespace to remain intact
+			// that means that if we have a content length, we use that instead of the approximation with amount to ignore
+			// the reverse proxy had this problem where a pdf had a trailing linefeed and when sending it to the target server (without altering the content-length), it was one byte short
+			Long contentLength = MimeUtils.getContentLength(headers);
+			if (contentLength != null) {
+				part.setSize(part.getBodyOffset() + contentLength);
+			}
+			else {
+				part.setSize(data.getReadTotal() - amountToIgnore);
+			}
 		}
 		
 		// after all is set, continue parse if necessary
@@ -219,6 +232,8 @@ public class MimeParser implements PartParser {
 		ParsedMimePart part = newHandler(MimeUtils.getContentType(headers));
 		part.setParser(this);
 		CountingReadableContainer<CharBuffer> countingData = IOUtils.countReadable(data);
+		// currently not applying same fix as with pure binary body for http
+		// need to see an actual usecase of this before we do that
 		int amountToIgnore = parseContentPart(part, countingData, boundary, headers);
 		part.setSize(countingData.getReadTotal() - amountToIgnore);
 		return part;
