@@ -346,6 +346,9 @@ public class MimeUtils {
 	
 	public static String format(Header header, boolean allowFolding, boolean encode) {
 		try {
+			if (header.getValue() == null) {
+				throw new IllegalArgumentException("The header '" + header.getName() + "' has no value");
+			}
 			StringBuilder builder = new StringBuilder();
 			builder.append(header.getName())
 				.append(": ")
