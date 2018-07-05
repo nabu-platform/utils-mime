@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.xml.bind.annotation.XmlTransient;
+
 import be.nabu.utils.codec.TranscoderUtils;
 import be.nabu.utils.codec.api.Transcoder;
 import be.nabu.utils.codec.impl.Base64Decoder;
@@ -256,6 +258,7 @@ public class MimeHeader implements ModifiableHeader {
 		return true;
 	}
 
+	@XmlTransient
 	public String getContent() {
 		return MimeUtils.getFullHeaderValue(this);
 	}
