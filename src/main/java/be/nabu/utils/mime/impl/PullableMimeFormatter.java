@@ -188,6 +188,10 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
 
+		if (!allowBinary && contentTransferEncoding == null) {
+			contentTransferEncoding = getContentTransferEncoding(part);
+		}
+		
 		// this has to be done in the reverse order from the encodeOutput()
 		input = getTranscoder().encodeContent(contentEncoding, input);
 		input = getTranscoder().encodeTransfer(contentTransferEncoding, input);

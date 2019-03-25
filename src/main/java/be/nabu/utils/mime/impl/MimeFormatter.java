@@ -44,7 +44,7 @@ public class MimeFormatter implements PartFormatter {
 	 * For mails, binary data is not allowed so we need to encode it
 	 * However for http binary is not a problem, set this boolean to true to allow binary streams
 	 */
-	private boolean allowBinary = false;
+	protected boolean allowBinary = false;
 	
 	private boolean includeMainContentTrailingLineFeeds = true;
 	
@@ -121,7 +121,7 @@ public class MimeFormatter implements PartFormatter {
 		return part instanceof MultiPart && (contentType.startsWith("multipart/") || contentType.equals(Resource.CONTENT_TYPE_DIRECTORY) || Resource.CONTENT_TYPE_DIRECTORY.equals(part.getContentType()));
 	}
 	
-	private String getContentTransferEncoding(Part part) {
+	protected String getContentTransferEncoding(Part part) {
 		String contentType = MimeUtils.getContentType(part.getHeaders()).toLowerCase();
 		if (unencodedContentTypes.contains(contentType))
 			return null;
@@ -157,20 +157,18 @@ public class MimeFormatter implements PartFormatter {
 	
 	protected void formatContentPartHeaders(ContentPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
-		// make an educated guess
-		if (!allowBinary && contentTransferEncoding == null) {
-			contentTransferEncoding = getContentTransferEncoding(part);
-			if (contentTransferEncoding != null) {
-				if (part instanceof ModifiablePart)
-					((ModifiablePart) part).setHeader(new MimeHeader("Content-Transfer-Encoding", contentTransferEncoding));
-				else
-					throw new FormatException("The part requires a Content-Transfer-Encoding header, the formatter has determined " + contentTransferEncoding + " to be the best but can not modify the part");
-			}
-		}
 		List<Header> headers = new ArrayList<Header>();
+		// make an educated guess
 		for (Header header : part.getHeaders()) {
 			if (!headersToIgnore.contains(header.getName().toLowerCase())) {
 				headers.add(header);
+			}
+		}
+		// add it after the existing headers to be compliant with previous implementation
+		if (!allowBinary && contentTransferEncoding == null) {
+			contentTransferEncoding = getContentTransferEncoding(part);
+			if (contentTransferEncoding != null) {
+				headers.add(new MimeHeader("Content-Transfer-Encoding", contentTransferEncoding));
 			}
 		}
 		writeHeaders(output, headers.toArray(new Header[0]));
@@ -205,6 +203,10 @@ public class MimeFormatter implements PartFormatter {
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
+		
+		if (!allowBinary && contentTransferEncoding == null) {
+			contentTransferEncoding = getContentTransferEncoding(part);
+		}
 		// you can do two things here:
 		// encode the input as you are reading, however this presumes the input returns a clean -1 which would trigger the "flush" in the transcoder
 		// or you can encode the output as you are writing so you can manually flush
