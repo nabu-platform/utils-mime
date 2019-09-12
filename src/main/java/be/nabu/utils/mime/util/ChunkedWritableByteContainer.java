@@ -36,7 +36,12 @@ public class ChunkedWritableByteContainer implements WritableContainer<ByteBuffe
 
 	@Override
 	public long write(ByteBuffer source) throws IOException {
-		if (source.remainingData() > 0) {
+		long buffered = buffer.remainingData();
+		if (buffered > 0 && parent.write(buffer) != buffered) {
+			return 0;
+		}
+		long remainingData = source.remainingData();
+		if (remainingData > 0) {
 			String hexSize = Integer.toHexString((int) source.remainingData());
 			try {
 				buffer.write((hexSize + "\r\n").getBytes("ASCII"));
@@ -46,8 +51,10 @@ public class ChunkedWritableByteContainer implements WritableContainer<ByteBuffe
 			catch (UnsupportedEncodingException e) {
 				throw new IOException(e);
 			}
+			parent.write(buffer);
+			return remainingData - source.remainingData();
 		}
-		return parent.write(buffer);
+		return 0;
 	}
 
 	public void finish(Header...headers) throws IOException {

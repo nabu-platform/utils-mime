@@ -8,6 +8,7 @@ import java.util.Stack;
 
 import be.nabu.utils.io.IOUtils;
 import be.nabu.utils.io.api.ByteBuffer;
+import be.nabu.utils.io.api.EventfulReadableContainer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.io.buffers.bytes.ByteBufferFactory;
@@ -21,6 +22,8 @@ import be.nabu.utils.mime.util.ChunkedEncodingReadableByteContainer;
 public class PullableMimeFormatter extends MimeFormatter implements ReadableContainer<ByteBuffer> {
 
 	private ReadableContainer<ByteBuffer> currentReadable;
+	protected volatile EventfulReadableContainer<ByteBuffer> currentEventful;
+	
 	/**
 	 * For multiparts
 	 */
@@ -81,6 +84,12 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		formatContentPartHeaders((ContentPart) part, buffer);
 		ReadableContainer<ByteBuffer> readable = part.getReadable();
 		if (readable != null) {
+			if (readable instanceof EventfulReadableContainer) {
+				currentEventful = (EventfulReadableContainer<ByteBuffer>) readable;
+			}
+			else {
+				currentEventful = null;
+			}
 			readable = limitByContentRange(part, readable);
 			currentReadable = encodeInput(part, readable);
 		}
