@@ -253,13 +253,13 @@ public class MimeUtils {
 	
 	public static boolean isInline(Header...headers) {
 		String disposition = getHeaderAsValues("Content-Disposition", headers).get("value");
-		return (disposition != null && disposition.equalsIgnoreCase("inline")) || getContentType().startsWith("text/"); 
+		return (disposition != null && disposition.equalsIgnoreCase("inline")) || getContentType(headers).startsWith("text/"); 
 	}
 	
 	public static String getCharset(Header...headers) {
 		String charset = getHeaderAsValues("Content-Type", headers).get("charset");
 		// the default charset as defined by RFC822 only applies to text/* types
-		return charset == null && getContentType().startsWith("text/") ? "us-ascii" : charset;
+		return charset == null && getContentType(headers).startsWith("text/") ? "us-ascii" : charset;
 	}
 	
 	public static Long getSize(Header...headers) {
