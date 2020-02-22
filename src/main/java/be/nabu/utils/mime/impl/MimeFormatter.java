@@ -230,16 +230,32 @@ public class MimeFormatter implements PartFormatter {
 	protected ReadableContainer<ByteBuffer> limitByContentRange(ContentPart part, ReadableContainer<ByteBuffer> content) throws IOException {
 		String contentRange = MimeUtils.getContentRange(part.getHeaders());
 		if (contentRange != null) {
+			if (contentRange.trim().startsWith("bytes")) {
+				contentRange = contentRange.trim().substring("bytes".length()).trim();
+			}
 			// format: from-to/total; from & to are inclusive!
 			int indexHyphen = contentRange.indexOf("-");
 			int indexSlash = contentRange.indexOf("/");
-			if (indexHyphen == -1 || indexSlash == -1)
+			if (indexHyphen < 0 || indexSlash < 0)
 				throw new IllegalArgumentException("The content-range header is misformed, it should be off the format 'from-to/total'");
-			long from = new Long(contentRange.substring(0, indexHyphen));
-			long to = new Long(contentRange.substring(indexHyphen + 1, indexSlash));
-			content.read(newByteSink(from));
+			long from = Long.parseLong(contentRange.substring(0, indexHyphen));
+			long to = Long.parseLong(contentRange.substring(indexHyphen + 1, indexSlash));
+			// a potentially optimized version
+			if (from > 0) {
+				IOUtils.skipBytes(content, from);
+			}
+//			content.read(newByteSink(from));
 			// the to is inclusive!
 			content = IOUtils.limitReadable(content, to + 1);
+			// update the content-length if we can/should
+			if (part instanceof ModifiablePart) {
+				Long contentLength = MimeUtils.getContentLength(part.getHeaders());
+				// again: to is inclusive!
+				if (contentLength != null && contentLength != (to - from) + 1) {
+					((ModifiablePart) part).removeHeader("Content-Length");
+					((ModifiablePart) part).setHeader(new MimeHeader("Content-Length", "" + ((to - from) + 1)));
+				}
+			}
 		}
 		return content;
 	}
