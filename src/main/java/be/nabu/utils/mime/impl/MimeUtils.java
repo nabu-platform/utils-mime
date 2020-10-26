@@ -83,7 +83,15 @@ public class MimeUtils {
 		Map<String, String> values = new HashMap<String, String>();
 		Header header = getHeader(name, headers);
 		if (header != null) {
-			values.put("value", header.getValue().toLowerCase().trim());
+			// check if the value itself is also a key/value, for example ICAP with X-Infection-Found header:
+			// X-Infection-Found: Type=0; Resolution=2; Threat=Win.Test.EICAR_HDB-1;
+			int indexOf = header.getValue().indexOf('=');
+			if (indexOf > 0) {
+				values.put(header.getValue().substring(0, indexOf).toLowerCase().trim(), header.getValue().substring(indexOf + 1).trim().replaceAll("^\"", "").replaceAll("\"$", ""));
+			}
+			else {
+				values.put("value", header.getValue().toLowerCase().trim());
+			}
 			if (header.getComments() != null) {
 				for (String comment : header.getComments()) {
 					int index = comment.indexOf("=");

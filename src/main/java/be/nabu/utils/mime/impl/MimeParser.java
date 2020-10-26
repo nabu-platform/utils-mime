@@ -56,6 +56,11 @@ public class MimeParser implements PartParser {
 	 */
 	private boolean requireKnownContentLength = false;
 	
+	// this refers to rfc2616 article 4.4 Message Length option 5
+	// i have only ever seen this in the wild in a single situation
+	// the behavior (if you disable this) is that the parser assumes there is no content and you get an empty response
+	private boolean allowNoMessageSizeForClosedConnections = false;
+	
 	/**
 	 * The headers might include "Expect: 100-Continue" for HTTP
 	 * If this is encountered, the expectContinueHandler is called to determine whether or not the parsing should continue
@@ -256,8 +261,20 @@ public class MimeParser implements PartParser {
 				data = IOUtils.blockUntilRead(IOUtils.limitReadable(data, contentLength), contentLength);
 			else if (requireKnownContentLength) {
 				// instead of throwing an error, handle it like it has no size
-				if (transferEncoding == null || !transferEncoding.equalsIgnoreCase("chunked"))
-					return 0;
+				if (transferEncoding == null || !transferEncoding.equalsIgnoreCase("chunked")) {
+					boolean allowAnyway = false;
+					// an exceptional case
+					if (allowNoMessageSizeForClosedConnections) {
+						Header connection = MimeUtils.getHeader("Connection", part.getHeaders());
+						if (connection != null && connection.getValue() != null && connection.getValue().equalsIgnoreCase("close")) {
+							allowAnyway = true;
+						}
+					}
+					
+					if (!allowAnyway) {
+						return 0;
+					}
+				}
 //					throw new ParseException("Can not parse a root content part of unknown length. You can toggle requireKnownContentLength to bypass this", 0);
 			}
 		}
@@ -350,4 +367,13 @@ public class MimeParser implements PartParser {
 	public void setExpectContinueHandler(ExpectContinueHandler expectContinueHandler) {
 		this.expectContinueHandler = expectContinueHandler;
 	}
+
+	public boolean isAllowNoMessageSizeForClosedConnections() {
+		return allowNoMessageSizeForClosedConnections;
+	}
+
+	public void setAllowNoMessageSizeForClosedConnections(boolean allowNoMessageSizeForClosedConnections) {
+		this.allowNoMessageSizeForClosedConnections = allowNoMessageSizeForClosedConnections;
+	}
+	
 }
