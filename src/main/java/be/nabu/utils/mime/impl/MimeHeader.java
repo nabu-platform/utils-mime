@@ -2,6 +2,7 @@ package be.nabu.utils.mime.impl;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ import be.nabu.utils.codec.impl.QuotedPrintableEncoder;
 import be.nabu.utils.codec.impl.QuotedPrintableEncoding;
 import be.nabu.utils.io.IOUtils;
 import be.nabu.utils.io.api.ByteBuffer;
+import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.ModifiableHeader;
 
 /**
@@ -171,6 +173,7 @@ public class MimeHeader implements ModifiableHeader {
 		}
 	}
 	
+	// based on RFC2047, chrome does not seem to like this when used for example for Content-Disposition
 	public static String encode(String value, Charset charset) throws IOException {
 		Transcoder<ByteBuffer> transcoder = getEncoder(value);
 		if (transcoder == null)
@@ -181,6 +184,65 @@ public class MimeHeader implements ModifiableHeader {
 				Charset.forName("ASCII")
 			)) + "?=";
 		}
+	}
+	
+	// it seems if we construct a header like this
+	// Header header = new MimeHeader("Content-Disposition", "attachment;fileName=\"tést.pdf\"");
+	// the mime header will not parse further and the full thing is considered the value rather than being split off into comments
+	// this seems to be the "standard" way it is used throughout the codebase, meaning we generally get full value and no comments
+	// this method is based on that assumption...
+	// note that we do not support part 3 of the spec yet -> encoding of wrapped headers...
+	public static String encodeRFC2231(String value, Charset charset) throws IOException {
+		boolean first = true;
+		StringBuilder builder = new StringBuilder();
+		for (String part : value.split(";")) {
+			Transcoder<ByteBuffer> transcoder = getEncoder(part);
+			// if the first part is already not OK, encode it fully using the older encoding (this should not occur for HTTP?)
+			if (transcoder != null && first) {
+				builder.append(encode(value, charset));
+				break;
+			}
+			else {
+				if (!first) {
+					builder.append(";");
+				}
+				if (transcoder != null) {
+					// if we have a key/value pair, we can encode it with this RFC
+					int indexOf = part.indexOf('=');
+					if (indexOf >= 0) {
+						String key = part.substring(0, indexOf);
+						Transcoder<ByteBuffer> keyEncoder = getEncoder(key);
+						// if the key itself needs encoding as well, we can't help you
+						if (keyEncoder != null) {
+							builder.append(encode(part, charset));
+						}
+						else {
+							// the original spec is not clear about for example content-disposition headers where quotes can be used around the value of a comment as well
+							// but testing encoded like this: attachment;filename*=UTF-8''%22t%C3%A9st.pdf%22
+							// where the quotes are encoded as %22 before the tést that triggered it
+							// this ends up being downloaded as _tést.pdf_ where the quotes are changed to underscores
+							// RFC5987 article 3.2.2 (examples) does list some examples with no quotes at all, with quotes and with full encoding
+							// it seems to be an or situation rather than an and, so if we find quotes, we remove them when we are encoding
+							String toEncode = part.substring(indexOf + 1);
+							if (toEncode.startsWith("\"") && toEncode.endsWith("\"")) {
+								toEncode = toEncode.substring(1, toEncode.length() - 1);
+							}
+							// as per the spec, we can leave the "language" empty but we do need to add the empty ' to indicate where it ends
+							builder.append(key).append("*=").append(charset.name()).append("''").append(URLEncoder.encode(toEncode, charset.name()).replace("+", "%20"));
+						}
+					}
+					// no comment? do it all
+					else {
+						builder.append(encode(part, charset));
+					}
+				}
+				else {
+					builder.append(part);
+				}
+			}
+			first = false;
+		}
+		return builder.toString();
 	}
 
 	public Charset getCharset() {

@@ -352,7 +352,7 @@ public class MimeUtils {
 		return builder.toString();
 	}
 	
-	public static String format(Header header, boolean allowFolding, boolean encode) {
+	public static String format(Header header, boolean allowFolding, HeaderEncoding encoding) {
 		try {
 			if (header.getValue() == null) {
 				throw new IllegalArgumentException("The header '" + header.getName() + "' has no value");
@@ -360,20 +360,27 @@ public class MimeUtils {
 			StringBuilder builder = new StringBuilder();
 			builder.append(header.getName())
 				.append(": ")
-				.append(encode ? MimeHeader.encode(header.getValue(), Charset.defaultCharset()) : header.getValue());
+				.append(encoding != null ? encode(header.getValue(), Charset.defaultCharset(), encoding) : header.getValue());
 			if (header.getComments() != null) {
 				for (String comment : header.getComments()) {
 					builder.append(";"); 
 					if (allowFolding) {
 						builder.append("\r\n\t");
 					}
-					builder.append(encode ? MimeHeader.encode(comment, Charset.defaultCharset()) : comment);
+					builder.append(encoding != null ? encode(comment, Charset.defaultCharset(), encoding) : comment);
 				}
 			}
 			return builder.toString();
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
+		}
+	}
+	
+	public static String encode(String value, Charset charset, HeaderEncoding encoding) throws IOException {
+		switch(encoding) {
+			case RFC2231: return MimeHeader.encodeRFC2231(value, charset);
+			default: return MimeHeader.encode(value, charset);
 		}
 	}
 	

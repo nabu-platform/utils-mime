@@ -19,4 +19,9 @@ public class PlainMimeEmptyPart extends PlainMimePart implements ContentPart {
 		return null;
 	}
 
+	@Override
+	public boolean isReopenable() {
+		return true;
+	}
+	
 }

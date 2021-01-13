@@ -7,8 +7,8 @@ import be.nabu.utils.io.api.ByteBuffer;
 import be.nabu.utils.io.api.MarkableContainer;
 import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.ResettableContainer;
-import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.Header;
+import be.nabu.utils.mime.api.ModifiableContentPart;
 import be.nabu.utils.mime.api.MultiPart;
 
 /**
@@ -16,9 +16,10 @@ import be.nabu.utils.mime.api.MultiPart;
  * This allows you to read the content multiple times (e.g. once yourself to use it and once by the mime formatter)
  * TODO: it may however be interesting to leave this to whoever is controlling the content because now I might call a reset() on a container that can not handle it
  */
-public class PlainMimeContentPart extends PlainMimePart implements ContentPart, Closeable {
+public class PlainMimeContentPart extends PlainMimePart implements ModifiableContentPart, Closeable {
 
 	private ReadableContainer<ByteBuffer> content;
+	private boolean reopenable = false;
 	
 	public PlainMimeContentPart(MultiPart parent, ReadableContainer<ByteBuffer> content, Header...headers) {
 		super(parent, headers);
@@ -41,4 +42,14 @@ public class PlainMimeContentPart extends PlainMimePart implements ContentPart, 
 		return content;
 	}
 
+	@Override
+	public boolean isReopenable() {
+		return reopenable;
+	}
+
+	@Override
+	public void setReopenable(boolean reopenable) {
+		this.reopenable = reopenable;
+	}
+	
 }

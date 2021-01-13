@@ -1,6 +1,7 @@
 package be.nabu.utils.mime.impl;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.text.ParseException;
 import java.util.Arrays;
 
@@ -23,6 +24,12 @@ public class TestHeader extends TestCase {
 			"Content-Type",
 			"text/plain"
 		);
+	}
+	
+	public void testRfc2231() throws IOException {
+		MimeHeader mimeHeader = new MimeHeader("Content-Disposition", "attachment; fileName=\"tést.pdf\"");
+		String encodeRFC2231 = MimeHeader.encodeRFC2231(mimeHeader.getValue(), Charset.forName("UTF-8"));
+		assertEquals("attachment; fileName*=UTF-8''t%C3%A9st.pdf", encodeRFC2231);
 	}
 	
 	public void testQuotedPrintableParse() throws ParseException, IOException {

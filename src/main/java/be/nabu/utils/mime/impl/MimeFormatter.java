@@ -31,7 +31,8 @@ public class MimeFormatter implements PartFormatter {
 	private ContentTransferTranscoder transcoder;
 	private Set<String> headersToIgnore = new HashSet<String>();
 	private boolean foldHeader = true;
-	private boolean encodeHeader = true;
+	// backwards compatible
+	private HeaderEncoding headerEncoding = HeaderEncoding.RFC2047;
 	
 	/**
 	 * We use boundaries with "reserved" characters, this is actually intentional and advised because that way it can't conflict with correct content
@@ -141,7 +142,7 @@ public class MimeFormatter implements PartFormatter {
 	
 	private void writeHeaders(WritableContainer<ByteBuffer> output, Header...headers) throws IOException {
 		for (Header header : headers) {
-			String formatted = MimeUtils.format(header, foldHeader, encodeHeader);
+			String formatted = MimeUtils.format(header, foldHeader, headerEncoding);
 			output.write(wrap((formatted + "\r\n").getBytes("ASCII"), true));
 		}
 	}
@@ -384,12 +385,12 @@ public class MimeFormatter implements PartFormatter {
 		this.foldHeader = foldHeader;
 	}
 
-	public boolean isEncodeHeader() {
-		return encodeHeader;
+	public HeaderEncoding getHeaderEncoding() {
+		return headerEncoding;
 	}
 
-	public void setEncodeHeader(boolean encodeHeader) {
-		this.encodeHeader = encodeHeader;
+	public void setHeaderEncoding(HeaderEncoding headerEncoding) {
+		this.headerEncoding = headerEncoding;
 	}
 
 	public boolean isQuoteBoundary() {
