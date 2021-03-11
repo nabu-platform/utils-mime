@@ -33,6 +33,7 @@ public class MimeFormatter implements PartFormatter {
 	private boolean foldHeader = true;
 	// backwards compatible
 	private HeaderEncoding headerEncoding = HeaderEncoding.RFC2047;
+	private boolean disableContentEncoding = false;
 	
 	/**
 	 * We use boundaries with "reserved" characters, this is actually intentional and advised because that way it can't conflict with correct content
@@ -224,7 +225,9 @@ public class MimeFormatter implements PartFormatter {
 		encodedOutput = getTranscoder().encodeTransfer(contentTransferEncoding, encodedOutput);
 		// last but not least: content-encoding. this is end-to-end instead of hop-to-hop
 		// in other words, a transfer-encoding gzip can be unzipped by an intermediate server while a content-encoding gzip should be unzipped by the client
-		encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
+		if (!disableContentEncoding) {
+			encodedOutput = getTranscoder().encodeContent(contentEncoding, encodedOutput);
+		}
 		return encodedOutput;
 	}
 
@@ -401,4 +404,11 @@ public class MimeFormatter implements PartFormatter {
 		this.quoteBoundary = quoteBoundary;
 	}
 
+	public boolean isDisableContentEncoding() {
+		return disableContentEncoding;
+	}
+
+	public void setDisableContentEncoding(boolean disableContentEncoding) {
+		this.disableContentEncoding = disableContentEncoding;
+	}
 }
