@@ -200,6 +200,11 @@ public class MimeUtils {
 		return header == null ? null : header.getValue().trim();
 	}
 	
+	public static String getCorrelationId(Header...headers) {
+		Header header = getHeader("X-Correlation-Id", headers);
+		return header == null ? null : header.getValue().trim();
+	}
+	
 	public static Long getContentLength(Header...headers) {
 		Header header = getHeader("Content-Length", headers);
 		return header == null ? null : new Long(header.getValue().trim());
