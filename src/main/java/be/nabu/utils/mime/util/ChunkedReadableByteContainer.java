@@ -11,6 +11,7 @@ import be.nabu.utils.io.api.DelimitedCharContainer;
 import be.nabu.utils.io.api.LimitedReadableContainer;
 import be.nabu.utils.io.api.PushbackContainer;
 import be.nabu.utils.io.api.ReadableContainer;
+import be.nabu.utils.io.containers.EOFReadableContainer;
 import be.nabu.utils.io.containers.chars.ReadableStraightByteToCharContainer;
 import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.HeaderProvider;
@@ -18,7 +19,7 @@ import be.nabu.utils.mime.impl.MimeUtils;
 
 public class ChunkedReadableByteContainer implements HeaderProvider {
 
-	private ReadableContainer<ByteBuffer> parent;
+	private EOFReadableContainer<ByteBuffer> parent;
 	
 	private byte [] single = new byte[1];
 	
@@ -33,7 +34,7 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 	private String partialChunkHeader;
 	
 	public ChunkedReadableByteContainer(ReadableContainer<ByteBuffer> parent) {
-		this.parent = parent;
+		this.parent = new EOFReadableContainer<ByteBuffer>(parent);
 	}
 	
 	@Override
@@ -115,6 +116,14 @@ public class ChunkedReadableByteContainer implements HeaderProvider {
 			// chunk is done
 			if (copied < 0) {
 				chunk = null;
+				// @2023-03-17: can trigger a CPU denial of service by sending a chunk of a certain size in a request that has an explicit content-length header _smaller_ than the chunk (so we can never read the end)
+				// we didn't explicitly check the parent state, instead we just kept reading until the end of the chunk was found
+				// we can't read any more either because the chunk is "complete" or because the parent simply didn't have any more data
+				// if we notice that the parent is empty _BEFORE_ the chunk is done, we need to make sure we stop trying to read, otherwise we end up in an unending loop trying to get more data from that parent!
+				if (parent.isEOF()) {
+					chunksFinished = true;
+					parentFinished = true;
+				}
 				break;
 			}
 			else if (copied == 0) {
