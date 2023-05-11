@@ -75,7 +75,7 @@ public class ParsedSignedMimePart extends ParsedMimeBinaryPart implements Parsea
 			
 			ReadableContainer<ByteBuffer> signatures = getContent();
 			try {
-				List<X509Certificate> certificates = new ArrayList<X509Certificate>(new KeyStoreHandler(getParser().getKeyStore().getKeyStore()).getCertificates().values());
+				List<X509Certificate> certificates = new ArrayList<X509Certificate>(getParser().getKeyStore().getCertificates().values());
 				X509Certificate [] array = certificates.toArray(new X509Certificate[certificates.size()]);
 				certPath = BCSecurityUtils.verify(toInputStream(unencapsulatedSignedData), toBytes(signatures), BCSecurityUtils.createCertificateStore(array), array);
 				validated = true;
