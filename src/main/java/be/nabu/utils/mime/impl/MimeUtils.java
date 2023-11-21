@@ -28,6 +28,7 @@ import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.Header;
+import be.nabu.utils.mime.api.ModifiableContentPart;
 import be.nabu.utils.mime.api.ModifiablePart;
 import be.nabu.utils.mime.api.MultiPart;
 import be.nabu.utils.mime.api.Part;
@@ -77,6 +78,34 @@ public class MimeUtils {
 	
 	public static MultiPart sign(Part partToSign, SignatureType signatureType, ManagedKeyStore keyStore, String...aliases) {
 		return new FormattedSignedMimeMultiPart(partToSign, signatureType, keyStore, aliases);
+	}
+	
+	public static void setReopenable(Part part, boolean reopenable) {
+		if (part instanceof ModifiableContentPart) {
+			((ModifiableContentPart) part).setReopenable(true);
+		}
+		else if (part instanceof MultiPart) {
+			for (Part child : (MultiPart) part) {
+				setReopenable(child, reopenable);
+			}
+		}
+	}
+	
+	public static boolean isReopenable(Part part) {
+		// content parts must be explicitly marked as reopenable
+		if (part instanceof ContentPart && ((ContentPart) part).isReopenable()) {
+			return true;
+		}
+		// for a multipart, all its child parts must be reopenable
+		else if (part instanceof MultiPart) {
+			boolean reopenable = true;
+			for (Part child : (MultiPart) part) {
+				reopenable &= isReopenable(child);
+			}
+			return reopenable;
+		}
+		// we assume default false
+		return false;
 	}
 	
 	public static Map<String, String> getHeaderAsValues(String name, Header...headers) {

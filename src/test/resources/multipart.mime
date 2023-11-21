@@ -1,0 +1,11 @@
+Content-Language: en-US
+Content-Type: multipart/related; boundary="MIMEBoundary_faf1f9d72bfed2ff3a68037a24bb12efbd688c682e9f2d3c"; type="application/xop+xml"; start="<0.8af1f9d72bfed2ff3a68037a24bb12efbd688c682e9f2d3c@apache.org>"; start-info="text/xml"
+Content-Length: 367
+
+--MIMEBoundary_faf1f9d72bfed2ff3a68037a24bb12efbd688c682e9f2d3c
+Content-Type: application/xop+xml; charset=UTF-8; type="text/xml"
+Content-Transfer-Encoding: binary
+Content-ID: <0.8af1f9d72bfed2ff3a68037a24bb12efbd688c682e9f2d3c@apache.org>
+
+<?xml version='1.0' encoding='UTF-8'?><soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"><soapenv:Body><a:linkFirmResponse xmlns:a="http://example.com/finance/core/financialrelationregsvc/v1/" xmlns:b="http://example.com/schema/commons/service"/></soapenv:Body></soapenv:Envelope>
+--MIMEBoundary_faf1f9d72bfed2ff3a68037a24bb12efbd688c682e9f2d3c--

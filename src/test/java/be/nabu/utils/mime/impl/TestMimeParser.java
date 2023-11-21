@@ -21,6 +21,29 @@ public class TestMimeParser extends TestCase {
 		return (ReadableResource) ResourceFactory.getInstance().resolve(uri, null);
 	}
 
+	public void testExampleMultiplart() throws URISyntaxException, ParseException, IOException {
+		URI uri = new URI("classpath:/multipart.mime");
+		MimeParser parser = new MimeParser();
+		MultiPart part = (MultiPart) parser.parse(getResource(uri));
+		String content = toString(part.getChild("part0"));
+		assertEquals(
+			"<?xml version='1.0' encoding='UTF-8'?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><a:linkFirmResponse xmlns:a=\"http://example.com/finance/core/financialrelationregsvc/v1/\" xmlns:b=\"http://example.com/schema/commons/service\"/></soapenv:Body></soapenv:Envelope>",
+			content
+		);
+	}
+	
+	public void testExampleMultiplartWithFixedLength() throws URISyntaxException, ParseException, IOException {
+		URI uri = new URI("classpath:/multipart.mime");
+		MimeParser parser = new MimeParser();
+		parser.setRequireKnownContentLength(true);
+		MultiPart part = (MultiPart) parser.parse(getResource(uri));
+		String content = toString(part.getChild("part0"));
+		assertEquals(
+			"<?xml version='1.0' encoding='UTF-8'?><soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"><soapenv:Body><a:linkFirmResponse xmlns:a=\"http://example.com/finance/core/financialrelationregsvc/v1/\" xmlns:b=\"http://example.com/schema/commons/service\"/></soapenv:Body></soapenv:Envelope>",
+			content
+		);
+	}
+	
 	public void testExample1() throws URISyntaxException, ParseException, IOException {
 		URI uri = new URI("classpath:/example.mime");
 		MimeParser parser = new MimeParser();

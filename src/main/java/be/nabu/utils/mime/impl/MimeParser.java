@@ -56,6 +56,14 @@ public class MimeParser implements PartParser {
 	 */
 	private boolean requireKnownContentLength = false;
 	
+	/**
+	 * In the original implementation we would clean up any whitespace characters that appeared between boundaries in multiparts
+	 * This however does NOT work well when using blocking I/O and a stream that is not yet closed, it will simply hang
+	 * Presumably this was added for mail-based multiparts but it should not be used in a HTTP setting
+	 * Because I don't just want to turn it off, I will leave the default to true and explicitly disable it in the http wrapper
+	 */
+	private boolean cleanupWhitespaceBetweenBoundaries = true;
+	
 	// this refers to rfc2616 article 4.4 Message Length option 5
 	// i have only ever seen this in the wild in a single situation
 	// the behavior (if you disable this) is that the parser assumes there is no content and you get an empty response
@@ -114,7 +122,7 @@ public class MimeParser implements PartParser {
 //		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(IOUtils.bufferReadable(resource.getReadable(), IOUtils.newByteBuffer(1024*10, true)));
 		ReadableContainer<CharBuffer> data = new ReadableStraightByteToCharContainer(resource.getReadable());
 		try {
-			return parse(IOUtils.countReadable(data), null, 0, resource, true, headers);
+			return parse(IOUtils.countReadable(data), null, 0, resource, true, requireKnownContentLength, headers);
 		}
 		finally {
 			data.close();
@@ -122,10 +130,10 @@ public class MimeParser implements PartParser {
 	}
 	
 	ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, Header...headers) throws ParseException, IOException {
-		return parse(data, parent, partNumber, null, false, headers);
+		return parse(data, parent, partNumber, null, false, requireKnownContentLength, headers);
 	}
 	
-	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource, boolean isRoot, Header...originalHeaders) throws ParseException, IOException {
+	private ParsedMimePart parse(CountingReadableContainer<CharBuffer> data, ParsedMimeMultiPart parent, int partNumber, ReadableResource resource, boolean isRoot, boolean requireKnownContentLength, Header...originalHeaders) throws ParseException, IOException {
 		long initialOffset = data.getReadTotal();
 		Header [] headers = originalHeaders == null || originalHeaders.length == 0 ? MimeUtils.readHeaders(data) : originalHeaders;
 		String contentType = MimeUtils.getContentType(headers).toLowerCase();
@@ -157,7 +165,8 @@ public class MimeParser implements PartParser {
 			// if it is a proper mime part with a boundary, it can start with some data which defaults to text/plain (if mime/multipart) because it has no headers of its own
 			long possibleOffset = data.getReadTotal();
 			// check for an initial content part with no headers
-			ParsedMimePart contentPart = parseContentPart(data, boundary);
+			// we also don't need a required known length here because we are using boundaries!
+			ParsedMimePart contentPart = parseContentPart(data, boundary, false);
 			// the part is optional, if there is no data there, don't add it
 			if (contentPart.getSize() > 0) {
 				contentPart.setOffset(possibleOffset);
@@ -168,7 +177,10 @@ public class MimeParser implements PartParser {
 			if (!isLastBoundary(data)) {
 				while(true) {
 					long childOffset = data.getReadTotal();
-					ParsedMimePart child = parse(IOUtils.countReadable(IOUtils.delimit(data, "--" + boundary)), multiPart, childPartNumber++);
+					// @2023-10-05 even in HTTP, if we have a multipart with child parts in it, the parent multipart _must_ have a content length/chunked indication
+					// but child parts within the parent do not, they are delimited by the boundary of the multipart
+					// so for child parsing, we explicitly disable the need for required content length
+					ParsedMimePart child = parse(IOUtils.countReadable(IOUtils.delimit(data, "--" + boundary)), multiPart, childPartNumber++, null, false, false);
 					child.setOffset(childOffset);
 					multiPart.addParts(child);
 					if (isLastBoundary(data))
@@ -177,12 +189,14 @@ public class MimeParser implements PartParser {
 			}
 			// need to set size on multipart
 			multiPart.setSize(data.getReadTotal());
-			// copy any garbage between boundaries to the sink (should only be whitespace)
-			IOUtils.copyChars(IOUtils.validate(data, allowedCharactersBetweenBoundaries, true), IOUtils.newCharSink());
+			if (cleanupWhitespaceBetweenBoundaries) {
+				// copy any garbage between boundaries to the sink (should only be whitespace)
+				IOUtils.copyChars(IOUtils.validate(data, allowedCharactersBetweenBoundaries, true), IOUtils.newCharSink());
+			}
 		}
 		// it's binary content
 		else {
-			int amountToIgnore = parseContentPart(part, data, null, headers);
+			int amountToIgnore = parseContentPart(part, data, null, requireKnownContentLength, headers);
 			// in the beginning we always used readTotal - amountToIgnore
 			// the problem however is that the amountToIgnore mostly strips whitespace at the end
 			// in a very few cases however the whitespace is not due to mime formatting but an actual part of the content
@@ -233,13 +247,13 @@ public class MimeParser implements PartParser {
 		return trailingCounter > 0 || amountRead == -1;
 	}
 	
-	private ParsedMimePart parseContentPart(ReadableContainer<CharBuffer> data, String boundary, Header...headers) throws ParseException, IOException {
+	private ParsedMimePart parseContentPart(ReadableContainer<CharBuffer> data, String boundary, boolean requireKnownContentLength, Header...headers) throws ParseException, IOException {
 		ParsedMimePart part = newHandler(MimeUtils.getContentType(headers));
 		part.setParser(this);
 		CountingReadableContainer<CharBuffer> countingData = IOUtils.countReadable(data);
 		// currently not applying same fix as with pure binary body for http
 		// need to see an actual usecase of this before we do that
-		int amountToIgnore = parseContentPart(part, countingData, boundary, headers);
+		int amountToIgnore = parseContentPart(part, countingData, boundary, requireKnownContentLength, headers);
 		part.setSize(countingData.getReadTotal() - amountToIgnore);
 		return part;
 	}
@@ -248,7 +262,7 @@ public class MimeParser implements PartParser {
 	 * Returns the amount of chars to ignore
 	 * @throws IOException 
 	 */
-	private int parseContentPart(ParsedMimePart part, ReadableContainer<CharBuffer> data, String boundary, Header...headers) throws ParseException, IOException {
+	private int parseContentPart(ParsedMimePart part, ReadableContainer<CharBuffer> data, String boundary, boolean requireKnownContentLength, Header...headers) throws ParseException, IOException {
 		// if we have chunked content, wrap it
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		
@@ -374,6 +388,14 @@ public class MimeParser implements PartParser {
 
 	public void setAllowNoMessageSizeForClosedConnections(boolean allowNoMessageSizeForClosedConnections) {
 		this.allowNoMessageSizeForClosedConnections = allowNoMessageSizeForClosedConnections;
+	}
+
+	public boolean isCleanupWhitespaceBetweenBoundaries() {
+		return cleanupWhitespaceBetweenBoundaries;
+	}
+
+	public void setCleanupWhitespaceBetweenBoundaries(boolean cleanupWhitespaceBetweenBoundaries) {
+		this.cleanupWhitespaceBetweenBoundaries = cleanupWhitespaceBetweenBoundaries;
 	}
 	
 }
