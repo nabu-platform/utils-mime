@@ -161,12 +161,25 @@ public class MimeParser implements PartParser {
 		// it's a multipart, parse the children
 		if (part instanceof ParsedMimeMultiPart && boundary != null) {
 			ParsedMimeMultiPart multiPart = (ParsedMimeMultiPart) part;
+			
+			// @2023-11-30 when we call parse here, we don't take into account transfer encoding because we are not working on the root part
+			// we do a small precalculation to see if the multipart is using chunked and wrap it in a dechunkifier if so
+			// this is a late addition to the code which is why it is a localized patch rather than a full fix
+			// where we call parseContentPart a few lines below, we used to pass in "data" directly
+			ReadableContainer<CharBuffer> readableData = data;
+			String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
+			if (transferEncoding != null && transferEncoding.equalsIgnoreCase("chunked")) {
+				HeaderProvider headerProvider = new ChunkedReadableByteContainer(
+									new ReadableStraightCharToByteContainer(data));
+				readableData = new ReadableStraightByteToCharContainer(headerProvider);
+			}
+			
 			int childPartNumber = 0;
 			// if it is a proper mime part with a boundary, it can start with some data which defaults to text/plain (if mime/multipart) because it has no headers of its own
 			long possibleOffset = data.getReadTotal();
 			// check for an initial content part with no headers
 			// we also don't need a required known length here because we are using boundaries!
-			ParsedMimePart contentPart = parseContentPart(data, boundary, false);
+			ParsedMimePart contentPart = parseContentPart(readableData, boundary, false);
 			// the part is optional, if there is no data there, don't add it
 			if (contentPart.getSize() > 0) {
 				contentPart.setOffset(possibleOffset);

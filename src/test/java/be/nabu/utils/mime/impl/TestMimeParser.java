@@ -20,7 +20,7 @@ public class TestMimeParser extends TestCase {
 	public static ReadableResource getResource(URI uri) throws IOException {
 		return (ReadableResource) ResourceFactory.getInstance().resolve(uri, null);
 	}
-
+	
 	public void testExampleMultiplart() throws URISyntaxException, ParseException, IOException {
 		URI uri = new URI("classpath:/multipart.mime");
 		MimeParser parser = new MimeParser();
