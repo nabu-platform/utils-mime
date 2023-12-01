@@ -191,7 +191,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		return totalRead == 0 && isClosed ? -1 : totalRead;
 	}
 
-	protected ReadableContainer<ByteBuffer> encodeInput(ContentPart part, ReadableContainer<ByteBuffer> input) {
+	protected ReadableContainer<ByteBuffer> encodeInput(Part part, ReadableContainer<ByteBuffer> input) {
 		// this assumes the formateContentPartHeaders has been called which will have checked or set the encoding (or thrown an exception)
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());

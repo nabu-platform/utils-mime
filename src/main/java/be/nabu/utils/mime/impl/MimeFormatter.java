@@ -200,7 +200,7 @@ public class MimeFormatter implements PartFormatter {
 		}
 	}
 
-	protected WritableContainer<ByteBuffer> encodeOutput(ContentPart part, WritableContainer<ByteBuffer> output) {
+	protected WritableContainer<ByteBuffer> encodeOutput(Part part, WritableContainer<ByteBuffer> output) {
 		// this assumes the formateContentPartHeaders has been called which will have checked or set the encoding (or thrown an exception)
 		String contentTransferEncoding = MimeUtils.getContentTransferEncoding(part.getHeaders());
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
@@ -307,6 +307,7 @@ public class MimeFormatter implements PartFormatter {
 	}
 	
 	private void formatMultiPartContent(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		output = encodeOutput(part, output);
 		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
 		if (contentType == null)
 			throw new FormatException("No content-type found for multipart");
