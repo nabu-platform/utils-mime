@@ -13,6 +13,7 @@ import be.nabu.utils.io.api.ReadableContainer;
 import be.nabu.utils.io.api.WritableContainer;
 import be.nabu.utils.io.buffers.bytes.ByteBufferFactory;
 import be.nabu.utils.io.buffers.bytes.DynamicByteBuffer;
+import be.nabu.utils.io.buffers.bytes.LimitedByteBuffer;
 import be.nabu.utils.mime.api.ContentPart;
 import be.nabu.utils.mime.api.Header;
 import be.nabu.utils.mime.api.MultiPart;
@@ -40,7 +41,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 	public void format(Part part) throws IOException, FormatException {
 		// doing a new format, reset
 		reset();
-		push(part);
+		push(part, true);
 	}
 	
 	@Override
@@ -60,7 +61,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		footerWritten = false;
 	}
 	
-	private void push(Part part) throws IOException, FormatException {
+	private void push(Part part, boolean root) throws IOException, FormatException {
 		// formatted parts can not be streamed at this point
 		if (part instanceof FormattablePart) {
 			((FormattablePart) part).setFormatter(new MimeFormatter());
@@ -71,7 +72,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 			}
 		}
 		else if (isMultiPart(part)) {
-			pushMultiPart((MultiPart) part);
+			pushMultiPart((MultiPart) part, root);
 		}
 		else if (part instanceof ContentPart) {
 			pushContentPart((ContentPart) part);
@@ -98,7 +99,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		}
 	}
 	
-	private void pushMultiPart(MultiPart part) throws FormatException, IOException {
+	private void pushMultiPart(MultiPart part, boolean root) throws FormatException, IOException {
 		formatMultiPartHeaders((MultiPart) part, buffer);
 		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
 		if (contentType == null)
@@ -129,7 +130,8 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 	@Override
 	public long read(ByteBuffer target) throws IOException {
 		long totalRead = 0;
-		while (!isClosed && target.remainingSpace() > 0) {
+		long remainingSpace = 0;
+		while (!isClosed && (remainingSpace = target.remainingSpace()) > 0) {
 			// the buffer takes priority above all else, it contains headers etc that were preformatted
 			if (buffer.remainingData() > 0) {
 				totalRead += target.write(buffer);
@@ -138,7 +140,9 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 			else {
 				// if there is a readable, use it
 				if (currentReadable != null) {
-					long read = currentReadable.read(target);
+					// @2023-11-30: push everything to the buffer first so we can wrap it in chunked encoding if necessary (only relevant for multiparts!)
+					ByteBuffer limitedBuffer = new LimitedByteBuffer(buffer, null, remainingSpace);
+					long read = currentReadable.read(limitedBuffer);
 					// no more data in readable, close it
 					if (read == -1) {
 						currentReadable.close();
@@ -158,9 +162,9 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 					else if (read == 0) {
 						break;
 					}
-					else {
-						totalRead += read;
-					}
+//					else {
+//						totalRead += read;
+//					}
 				}
 				// there is no more readable and still space left, check what part we were iterating on
 				else if (!partIterators.isEmpty()) {
@@ -176,7 +180,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 					}
 					else {
 						try {
-							push(iterator.next());
+							push(iterator.next(), false);
 						}
 						catch (FormatException e) {
 							throw new IOException("Could not write part", e);
@@ -197,7 +201,7 @@ public class PullableMimeFormatter extends MimeFormatter implements ReadableCont
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
 
-		if (!allowBinary && contentTransferEncoding == null) {
+		if (!allowBinary && contentTransferEncoding == null && !(part instanceof MultiPart)) {
 			contentTransferEncoding = getContentTransferEncoding(part);
 		}
 		

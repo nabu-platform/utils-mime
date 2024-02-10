@@ -206,7 +206,7 @@ public class MimeFormatter implements PartFormatter {
 		String transferEncoding = MimeUtils.getTransferEncoding(part.getHeaders());
 		String contentEncoding = MimeUtils.getContentEncoding(part.getHeaders());
 		
-		if (!allowBinary && contentTransferEncoding == null) {
+		if (!allowBinary && contentTransferEncoding == null && !(part instanceof MultiPart)) {
 			contentTransferEncoding = getContentTransferEncoding(part);
 		}
 		// you can do two things here:
