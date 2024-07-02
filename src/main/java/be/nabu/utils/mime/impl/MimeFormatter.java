@@ -184,9 +184,13 @@ public class MimeFormatter implements PartFormatter {
 			try {
 				content = limitByContentRange(part, content);
 				
+				WritableContainer<ByteBuffer> original = output;
 				WritableContainer<ByteBuffer> encodedOutput = encodeOutput(part, output);
 				copyBytes(content, encodedOutput);
-				encodedOutput.flush();
+				// if this particular part created the encoding, it must close it
+				if (!original.equals(encodedOutput)) {
+					encodedOutput.flush();
+				}
 				if (part.getParent() != null || includeMainContentTrailingLineFeeds) {
 					output.write(wrap("\r\n\r\n".getBytes("ASCII"), true));
 				}
@@ -307,6 +311,7 @@ public class MimeFormatter implements PartFormatter {
 	}
 	
 	private void formatMultiPartContent(MultiPart part, WritableContainer<ByteBuffer> output) throws IOException, FormatException {
+		WritableContainer<ByteBuffer> original = output;
 		output = encodeOutput(part, output);
 		Header contentType = MimeUtils.getHeader("Content-Type", part.getHeaders());
 		if (contentType == null)
@@ -318,7 +323,10 @@ public class MimeFormatter implements PartFormatter {
 			writeBoundary(output, boundary, false);
 			format((Part) child, output);
 		}
-		writeBoundary(output, boundary, true);		
+		writeBoundary(output, boundary, true);
+		if (!original.equals(output)) {
+			output.flush();
+		}
 	}
 	
 	protected void writeBoundary(WritableContainer<ByteBuffer> output, String boundary, boolean isLast) throws IOException {
