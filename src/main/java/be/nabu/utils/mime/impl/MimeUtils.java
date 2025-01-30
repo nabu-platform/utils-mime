@@ -246,6 +246,7 @@ public class MimeUtils {
 		return header == null ? null : header.getValue().trim();
 	}
 	
+	// should refactor to live in httputils, needs the serverheader for unification
 	public static String getCorrelationId(Header...headers) {
 		Header header = getHeader("X-Correlation-Id", headers);
 		return header == null ? null : header.getValue().trim();
